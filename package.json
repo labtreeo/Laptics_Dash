@@ -1,0 +1,32 @@
+{
+  "name": "laptics-dash",
+  "version": "0.2.6",
+  "license": "MIT",
+  "description": "A iRacing Dashboard",
+  "author": "Marnix de Wit <marnixwit@outlook.com>",
+  "main": "main.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "Myapp.com",
+    "win": {
+      "icon": "overlay/Images/app.ico"
+    },
+    "extraFiles": [
+      "app/server"
+    ]
+  },
+  "dependencies": {
+    "electron-settings": "^4.0.2",
+    "electron-store": "^5.2.0",
+    "electron-window-state": "^5.0.3"
+  },
+  "devDependencies": {
+    "electron": "latest",
+    "electron-builder": "^22.7.0"
+  }
+}

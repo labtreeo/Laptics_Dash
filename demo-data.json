@@ -1,0 +1,45 @@
+{
+  "Speed": 90,
+  "RPM": 4654,
+  "Gear": 6,
+  "dcBrakeBias": 51,
+  "dcPitSpeedLimiterToggle": false,
+  "dcHysNoBoostToggle": false,
+  "dcHysBoostHold": false,
+  "dcHeadlightFlash": false,
+  "LapDeltaToSessionLastlLap": -2.44,
+  "LapDeltaToSessionBestLap": -1.24,
+  "LapDeltaToSessionOptimalLap": 2.54,
+  "PlayerCarClassPosition": 15,
+  "dcTractionControl3": 1.35,
+  "dcMGUKDeployFixed": 12,
+  "PlayerCarTeamIncidentCount": 1,
+  "IsReplayPlaying": false,
+  "IsOnTrack": true,
+  "dcABS": 8,
+  "WeekendInfo": {
+    "WeekendOptions": {
+      "IncidentLimit": 10
+    }
+  },
+  "DriverInfo": {
+    "DriverCarIdx" : 0,
+    "Drivers": {
+      "0" : {
+        "CarPath": "audir18",
+        "CarClassShortName" : "LMP1 Class"
+      }
+    }
+  },
+  "EnergyERSBatteryPct": ".874",
+  "EnergyMGU_KLapDeployPct": ".124",
+  "PowerMGU_K": 0,
+  "FuelLevel": 5,
+  "LapLastLapTime": 203.455,
+  "LapBestLapTime": 201.543,
+  "LapOptimalLapTime": 199.546,
+  "SessionTimeRemain": 4355.435,
+  "OnPitRoad": false,
+  "PlayerCarIdx": 15,
+  "dcTractionControl": 4
+}
