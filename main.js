@@ -1,10 +1,6 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-//const spawn = require("child_process").spawn;
-// spawn('python',["app/server.py"]);
-//spawn('python', [path.join(__dirname, '../../../app/server.py')])
-//console.log(path.join(__dirname, '../../../app/server.py'))
 var child = require('child_process').execFile;
 var executablePath = 'app/server/server.exe';
 
@@ -25,8 +21,14 @@ function createWindow () {
 
   const mainWindow = new BrowserWindow({
     title: 'Main',
-    width: 1300,
-    height: 875,
+    width: 600,
+    height: 400,
+    backgroundColor: '#01000000',
+    frame: false,
+    transparent: true,
+    resizable: false,
+    maximizable: false,
+    movable: true,
 
     webPreferences: {
       nodeIntegration: true,
@@ -36,8 +38,10 @@ function createWindow () {
   });
 
   mainWindow.setMenuBarVisibility(false)
-  // and load the dash-overlay-index.html of the app.
+  // and load the dash-index.html of the app.
   mainWindow.loadFile('app/index.html')
+
+  mainWindow.setAlwaysOnTop(true, 'screen');
 
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()

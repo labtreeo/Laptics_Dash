@@ -1,101 +1,315 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel='icon' href='Images/app.ico' type='image/x-icon' >
-<title>Laptics Dash</title>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel='icon' href='Images/app.ico' type='image/x-icon' >
+	<title>Laptics V2 Dash</title>
 
-<!-- CSS only -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- CSS only -->
+	<link rel="stylesheet" href="../libs/css/bootstrap.css">
+	<link rel="stylesheet" href="../css/main.css">
 
-<!-- JS, Popper.js, and jQuery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-<script src="../overlay/js/moment.js" type="text/javascript"></script>
-<script src="../overlay/js/moment-duration-format.js"></script>
-<!-- angular -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.js"></script>
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.min.js"></script>
+	<script src="https://kit.fontawesome.com/ddde85d45b.js" crossorigin="anonymous"></script>
 
-<script src="../overlay/js/ir.js" type="text/javascript"></script>
+	<!-- angular -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.js"></script>
+	<script src="../js/ir.js"></script>
+</head>
 
-<link rel="stylesheet" href="../css/main.css">
+<body ng-controller="MainCtrl" ng-style="{'background-color' : backgroundColor}">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-info sticky-top">
-    <a class="navbar-brand" href="index.html">
-        <img src="Images/app.ico" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-        Laptics Dash
-    </a>
+<div class="container mainHub text-light rounded-3 border border-4 overflow-hidden">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="settings.html">Settings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="faq.html">FAQ</a>
-            </li>
-        </ul>
+	<div class="row" style="min-height: 24px">
+		<div class="col-sm-12">
+			<div class="row">
 
-        &nbsp;
-        <button class="btn btn-success my-2 my-sm-0" onclick="openDashboard()">Launch dash</button>
-        &nbsp;
-        <button class="btn btn-danger my-2 my-sm-0" onclick="closeDashboard()">Close dash</button>
-    </div>
-</nav>
+				<div class="col-sm-3 drag">
+					<div class="row">
+						<div class="col-sm-8">
+							<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
+							<span ng-if="ir.dcABS > 0" class="ABS text-danger" ng-bind="ir.dcABS"></span>
+							<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
+						</div>
+						<div class="col-sm-4 d-flex justify-content-center align-items-end p-0">
+							<span class="pedals bg-primary" ng-style="{ 'height': Clutch * 24}"></span>
+							<span class="pedals bg-danger" ng-style="{ 'height': Brake * 24}"></span>
+							<span class="pedals bg-success" ng-style="{ 'height': Throttle * 24}"></span>
+						</div>
+					</div>
+				</div>
 
-<body ng-controller="MainCtrl">
-<br>
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 drag">
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.4}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.5}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.6}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.7}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.8}"></span>
+				</div>
 
-<div class="customContainer">
+				<div class="col-sm-3">
+					<div class="row">
+						<div class="col-sm-6 text-end align-self-center">
+							<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
+						</div>
+						<div class="col-sm-6">
+							<button type="button" class="btn btn-sm text-secondary" id="min-button">-</button>
+							<button type="button" class="btn btn-sm text-secondary" id="close-button">x</button>
+						</div>
+					</div>
+				</div>
 
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="card text-white bg-info">
-                <div class="card-body">
-                    <h5 class="card-title">Home</h5>
-                    <p class="card-text">
-                        Thank you! for using Laptics Dash. This app is still in early beta so there maybe some bugs here and there so please send me your feedback in the Discord server
-                        <br>
-                        <br>
-                        This app is free but if you would like to support the development of this app feel free to donate
-                    </p>
-                </div>
-            </div>
+			</div>
+		</div>
+	</div>
 
-            <br>
-            <widgetbot
-                    server="728629548266291285"
-                    channel="728629548266291288"
-                    width="100%"
-                    height="500"
-            ></widgetbot>
-            <script src="https://cdn.jsdelivr.net/npm/@widgetbot/html-embed"></script>
+	<div class="row drag" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919'">
+		<div class="col col-sm-6 border-top border-4 p-1">
+			<div class="border border-2 rounded-1 battery">
 
-        </div>
+				<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 42.3 + '%'}" class="bg-success" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
 
-        <div class="col-sm-4">
-            <h5>Recent Updates</h5>
+				<div class="row">
+					<div class="col col-sm-6">
+						<i class="fas fa-battery-half batteryPercentage ps-1"></i>
+					</div>
+					<div class="col col-sm-6 text-end">
+						<span class="batteryPercentage pe-1" ng-bind="ir.EnergyERSBatteryPct * 100 | number:1 | percentage" ></span>
+					</div>
+				</div>
 
-            <ul class="timeline">
-                <li class="timeline-item text-white bg-warning rounded ml-3 p-4 shadow">
-                    <div class="timeline-arrow"></div>
-                    <h2 class="h5 mb-0">V 1.0</h2><span class="small text-gray"><i class="fa fa-clock-o mr-1"></i>29 December, 2020</span>
-                    <p class="text-small mt-2 font-weight-light">
-                        Initial release
-                    </p>
-                </li>
-            </ul>
-        </div>
-    </div>
+			</div>
+		</div>
+
+		<div class="col col-sm-6 border-top border-4 p-1">
+			<div class="border border-2 rounded-2 battery">
+
+				<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 42.3 + '%'}" class="bg-primary" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
+
+				<div class="row">
+					<div class="col col-sm-6">
+						<i class="fas fa-caret-right batteryPercentage ps-1"></i>
+					</div>
+					<div class="col col-sm-6 text-end">
+						<span class="batteryPercentage pe-1" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:1 | percentage" ></span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row drag" style="min-height: 63px">
+		<div class="col-sm-5 border-top border-4">
+			<div class="row">
+				<div class="col-sm-4">
+					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0" ng-bind=" 'P' + driverAheadPos" ></span>
+					<span class="rivalPosition text-secondary" ng-if="driverAheadPos == 0" >P-</span>
+				</div>
+				<div class="col-sm-8 text-end">
+					<span class="lapTimeRival bestTime" ng-bind="driverAheadBestLapTime"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<span class="smallRivalPosition text-secondary" ng-style="{color: driverAheadCarClassColor}" ng-if="driverAheadClassPos > 0" ng-bind=" 'P' + driverAheadClassPos" ></span>
+					<span class="smallRivalPosition text-secondary" ng-if="driverAheadClassPos == 0" >P-</span>
+				</div>
+				<div class="col-sm-8 text-end">
+					<span class="smallLapTimeRival" ng-bind="driverAheadLastLapTime"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-2 border-start border-end border-top border-4 p-0" >
+			<div class="RPM text-center pt-2" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></div>
+		</div>
+
+		<div class="col-sm-5 border-top border-4">
+			<div class="row text-end">
+				<span class="driverName" ng-bind="driverAheadName"></span>
+
+				<span class="driverGap text-danger" ng-if="driverAheadGap > 0" ng-bind="driverAheadGap | plusOrMinus"></span>
+				<span class="driverGap text-success" ng-if="driverAheadGap < 0" ng-bind="driverAheadGap | plusOrMinus"></span>
+				<span class="driverGap" ng-if="driverAheadGap == 0">--,--</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row drag" style="min-height: 70px">
+		<div class="col-sm-5 border-top border-4">
+
+			<div class="row">
+				<div class="col-sm-3">
+					<span class="position" ng-if="ir.PlayerCarPosition > 0" ng-bind=" 'P' + ir.PlayerCarPosition" ></span>
+					<span class="position" ng-if="ir.PlayerCarPosition == 0" >P-</span>
+				</div>
+				<div class="col-sm-3 text-end align-self-center">
+					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Best</span>
+				</div>
+				<div class="col-sm-6 text-end">
+					<span class="delta" ng-if="ir.LapDeltaToSessionBestLap == 0">--,--</span>
+
+					<span class="delta text-success" ng-if="ir.LapDeltaToSessionBestLap < 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
+					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionBestLap > 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3 align-self-center">
+					<span class="smallPosition" ng-style="{color: driverCarClassColor}" ng-if="ir.PlayerCarClassPosition > 0" ng-bind=" 'P' + ir.PlayerCarClassPosition" ></span>
+					<span class="smallPosition" ng-if="ir.PlayerCarClassPosition == 0" >P-</span>
+				</div>
+				<div class="col-sm-3 text-end align-self-center">
+					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Last</span>
+				</div>
+				<div class="col-sm-6 text-end">
+					<span class="delta" ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap == 0">--,--</span>
+
+					<span class="delta text-success " ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap < 0" ng-bind="ir.LapDeltaToSessionOptimalLap | number:2 | plusOrMinus"></span>
+					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap > 0" ng-bind="ir.LapDeltaToSessionOptimalLap | number:2 | plusOrMinus"></span>
+
+					<span class="delta text-success" ng-if="ir.LapDeltaToSessionLastlLap < 0" ng-bind="ir.LapDeltaToSessionLastlLap | number:2 | plusOrMinus"></span>
+					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionLastlLap > 0" ng-bind="ir.LapDeltaToSessionLastlLap | number:2 | plusOrMinus"></span>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col-sm-2 border-start border-end border-4">
+			<div class="gear text-center" ng-if="ir.Gear == -1">R</div>
+			<div class="gear text-center" ng-if="ir.Gear == 0">N</div>
+			<div class="gear text-center" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></div>
+		</div>
+
+		<div class="col-sm-5 border-top border-4">
+			<div class="row" >
+				<div class="col-sm-7 text-center p-0">
+					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
+				</div>
+				<div class="col-sm-5 text-end align-self-center ps-0" ng-if="ir.AirTemp">
+					<i class="fas fa-fw" ng-class="{'fa-thermometer-empty' : ir.AirTemp < 20, 'fa-thermometer-half' : ir.AirTemp > 20 && ir.AirTemp < 40, 'fa-thermometer-full' : ir.AirTemp > 40}"></i>
+					<span class="weather">{{ir.AirTemp | number:1}}</span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-7 text-center p-0">
+					<span ng-if="ir.LapLastLapTime > 10" class="lastLap" ng-bind="ir.LapLastLapTime | toMinSec"></span>
+				</div>
+				<div class="col-sm-5 text-end align-self-center ps-0" ng-if="ir.TrackTemp">
+					<i class="fas fa-road fa-fw"></i>
+					<span class="weather">{{ir.TrackTemp | number:1}}</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="row drag" style="min-height: 63px">
+		<div class="col-sm-5 border-top border-4">
+			<div class="row">
+				<div class="col-sm-4">
+					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0" ng-bind=" 'P' + driverBehindPos" ></span>
+					<span class="rivalPosition text-secondary" ng-if="driverBehindPos == 0" >P-</span>
+				</div>
+				<div class="col-sm-8 text-end">
+					<span class="lapTimeRival bestTime" ng-bind="driverBehindBestLapTime"></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-4">
+					<span class="smallRivalPosition text-secondary" ng-style="{color: driverBehindCarClassColor}" ng-if="driverBehindClassPos > 0" ng-bind=" 'P' + driverBehindClassPos" ></span>
+					<span class="smallRivalPosition text-secondary" ng-if="driverBehindClassPos == 0" >P-</span>
+				</div>
+				<div class="col-sm-8 text-end">
+					<span class="smallLapTimeRival" ng-bind="driverBehindLastLapTime"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-2 border-start border-end border-4 p-0">
+			<div class="speed text-center pt-2" ng-bind="ir.Speed * 3.6 | number:0 "></div>
+		</div>
+
+		<div class="col-sm-5 border-top border-4">
+			<div class="row text-end">
+				<span class="driverName" ng-bind="driverBehindName"></span>
+
+				<span class="driverGap text-success" ng-if="driverBehindGap < 0" ng-bind="driverBehindGap | plusOrMinus"></span>
+				<span class="driverGap text-danger" ng-if="driverBehindGap > 0" ng-bind="driverBehindGap | plusOrMinus"></span>
+				<span class="driverGap" ng-if="driverAheadGap == 0">--,--</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row text-center drag" style="min-height: 54px">
+		<div class="col-sm-5 border-top border-4">
+			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
+				<div class="col-sm-6">Fuel</div>
+				<div class="col-sm-6">Lap</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 bottomRow">
+					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
+				</div>
+				<div class="col-sm-6 bottomRow">
+					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
+					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-2 border-top border-4">
+			<div class="row pq-1">
+				<i class="fas fa-bolt bottomRowText text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+			</div>
+			<div class="row">
+				<div class="bottomRow p-0">
+					<span ng-if="ir.SessionTimeRemain < 600000" ng-bind="ir.SessionTimeRemain | secondsToDateTime"></span>
+					<span ng-if="ir.SessionTimeRemain > 600000">--,--</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-sm-5 border-top border-4">
+			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
+				<div class="col-sm-6">Since Pit</div>
+				<div class="col-sm-6">Inc</div>
+			</div>
+			<div class="row" ng-if="ir.WeekendInfo">
+				<div class="col-sm-6 bottomRow">
+					<span ng-if="lapsSincelastPitStop > 0" ng-bind="lapsSincelastPitStop + ' laps'"></span>
+					<span ng-if="!lapsSincelastPitStop || lapsSincelastPitStop == 0">-</span>
+				</div>
+				<div class="col-sm-6 bottomRow">
+					<div ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'">
+						<span ng-bind="ir.PlayerCarTeamIncidentCount"></span>
+					</div>
+					<div ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'">
+						<span ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </div>
-
-<script src="../overlay/js/app.js" type="text/javascript"></script>
-<script src="../renderer.js"></script>
 
 </body>
 
-
+<script src="../js/app.js"></script>
+<script src="../renderer.js"></script>
 
 </html>

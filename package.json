@@ -1,6 +1,6 @@
 {
-  "name": "laptics-dash",
-  "version": "0.2.6",
+  "name": "laptics-dash-v2",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "A iRacing Dashboard",
   "author": "Marnix de Wit <marnixwit@outlook.com>",
@@ -14,7 +14,7 @@
   "build": {
     "appId": "Myapp.com",
     "win": {
-      "icon": "overlay/Images/app.ico"
+      "icon": "app/Images/app.ico"
     },
     "extraFiles": [
       "app/server"

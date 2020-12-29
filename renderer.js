@@ -1,4 +1,4 @@
-// This file is required by the dash-overlay-index.html file and will
+// This file is required by the dash-index.html file and will
 // be executed in the renderer process for that window.
 // No Node.js APIs are available in this process because
 // `nodeIntegration` is turned off. Use `preload.js` to
@@ -8,76 +8,32 @@ const electron = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const BrowserWindow = electron.remote.BrowserWindow;
 
-if (localStorage.getItem('isDashOpen') === null){
-    localStorage.setItem('isDashOpen', 'false')
-}
+const remote = require('electron').remote;
 
-// if (localStorage.getItem('isDashOpen') === 'true'){
-//     localStorage.setItem('isDashOpen', 'false')
-//     openDashboard()
-// }
+const win = remote.getCurrentWindow(); /* Note this is different to the
+html global `window` variable */
 
-function openDashboard () {
-
-    if (localStorage.getItem('isDashOpen') === 'false'){
-
-        let dashboardWindowState = windowStateKeeper({
-            defaultWidth: 1000,
-            defaultHeight: 800
-        });
-
-        const Dashboard = new BrowserWindow({
-            title: 'Dashboard',
-            'x': dashboardWindowState.x,
-            'y': dashboardWindowState.y,
-            width: 700,
-            height: 500,
-            frame: false,
-            transparent: true,
-            resizable: false,
-            maximizable: false,
-            movable: true,
-            fullscreen: false
-        });
-
-        Dashboard.showInactive()
-
-        //Dashboard.webContents.openDevTools()
-        Dashboard.on('focus', focussed)
-        Dashboard.on('blur', blurred)
-
-        function focussed() {
-            Dashboard.setIgnoreMouseEvents(false)
-        }
-
-        function blurred(){
-            Dashboard.setIgnoreMouseEvents(true)
-        }
-
-        Dashboard.setIgnoreMouseEvents(true)
-
-        dashboardWindowState.manage(Dashboard);
-
-        Dashboard.on("close", test)
-
-        Dashboard.setAlwaysOnTop(true, 'screen');
-        Dashboard.loadFile('overlay/overlay-index.html')
-        localStorage.setItem('dashId', Dashboard.id)
-        localStorage.setItem('isDashOpen', 'true')
+// When document has loaded, initialise
+document.onreadystatechange = (event) => {
+    if (document.readyState == "complete") {
+        handleWindowControls();
     }
+};
 
+window.onbeforeunload = (event) => {
+    /* If window is reloaded, remove win event listeners
+    (DOM element listeners get auto garbage collected but not
+    Electron win listeners as the win is not dereferenced unless closed) */
+    win.removeAllListeners();
 }
 
-function test() {
-    localStorage.setItem('dashId', null)
-    localStorage.setItem('isDashOpen', 'false')
-}
+function handleWindowControls() {
+    // Make minimise/maximise/restore/close buttons work when they are clicked
+    document.getElementById('min-button').addEventListener("click", event => {
+        win.minimize();
+    });
 
-function closeDashboard() {
-
-    let dashId = parseInt(localStorage.getItem('dashId'))
-    localStorage.setItem('dashId', null)
-    localStorage.setItem('isDashOpen', 'false')
-    BrowserWindow.fromId(dashId).close()
-
+    document.getElementById('close-button').addEventListener("click", event => {
+        win.close();
+    });
 }
