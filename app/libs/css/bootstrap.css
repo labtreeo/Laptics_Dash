@@ -857,7 +857,7 @@ progress {
   --bs-gutter-y: 3rem;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 480px) {
   .col-sm {
     flex: 1 0 0%;
   }
@@ -7129,6 +7129,10 @@ textarea.form-control-lg {
 
 .text-secondary {
   color: #6c757d;
+}
+
+.text-secondary:hover {
+  color: #dce0e5;
 }
 
 .text-success {

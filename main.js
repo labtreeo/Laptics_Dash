@@ -21,8 +21,8 @@ function createWindow () {
 
   const mainWindow = new BrowserWindow({
     title: 'Main',
-    width: 600,
-    height: 400,
+    width: 500,
+    height: 321,
     backgroundColor: '#01000000',
     frame: false,
     transparent: true,

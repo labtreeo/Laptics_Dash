@@ -306,7 +306,7 @@
     //             },
     //             DriverInfo: {
     //                 Drivers: {
-    //                     0 : {CarPath: 'test'},
+    //                     0 : {CarPath: 'yay'},
     //                 },
     //                 DriverCarIdx: 0
     //             },
@@ -348,7 +348,7 @@
     //     $rootScope.driverBehindLastLapTime = '03:22:578'
     //     $rootScope.driverBehindGap = '-0.512'
     //
-    //     $rootScope.driverBehindName = 'Dave Appleseed twehrtregfhfghfgjhgf'
+    //     $rootScope.driverBehindName = 'Dave Appleseed'
     //
     //     $rootScope.driverCarClassColor = '#FFCE33'
     //     $rootScope.driverAheadCarClassColor = '#FFCE33'
@@ -361,12 +361,26 @@
 
     app.controller('MainCtrl', function($rootScope, $scope, iRService, $http, $interval) {
 
+        $scope.isElectron = isElectron();
+
         $interval(function() {
             $scope.CurrentTime = new Date()
         }, 100)
 
         return $scope.ir = iRService.data;
     });
+
+    function isElectron() {
+        if (typeof require !== 'function') return false;
+        if (typeof window !== 'object') return false;
+        try {
+            const electron = require('electron');
+            if (typeof electron !== 'object') return false;
+        } catch(e) {
+            return false;
+        }
+        return true;
+    }
 
     app.filter('customNumber', function() {
         return function(value) {
