@@ -1,13 +1,13 @@
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
+*** that would make this better, please fork the Laptics_Dash and create a pull request
 *** or simply open an issue with the tag "enhancement".
 *** Thanks again! Now go create something AMAZING! :D
 ***
 ***
 ***
 *** To avoid retyping too much info. Do a search and replace for the following:
-*** github_username, repo_name, twitter_handle, email, project_title, project_description
+*** Labtreeo, Laptics_Dash, twitter_handle, marnixwit@outlook.com, Laptics Dash, project_description
 -->
 
 
@@ -31,23 +31,23 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/Labtreeo/Laptics_Dash">
+    <img src="https://cdn.discordapp.com/attachments/661852420942462987/728641842853183508/Laptics_Dash_Logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">project_title</h3>
+  <h3 align="center">Laptics Dash</h3>
 
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/labtreeo/Laptics_Dash"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Labtreeo/Laptics_Dash"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/labtreeo/Laptics_Dash">View Demo</a>
+    <a href="https://github.com/Labtreeo/Laptics_Dash">View Demo</a>
     ·
-    <a href="https://github.com/labtreeo/Laptics_Dash">Report Bug</a>
+    <a href="https://github.com/Labtreeo/Laptics_Dash/issues">Laptics_Dashrt Bug</a>
     ·
-    <a href="https://github.com/labtreeo/Laptics_Dash">Request Feature</a>
+    <a href="https://github.com/Labtreeo/Laptics_Dash/issues">Request Feature</a>
   </p>
 </p>
 
@@ -84,112 +84,73 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo_name`, `twitter_handle`, `email`, `project_title`, `project_description`
+<img src="https://cdn.discordapp.com/attachments/728629548266291288/793410916623450112/Laptics_Dash_V2.PNG" height="200">
 
 
 ### Built With
 
-* []()
-* []()
-* []()
-
+* [Python iRacing SDK](https://github.com/kutu/pyirsdk)
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+There are currently 2 versions one which uses kapps and the other that is a stand alone version. the EXE in the updates channel is the stand alone version and the GitHub link it the download link for the Kapps version
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+For the Kapps Version you will need it installed and have that running on your system
 
-### Installation
+### Installation Kapps:
 
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
+1: Download the latest version from Github
 
+2: Unzip the download and place the folder on place you don't need to move it anymore like in documents
 
+3: Open the index.html in your browser and copy the link from your browser
 
-<!-- USAGE EXAMPLES -->
-## Usage
+4: Open Kapps en go to your Racing Overlay settings and scroll down to the 'Add Custom Overlay button' and click that
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+5: Paste the link in the URL Text field and that's it
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+### installation Stand alone App:
+
+1: Download the EXE from the Updates channel on Discord
+
+2: Run The EXE and the app should install
 
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a list of proposed features (and known issues).
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
+See the [open issues](https://github.com/Labtreeo/Laptics_Dash/issues) for a list of proposed features (and known issues).
 
 
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Marnix de Wit - marnixwit@outlook.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/Labtreeo/Laptics_Dash](https://github.com/Labtreeo/Laptics_Dash)
 
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
-
+Discord: [https://discord.gg/ECRSnVQ](https://discord.gg/ECRSnVQ)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/labtreeo/Laptics_Dash.svg?style=for-the-badge
-[contributors-url]: https://github.com/labtreeo/Laptics_Dash/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/labtreeo/Laptics_Dash.svg?style=for-the-badge
-[forks-url]: https://github.com/labtreeo/Laptics_Dash/network/members
-[stars-shield]: https://img.shields.io/github/stars/labtreeo/Laptics_Dash.svg?style=for-the-badge
-[stars-url]: https://github.com/labtreeo/Laptics_Dash/stargazers
-[issues-shield]: https://img.shields.io/github/issues/labtreeo/Laptics_Dash.svg?style=for-the-badge
-[issues-url]: https://github.com/labtreeo/Laptics_Dash/issues
-[license-shield]: https://img.shields.io/github/license/labtreeo/Laptics_Dash.svg?style=for-the-badge
-[license-url]: https://github.com/labtreeo/Laptics_Dash/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Labtreeo/Laptics_Dash.svg?style=for-the-badge
+[contributors-url]: https://github.com/Labtreeo/Laptics_Dash/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Labtreeo/Laptics_Dash.svg?style=for-the-badge
+[forks-url]: https://github.com/Labtreeo/Laptics_Dash/network/members
+[stars-shield]: https://img.shields.io/github/stars/Labtreeo/Laptics_Dash.svg?style=for-the-badge
+[stars-url]: https://github.com/Labtreeo/Laptics_Dash/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Labtreeo/Laptics_Dash.svg?style=for-the-badge
+[issues-url]: https://github.com/Labtreeo/Laptics_Dash/issues
+[license-shield]: https://img.shields.io/github/license/Labtreeo/Laptics_Dash.svg?style=for-the-badge
+[license-url]: https://github.com/Labtreeo/Laptics_Dash/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/Labtreeo
