@@ -56,7 +56,6 @@
             'LRCarLeft',
             'SessionInfo'
         ], [], 30);
-
         ir.onConnect = function() {
             localStorage.setItem("lastPitStop", ir.data['Lap']);
             return console.log('connected');
@@ -65,6 +64,46 @@
             return console.log('disconnected');
         };
         ir.onUpdate = function() {
+
+            let currentDriverId = ir.data['PlayerCarIdx'];
+            let drivers = ir.data['DriverInfo']['Drivers'];
+            let lastLapTime = ir.data['CarIdxLastLapTime'];
+            let bestLapTime = ir.data['CarIdxBestLapTime'];
+            let classPositions = ir.data['CarIdxClassPosition'];
+            let positions = ir.data['CarIdxPosition'];
+            let CarIdxF2Time = ir.data['CarIdxF2Time'];
+            let clutch = ir.data['Clutch'];
+
+            let driverCarClassColor
+            let currentDriver = drivers[currentDriverId]
+
+            let driverAheadPos
+            let driverAheadId
+            let driverAheadName
+            let driverAheadCarClassColor
+            let driverAheadClassPos
+            let driverAheadBestLapTimeRaw
+            let driverAheadBestLapTime
+            let driverAheadLastLapTimeRaw
+            let driverAheadLastLapTime
+            let driverAheadGapRaw
+            let driverAheadGap
+            let driverAheadLiveGapRaw
+            let driverAheadLiveGap
+
+            let driverBehindPos
+            let driverBehindId
+            let driverBehindName
+            let driverBehindCarClassColor
+            let driverBehindClassPos
+            let driverBehindBestLapTimeRaw
+            let driverBehindBestLapTime
+            let driverBehindLastLapTimeRaw
+            let driverBehindLastLapTime
+            let driverBehindGapRaw
+            let driverBehindGap
+            let driverBehindLiveGapRaw
+            let driverBehindLiveGap
 
             $rootScope.mguCharging = Math.abs(ir.data['PowerMGU_K']);
 
@@ -77,42 +116,19 @@
                 $rootScope.SessionLaps = ir.data['SessionInfo']['Sessions'][2]['SessionLaps']
             }
 
-            let onPitRoad = ir.data['OnPitRoad']
-            let lastPitStop;
-
-            if (onPitRoad === true) {
-                lastPitStop = ir.data['Lap']
-                localStorage.setItem("lastPitStop", lastPitStop);
+            if (ir.data['OnPitRoad'] === true) {
+                localStorage.setItem("lastPitStop", ir.data['Lap']);
             }
 
             $rootScope.lapsSincelastPitStop = ir.data['Lap'] - localStorage.getItem("lastPitStop");
 
-            $rootScope.Throttle = ir.data['Throttle']
-            $rootScope.Brake = ir.data['Brake']
-            let clutch = ir.data['Clutch'];
             if(clutch < 1.01){
-                let clutch2 = clutch - 1
-
-                $rootScope.Clutch =  Math.abs(clutch2)
+                $rootScope.Clutch =  Math.abs(clutch - 1)
             }
 
-            let currentDriverId = ir.data['PlayerCarIdx'];
-            let drivers = ir.data['DriverInfo']['Drivers'];
-            let lastLapTime = ir.data['CarIdxLastLapTime'];
-            let bestLapTime = ir.data['CarIdxBestLapTime'];
-            let classPositions = ir.data['CarIdxClassPosition'];
-            let positions = ir.data['CarIdxPosition'];
-            let CarIdxF2Time = ir.data['CarIdxF2Time'];
-
-            let driverCarClassColor
-            let driverId = positions.indexOf(positions[currentDriverId]);
-            let driverFromId = drivers[driverId]
-
-            if(driverId['CarClassColor'] !== 3395327 || driverId['CarClassColor'] !== 16767577 || driverId['CarClassColor'] !== 11430911 || driverId['CarClassColor'] !== 16777215 || driverId['CarClassColor'] === 5504887 || driverId['CarClassColor'] === 13849600){
-                driverCarClassColor = '#' + driverFromId['CarClassColor'].toString(16);
-            }
-
-            if(driverId['CarClassColor'] === 0){
+            if(currentDriver['CarClassColor'] > 0) {
+                driverCarClassColor = '#' + currentDriver['CarClassColor'].toString(16);
+            }else if(currentDriver['CarClassColor'] === 0){
                 driverCarClassColor = 'white';
             }
 
@@ -120,12 +136,12 @@
 
             if (positions[currentDriverId] !== 0) {
 
-                let driverAheadPos = positions[currentDriverId] - 1
+                driverAheadPos = positions[currentDriverId] - 1
+                driverBehindPos = positions[currentDriverId] + 1
 
                 if (driverAheadPos >= 1 ) {
-                    let driverAheadId = positions.indexOf(driverAheadPos);
-                    let driverAheadName
-                    let driverAheadCarClassColor
+
+                    driverAheadId = positions.indexOf(driverAheadPos);
 
                     for (const key in drivers) {
                         if (drivers.hasOwnProperty(key)) {
@@ -139,34 +155,29 @@
                         }
                     }
 
-                    let driverAheadClassPos = classPositions[driverAheadId]
-                    let driverAheadBestLapTimeRaw
+                    driverAheadClassPos = classPositions[driverAheadId]
+
                     if (ir.data['SessionNum'] < 2){
                         driverAheadBestLapTimeRaw = CarIdxF2Time[driverAheadId]
                     }else {
                         driverAheadBestLapTimeRaw = bestLapTime[driverAheadId]
                     }
-                    let driverAheadBestLapTime
 
                     if (driverAheadBestLapTimeRaw > 0) {
                         driverAheadBestLapTime = moment.duration(driverAheadBestLapTimeRaw, "seconds").format("mm:ss.SSS")
                     }
-                    let driverAheadLastLapTimeRaw = lastLapTime[driverAheadId]
-                    let driverAheadLastLapTime
-                    if (driverAheadLastLapTimeRaw === -1) {
-                        driverAheadLastLapTime = null
-                    } else {
+
+                    driverAheadLastLapTimeRaw = lastLapTime[driverAheadId]
+
+                    if (driverAheadLastLapTimeRaw >0) {
                         driverAheadLastLapTime = moment.duration(driverAheadLastLapTimeRaw, "seconds").format("mm:ss.SSS")
                     }
-                    
-                    if(driverAheadCarClassColor === 3395327 || driverAheadCarClassColor === 5504887 || driverAheadCarClassColor === 11430911 || driverAheadCarClassColor === 16734344 || driverAheadCarClassColor === 13849600 || driverAheadCarClassColor === 16767577){
+
+                    if( driverAheadCarClassColor > 0) {
                         driverAheadCarClassColor = '#' + driverAheadCarClassColor.toString(16);
-                    }
-                    if(driverAheadCarClassColor === 0){
+                    }else if(driverAheadCarClassColor === 0){
                         driverAheadCarClassColor = 'white';
                     }
-
-                    let driverAheadGapRaw
 
                     if (ir.data['SessionNum'] < 2){
                         if (driverAheadBestLapTimeRaw > 0 && ir.data['LapBestLapTime'] > 0) {
@@ -176,29 +187,17 @@
                         if (driverAheadBestLapTimeRaw > 0 && ir.data['LapLastLapTime'] > 0) {
                             driverAheadGapRaw = ir.data['LapLastLapTime'] - driverAheadLastLapTimeRaw
                         }
+                        driverAheadLiveGapRaw = ir.data['CarIdxF2Time']
                     }
 
-                    let driverAheadGap = moment.duration(driverAheadGapRaw, "seconds").format("s.SSS", { trim: false })
+                    driverAheadLiveGap = moment.duration(driverAheadLiveGapRaw, "seconds").format("s.SS", { trim: false })
+                    driverAheadGap = moment.duration(driverAheadGapRaw, "seconds").format("s.SS", { trim: false })
 
-                    if (driverAheadId !== undefined) {
-
-                        $rootScope.driverAheadPos = driverAheadPos
-                        $rootScope.driverAheadClassPos = driverAheadClassPos
-                        $rootScope.driverAheadBestLapTime = driverAheadBestLapTime
-                        $rootScope.driverAheadLastLapTime = driverAheadLastLapTime
-                        $rootScope.driverAheadGap = driverAheadGap
-                        $rootScope.driverAheadCarClassColor = driverAheadCarClassColor
-                        $rootScope.driverAheadName = driverAheadName
-                    }
                 }
-
-                let driverBehindPos = positions[currentDriverId] + 1
 
                 if (driverBehindPos > 1) {
 
-                    let driverBehindId = positions.indexOf(driverBehindPos);
-                    let driverBehindName
-                    let driverBehindCarClassColor
+                    driverBehindId = positions.indexOf(driverBehindPos);
 
                     for (const key in drivers) {
                         if (drivers.hasOwnProperty(key)) {
@@ -211,35 +210,30 @@
                             }
                         }
                     }
-                    
-                    let driverBehindClassPos = classPositions[driverBehindId]
-                    let driverBehindBestLapTimeRaw
+
+                    driverBehindClassPos = classPositions[driverBehindId]
+
                     if (ir.data['SessionNum'] < 2){
                         driverBehindBestLapTimeRaw = CarIdxF2Time[driverBehindId]
                     }else {
                         driverBehindBestLapTimeRaw = bestLapTime[driverBehindId]
                     }
-                    let driverBehindBestLapTime
 
                     if (driverBehindBestLapTimeRaw > 0) {
                         driverBehindBestLapTime = moment.duration(driverBehindBestLapTimeRaw, "seconds").format("mm:ss.SSS")
                     }
-                    let driverBehindLastLapTimeRaw = lastLapTime[driverBehindId]
-                    let driverBehindLastLapTime
-                    if (driverBehindLastLapTimeRaw === -1) {
-                        driverBehindLastLapTime = null
-                    } else {
+
+                    driverBehindLastLapTimeRaw = lastLapTime[driverBehindId]
+
+                    if (driverBehindLastLapTimeRaw > 0){
                         driverBehindLastLapTime = moment.duration(driverBehindLastLapTimeRaw, "seconds").format("mm:ss.SSS")
                     }
 
-                    if(driverBehindCarClassColor === 3395327 || driverBehindCarClassColor === 5504887 || driverBehindCarClassColor === 11430911 || driverBehindCarClassColor === 16734344 || driverBehindCarClassColor === 13849600 || driverBehindCarClassColor === 16767577){
+                    if( driverBehindCarClassColor > 0) {
                         driverBehindCarClassColor = '#' + driverBehindCarClassColor.toString(16);
-                    }
-                    if(driverBehindCarClassColor === 0){
+                    }else if(driverBehindCarClassColor === 0){
                         driverBehindCarClassColor = 'white';
                     }
-
-                    let driverBehindGapRaw
 
                     if (ir.data['SessionNum'] < 2){
                         if (driverBehindBestLapTimeRaw > 0 && ir.data['LapBestLapTime'] > 0) {
@@ -249,28 +243,34 @@
                         if (driverBehindBestLapTimeRaw > 0 && ir.data['LapLastLapTime'] > 0) {
                             driverBehindGapRaw = ir.data['LapLastLapTime'] - driverBehindLastLapTimeRaw
                         }
+                        driverBehindLiveGapRaw = ir.data['CarIdxF2Time']
                     }
 
-                    let driverBehindGap = moment.duration(driverBehindGapRaw, "seconds").format("s.SSS", { trim: false })
-
-                    if (driverBehindId !== undefined) {
-
-                        $rootScope.driverBehindPos = driverBehindPos
-                        $rootScope.driverBehindClassPos = driverBehindClassPos
-                        $rootScope.driverBehindBestLapTime = driverBehindBestLapTime
-                        $rootScope.driverBehindLastLapTime = driverBehindLastLapTime
-                        $rootScope.driverBehindGap = driverBehindGap
-                        $rootScope.driverBehindCarClassColor = driverBehindCarClassColor
-                        $rootScope.driverBehindName = driverBehindName
-                    }
+                    driverBehindLiveGap = moment.duration(driverBehindLiveGapRaw, "seconds").format("s.SS", { trim: false })
+                    driverBehindGap = moment.duration(driverBehindGapRaw, "seconds").format("s.SS", { trim: false })
                 }
+
+                $rootScope.driverAheadPos = driverAheadPos
+                $rootScope.driverAheadClassPos = driverAheadClassPos
+                $rootScope.driverAheadBestLapTime = driverAheadBestLapTime
+                $rootScope.driverAheadLastLapTime = driverAheadLastLapTime
+                $rootScope.driverAheadGap = driverAheadGap
+                $rootScope.driverAheadCarClassColor = driverAheadCarClassColor
+                $rootScope.driverAheadName = driverAheadName
+                $rootScope.driverAheadLiveGap = driverAheadLiveGap
+
+                $rootScope.driverBehindPos = driverBehindPos
+                $rootScope.driverBehindClassPos = driverBehindClassPos
+                $rootScope.driverBehindBestLapTime = driverBehindBestLapTime
+                $rootScope.driverBehindLastLapTime = driverBehindLastLapTime
+                $rootScope.driverBehindGap = driverBehindGap
+                $rootScope.driverBehindCarClassColor = driverBehindCarClassColor
+                $rootScope.driverBehindName = driverBehindName
+                $rootScope.driverBehindLiveGap = driverBehindLiveGap
             }
 
             return $rootScope.$apply();
         };
-
-        $rootScope.backgroundColor = 'transparent'
-
         return ir;
     });
 
@@ -322,6 +322,8 @@
     //             PlayerCarIdx: 15,
     //             dcTractionControl: 12,
     //             Lap: 178,
+    //             Throttle: .56,
+    //             Brake: 1,
     //             TrackTemp: 26.78,
     //             AirTemp: 24.56,
     //             SessionLapsRemain: 5467,
@@ -329,8 +331,6 @@
     //         }
     //     };
     //
-    //     $rootScope.Throttle = .56
-    //     $rootScope.Brake = 1
     //     $rootScope.Clutch = 0.35
     //
     //     $rootScope.lapsSincelastPitStop = '26'
@@ -348,7 +348,7 @@
     //     $rootScope.driverBehindLastLapTime = '03:22:578'
     //     $rootScope.driverBehindGap = '-0.512'
     //
-    //     $rootScope.driverBehindName = 'Dave Appleseed'
+    //     $rootScope.driverBehindName = 'Dave Appleseed twehrtregfhfghfgjhgf'
     //
     //     $rootScope.driverCarClassColor = '#FFCE33'
     //     $rootScope.driverAheadCarClassColor = '#FFCE33'
@@ -359,7 +359,7 @@
     //     return ir;
     // });
 
-    app.controller('MainCtrl', function($scope, iRService, $http, $interval) {
+    app.controller('MainCtrl', function($rootScope, $scope, iRService, $http, $interval) {
 
         $interval(function() {
             $scope.CurrentTime = new Date()
@@ -389,9 +389,7 @@
     });
 
     app.filter('toMinSec', function(){
-
         return function(input){
-
             return (moment.duration(input, "seconds").format("mm:ss.SSS"));
         }
     });

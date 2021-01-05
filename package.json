@@ -1,6 +1,6 @@
 {
   "name": "laptics-dash-v2",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "license": "MIT",
   "description": "A iRacing Dashboard",
   "author": "Marnix de Wit <marnixwit@outlook.com>",
@@ -14,7 +14,8 @@
   "build": {
     "appId": "Myapp.com",
     "win": {
-      "icon": "app/Images/app.ico"
+      "icon": "app/Images/app.ico",
+      "publish": ["github"]
     },
     "extraFiles": [
       "app/server"
@@ -23,6 +24,7 @@
   "dependencies": {
     "electron-settings": "^4.0.2",
     "electron-store": "^5.2.0",
+    "electron-updater": "^4.3.5",
     "electron-window-state": "^5.0.3"
   },
   "devDependencies": {

@@ -80,12 +80,19 @@ def loop():
                 'CarIdxOnPitRoad': ir['CarIdxOnPitRoad'],
                 'SessionInfo': ir['SessionInfo'],
                 'CarIdxLapDistPct': ir['CarIdxLapDistPct'],
+                'AirTemp': ir['AirTemp'],
+                'TrackTemp': ir['TrackTemp'],
+                'SessionLapsRemain': ir['SessionLapsRemain'],
+                'Lap': ir['Lap'],
+                'Throttle': ir['Throttle'],
+                'Brake': ir['Brake'],
+                'Clutch': ir['Clutch'],
             }
 
             await websocket.send(json.dumps({'data': liveData}))
             await asyncio.sleep(0.1)
 
-    start_server = websockets.serve(time, "127.0.0.1", 2526)
+    start_server = websockets.serve(time, "127.0.0.1", 8182)
 
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()

@@ -22,7 +22,7 @@
 	<script src="../js/ir.js"></script>
 </head>
 
-<body ng-controller="MainCtrl" ng-style="{'background-color' : backgroundColor}">
+<body ng-controller="MainCtrl" style="background-color: transparent" ng-class="{'bg-secondary': ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'}">
 
 <div class="container mainHub text-light rounded-3 border border-4 overflow-hidden">
 
@@ -30,7 +30,7 @@
 		<div class="col-sm-12">
 			<div class="row">
 
-				<div class="col-sm-3 drag">
+				<div class="col-sm-3">
 					<div class="row">
 						<div class="col-sm-8">
 							<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
@@ -39,8 +39,8 @@
 						</div>
 						<div class="col-sm-4 d-flex justify-content-center align-items-end p-0">
 							<span class="pedals bg-primary" ng-style="{ 'height': Clutch * 24}"></span>
-							<span class="pedals bg-danger" ng-style="{ 'height': Brake * 24}"></span>
-							<span class="pedals bg-success" ng-style="{ 'height': Throttle * 24}"></span>
+							<span class="pedals bg-danger" ng-style="{ 'height': ir.Brake * 24}"></span>
+							<span class="pedals bg-success" ng-style="{ 'height': ir.Throttle * 24}"></span>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
 
 				<div class="col-sm-3">
 					<div class="row">
-						<div class="col-sm-6 text-end align-self-center">
+						<div class="col-sm-6 text-end align-self-center drag">
 							<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
 						</div>
 						<div class="col-sm-6">

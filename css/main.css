@@ -13,6 +13,7 @@
     background-color: rgba(10, 36, 71, 0.7);
     white-space: nowrap;
     user-select: none;
+    overflow: hidden;
     animation: fadein 2s;
 }
 
