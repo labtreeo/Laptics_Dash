@@ -35,7 +35,7 @@
     <img src="https://cdn.discordapp.com/attachments/661852420942462987/728641842853183508/Laptics_Dash_Logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Laptics Dash</h3>
+<h3 align="center">Laptics Dash</h3>
 
   <p align="center">
     project_description
