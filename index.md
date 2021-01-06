@@ -2,6 +2,8 @@
 
 Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
+There are currently 2 versions one which uses kapps and the other that is a stand alone version. the EXE in the updates channel is the stand alone version and the GitHub link it the download link for the Kapps version
+
 <img src="https://cdn.discordapp.com/attachments/728629548266291288/793444589943914516/Laptics_info.png">
 
 ### Installation Kapps:
