@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+## Laptics Dash V2
 
-You can use the [editor on GitHub](https://github.com/labtreeo/Laptics_Dash/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="https://cdn.discordapp.com/attachments/728629548266291288/793444589943914516/Laptics_info.png">
 
-### Markdown
+### Installation Kapps:
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1: Download the latest version from Github
 
-```markdown
-Syntax highlighted code block
+2: Unzip the download and place the folder on place you don't need to move it anymore like in documents
 
-# Header 1
-## Header 2
-### Header 3
+3: Open the index.html in your browser and copy the link from your browser
 
-- Bulleted
-- List
+4: Open Kapps en go to your Racing Overlay settings and scroll down to the 'Add Custom Overlay button' and click that
 
-1. Numbered
-2. List
+5: Paste the link in the URL Text field and that's it
 
-**Bold** and _Italic_ and `Code` text
+### Installation Stand alone App:
 
-[Link](url) and ![Image](src)
-```
+1: Download the EXE from the Updates channel
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/labtreeo/Laptics_Dash/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+2: Run The EXE and the app should install
