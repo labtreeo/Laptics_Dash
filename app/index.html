@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel='icon' href='libs/images/app.ico' type='image/x-icon' >
-	<title>Laptics V2 Dash</title>
+	<title>Laptics Dash</title>
 
 	<!-- CSS only -->
 	<link rel="stylesheet" href="libs/css/bootstrap.css">
@@ -22,7 +22,9 @@
 	<script src="js/ir.js"></script>
 </head>
 
-<body ng-controller="MainCtrl" style="background-color: transparent;">
+<body ng-controller="MainCtrl" style="background-color: transparent;" ng-class="{'bg-secondary' : !isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'}">
+
+<br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
 <div class="container mainHub text-light rounded-3 border border-4 overflow-hidden">
 
@@ -38,10 +40,10 @@
 							<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
 						</div>
 
-						<div class="col-sm-4 d-flex justify-content-center align-items-end p-0">
-							<span class="pedals bg-primary" ng-style="{ 'height': Clutch * 24}"></span>
-							<span class="pedals bg-danger" ng-style="{ 'height': ir.Brake * 24}"></span>
-							<span class="pedals bg-success" ng-style="{ 'height': ir.Throttle * 24}"></span>
+						<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
+							<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+							<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+							<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
 						</div>
 					</div>
 				</div>
@@ -81,7 +83,7 @@
 		<div class="col col-sm-6 border-top border-4 p-1 ps-2 pe-2">
 			<div class="border border-2 rounded-1 battery">
 
-				<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 42.3 + '%'}" class="bg-success" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
+				<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 226 + 'px'}" class="bg-success" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
 
 				<div class="row">
 					<div class="col col-sm-6">
@@ -98,7 +100,7 @@
 		<div class="col col-sm-6 border-top border-4 p-1 ps-2 pe-2">
 			<div class="border border-2 rounded-2 battery">
 
-				<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 42.3 + '%'}" class="bg-primary" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
+				<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 226 + 'px'}" class="bg-primary" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
 
 				<div class="row">
 					<div class="col col-sm-6">
@@ -121,7 +123,7 @@
 					<span class="rivalPosition text-secondary" ng-if="driverAheadPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<span class="lapTimeRival bestTime" ng-bind="driverAheadBestLapTime"></span>
+					<span class="lapTimeRival" ng-bind="driverAheadLapTime"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -130,7 +132,9 @@
 					<span class="smallRivalPosition text-secondary" ng-if="driverAheadClassPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<span class="smallLapTimeRival" ng-bind="driverAheadLastLapTime"></span>
+					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap text-success" ng-if="driverAheadLapTimeGap < 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap" ng-if="driverAheadLapTimeGap == 0">--,--</span>
 				</div>
 			</div>
 		</div>
@@ -143,9 +147,10 @@
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverAheadName"></span>
 
-				<span class="driverGap text-danger" ng-if="driverAheadGap > 0" ng-bind="driverAheadGap | plusOrMinus"></span>
-				<span class="driverGap text-success" ng-if="driverAheadGap < 0" ng-bind="driverAheadGap | plusOrMinus"></span>
-				<span class="driverGap" ng-if="driverAheadGap == 0">--,--</span>
+				<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
+				<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
+				<span class="driverGap" ng-if="driverAheadLiveGap == 0">--,--</span>
+				<span class="driverGap" ng-if="driverAheadLiveGap.includes('L')" ng-bind="driverAheadLiveGap"></span>
 			</div>
 		</div>
 	</div>
@@ -226,7 +231,7 @@
 					<span class="rivalPosition text-secondary" ng-if="driverBehindPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<span class="lapTimeRival bestTime" ng-bind="driverBehindBestLapTime"></span>
+					<span class="lapTimeRival" ng-bind="driverBehindLapTime"></span>
 				</div>
 			</div>
 
@@ -236,7 +241,9 @@
 					<span class="smallRivalPosition text-secondary" ng-if="driverBehindClassPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<span class="smallLapTimeRival" ng-bind="driverBehindLastLapTime"></span>
+					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap text-danger" ng-if="driverBehindLapTimeGap > 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap" ng-if="driverAheadLapTimeGap == 0">--,--</span>
 				</div>
 			</div>
 		</div>
@@ -249,9 +256,10 @@
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverBehindName"></span>
 
-				<span class="driverGap text-success" ng-if="driverBehindGap < 0" ng-bind="driverBehindGap | plusOrMinus"></span>
-				<span class="driverGap text-danger" ng-if="driverBehindGap > 0" ng-bind="driverBehindGap | plusOrMinus"></span>
-				<span class="driverGap" ng-if="driverAheadGap == 0">--,--</span>
+				<span class="driverGap text-success" ng-if="driverBehindLiveGap < 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
+				<span class="driverGap text-danger" ng-if="driverBehindLiveGap > 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
+				<span class="driverGap" ng-if="driverBehindLiveGap == 0">--,--</span>
+				<span class="driverGap" ng-if="driverBehindLiveGap.includes('L')" ng-bind="driverBehindLiveGap"></span>
 			</div>
 		</div>
 	</div>

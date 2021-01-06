@@ -1,6 +1,6 @@
 {
-  "name": "laptics-dash-v2",
-  "version": "1.0.4",
+  "name": "laptics-dash",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "A iRacing Dashboard",
   "author": "Marnix de Wit <marnixwit@outlook.com>",
@@ -28,7 +28,8 @@
     "electron-store": "^5.2.0",
     "electron-updater": "^4.3.5",
     "electron-window-state": "^5.0.3",
-    "is-electron": "^2.2.0"
+    "is-electron": "^2.2.0",
+    "tree-kill": "^1.2.2"
   },
   "devDependencies": {
     "electron": "latest",

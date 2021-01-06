@@ -1,17 +1,9 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
+const kill = require('tree-kill');
 const path = require('path')
-var child = require('child_process').execFile;
-var executablePath = 'app/server/server.exe';
-
-child(executablePath, function(err, data) {
-  if(err){
-    console.error(err);
-    return;
-  }
-
-  console.log(data.toString());
-});
+const exec = require('child_process').spawn;
+child = exec('app/server/server.exe', {detached: false});
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 // main.js
@@ -46,10 +38,12 @@ function createWindow () {
   // Open the DevTools.
   //mainWindow.webContents.openDevTools()
 
-  //mainWindow.on("close", closeAll)
+  mainWindow.on("close", closeAll)
 }
 
 function closeAll(){
+  kill(child.pid);
+  child.kill('SIGABRT')
   app.exit()
 }
 
