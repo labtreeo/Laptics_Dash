@@ -18,6 +18,6 @@ Laptics Dash is simple dashboard solution I build mostly for myself as I wanted 
 
 ### Installation Stand alone App:
 
-1: Download the EXE from the Updates channel
+1: Download the latest version from Github 
 
-2: Run The EXE and the app should install
+2: Open de zip file and open the dist folder and run the EXE file
