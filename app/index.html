@@ -23,18 +23,6 @@
 
 <body ng-controller="MainCtrl" style="background-color: transparent;" ng-class="{'bg-secondary' : !isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'}">
 
-<p id="version"></p>
-
-<div id="notification" class="hidden">
-	<p id="message"></p>
-	<button id="close-button2" onClick="closeNotification()">
-		Close
-	</button>
-	<button id="restart-button" onClick="restartApp()" class="hidden">
-		Restart
-	</button>
-</div>
-
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
 <div class="container mainHub text-light rounded-3 border border-4 overflow-hidden drag">
@@ -331,42 +319,63 @@
 
 </div>
 
-<script>
-	const { ipcRenderer } = require('electron');
-	const version = document.getElementById('version');
-	const notification = document.getElementById('notification');
-	const message = document.getElementById('message');
-	const restartButton = document.getElementById('restart-button');
-
-	ipcRenderer.send('app_version');
-	ipcRenderer.on('app_version', (event, arg) => {
-		ipcRenderer.removeAllListeners('app_version');
-		version.innerText = 'Version ' + arg.version;
-	});
-
-	ipcRenderer.on('update_available', () => {
-		ipcRenderer.removeAllListeners('update_available');
-		message.innerText = 'A new update is available. Downloading now...';
-		notification.classList.remove('hidden');
-	});
-
-	ipcRenderer.on('update_downloaded', () => {
-		ipcRenderer.removeAllListeners('update_downloaded');
-		message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-		restartButton.classList.remove('hidden');
-		notification.classList.remove('hidden');
-	});
-
-	function closeNotification() {
-		notification.classList.add('hidden');
-	}
-
-	function restartApp() {
-		ipcRenderer.send('restart_app');
-	}
-</script>
+<div id="notification" class="alert alert-warning alert-dismissible fade show hidden" role="alert">
+	<p id="version"></p>
+	<p id="message"></p>
+	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
 </body>
+
+<script>
+
+	function isElectron() {
+		if (typeof require !== 'function') return false;
+		if (typeof window !== 'object') return false;
+		try {
+			const electron = require('electron');
+			if (typeof electron !== 'object') return false;
+		} catch(e) {
+			return false;
+		}
+		return true;
+	}
+
+	if (isElectron()){
+		const { ipcRenderer } = require('electron');
+		const version = document.getElementById('version');
+		const notification = document.getElementById('notification');
+		const message = document.getElementById('message');
+		const restartButton = document.getElementById('restart-button');
+
+		ipcRenderer.send('app_version');
+		ipcRenderer.on('app_version', (event, arg) => {
+			ipcRenderer.removeAllListeners('app_version');
+			version.innerText = 'Current Version is ' + arg.version;
+		});
+
+		ipcRenderer.on('update_available', () => {
+			ipcRenderer.removeAllListeners('update_available');
+			message.innerText = 'A new update is available. Downloading now...';
+			notification.classList.remove('hidden');
+		});
+
+		ipcRenderer.on('update_downloaded', () => {
+			ipcRenderer.removeAllListeners('update_downloaded');
+			message.innerText = 'Update Downloaded. It will be installed when you restart the app';
+			restartButton.classList.remove('hidden');
+			notification.classList.remove('hidden');
+		});
+
+		function closeNotification() {
+			notification.classList.add('hidden');
+		}
+
+		function restartApp() {
+			ipcRenderer.send('restart_app');
+		}
+	}
+</script>
 
 <script src="js/app.js"></script>
 <script src="../renderer.js"></script>

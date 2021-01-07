@@ -15,7 +15,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     width: 500,
-    height: 321,
+    height: 400,
     frame: false,
     transparent: true,
     resizable: false,
@@ -35,7 +35,7 @@ function createWindow () {
   mainWindow.once('ready-to-show', () => {
     splash.destroy()
     mainWindow.webContents.setZoomFactor(zoomFactor);
-    mainWindow.setSize(500 * zoomFactor, 321 * zoomFactor)
+    mainWindow.setSize(500 * zoomFactor, 400 * zoomFactor)
 
     autoUpdater.checkForUpdatesAndNotify();
 
