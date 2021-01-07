@@ -7,10 +7,24 @@
     src: url(../libs/fonts/digital-7.ttf);
 }
 
+#notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.hidden {
+    display: none;
+}
+
 .mainHub{
     max-width: 500px;
     font-family: Roboto Black, sans-serif;
-    background-color: rgba(10, 36, 71, 0.7);
+    background-color: rgba(10, 36, 71, 0.8);
     white-space: nowrap;
     user-select: none;
     overflow: hidden;
@@ -53,11 +67,11 @@
     font-size: 23px;
 }
 
-.lapTimeRival,.rivalPosition,.lastLap,.delta,.driverName{
+.lapTimeRival,.rivalPosition,.lastLap,.delta{
     font-size: 21px;
 }
 
-.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow{
+.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
     font-size: 19px;
 }
 

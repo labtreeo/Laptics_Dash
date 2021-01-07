@@ -159,7 +159,7 @@
                     driverAheadClassPos = classPositions[driverAheadId]
 
                     if (ir.data['SessionNum'] < 2){
-                        driverAheadLapTimeRaw = bestLapTime[driverAheadId]
+                        driverAheadLapTimeRaw = CarIdxF2Time[driverAheadId]
                     }else {
                         driverAheadLapTimeRaw = lastLapTime[driverAheadId]
                     }
@@ -216,7 +216,7 @@
                     driverBehindClassPos = classPositions[driverBehindId]
 
                     if (ir.data['SessionNum'] < 2){
-                        driverBehindLapTimeRaw = bestLapTime[driverBehindId]
+                        driverBehindLapTimeRaw = CarIdxF2Time[driverBehindId]
                     }else {
                         driverBehindLapTimeRaw = lastLapTime[driverBehindId]
                     }
@@ -275,89 +275,89 @@
         return ir;
     });
 
-    // app.service('iRService', function($rootScope) {
-    //
-    //     let ir;
-    //     ir = {
-    //         data : {
-    //             Speed: 90,
-    //             RPM: 6723,
-    //             Gear: 6,
-    //             RaceLaps: 124,
-    //             ShiftIndicatorPct: .75,
-    //             dcBrakeBias: 51,
-    //             dcPitSpeedLimiterToggle: false,
-    //             dcHysNoBoostToggle: false,
-    //             dcHysBoostHold: false,
-    //             dcHeadlightFlash: false,
-    //             LapDeltaToSessionLastlLap: -2.44,
-    //             LapDeltaToSessionBestLap: -1.24,
-    //             LapDeltaToSessionOptimalLap: 2.54,
-    //             PlayerCarClassPosition: 15,
-    //             PlayerCarPosition: 25,
-    //             dcTractionControl3: 1.35,
-    //             dcMGUKDeployFixed: 12,
-    //             PlayerCarTeamIncidentCount: 42,
-    //             IsOnTrack: true,
-    //             dcABS: 12,
-    //             WeekendInfo: {
-    //                 WeekendOptions: {
-    //                     IncidentLimit: 100
-    //                 }
-    //             },
-    //             DriverInfo: {
-    //                 Drivers: {
-    //                     0 : {CarPath: 'test'},
-    //                 },
-    //                 DriverCarIdx: 0
-    //             },
-    //             EnergyERSBatteryPct: .874,
-    //             EnergyMGU_KLapDeployPct: .124,
-    //             PowerMGU_K: 0,
-    //             FuelLevel: 7.89,
-    //             LapLastLapTime: 102.645,
-    //             LapBestLapTime: 101.543,
-    //             LapOptimalLapTime: 199.546,
-    //             SessionTimeRemain: 56899.435,
-    //             OnPitRoad: false,
-    //             PlayerCarIdx: 15,
-    //             dcTractionControl: 12,
-    //             Lap: 178,
-    //             Throttle: .56,
-    //             Brake: 1,
-    //             TrackTemp: 26.78,
-    //             AirTemp: 24.56,
-    //             SessionLapsRemain: 5467,
-    //             CarLeftRight: 0
-    //         }
-    //     };
-    //
-    //     $rootScope.Clutch = 0.35
-    //
-    //     $rootScope.lapsSincelastPitStop = 26
-    //
-    //     $rootScope.driverAheadPos = 24
-    //     $rootScope.driverAheadClassPos = 14
-    //     $rootScope.driverAheadLapTime = '01:42.520'
-    //     $rootScope.driverAheadName = 'Jimmy Orange'
-    //     $rootScope.driverAheadLapTimeGap = 0.12
-    //     $rootScope.driverAheadLiveGap = 12.34
-    //
-    //     $rootScope.driverBehindPos = 26
-    //     $rootScope.driverBehindClassPos = 4
-    //     $rootScope.driverBehindLapTime = '01:42.878'
-    //     $rootScope.driverBehindName = 'Dave Appleseed'
-    //     $rootScope.driverBehindLapTimeGap = -0.23
-    //     $rootScope.driverBehindLiveGap = -4.76
-    //
-    //     $rootScope.driverCarClassColor = '#FFCE33'
-    //     $rootScope.driverAheadCarClassColor = '#FFCE33'
-    //     $rootScope.driverBehindCarClassColor = '#ad6afe'
-    //
-    //     $rootScope.backgroundColor = 'grey'
-    //
-    //     return ir;
-    // });
+    app.service('iRService', function($rootScope) {
+
+        let ir;
+        ir = {
+            data : {
+                Speed: 90,
+                RPM: 6723,
+                Gear: 6,
+                RaceLaps: 124,
+                ShiftIndicatorPct: .75,
+                dcBrakeBias: 51,
+                dcPitSpeedLimiterToggle: false,
+                dcHysNoBoostToggle: false,
+                dcHysBoostHold: false,
+                dcHeadlightFlash: false,
+                LapDeltaToSessionLastlLap: -2.44,
+                LapDeltaToSessionBestLap: -1.24,
+                LapDeltaToSessionOptimalLap: 2.54,
+                PlayerCarClassPosition: 15,
+                PlayerCarPosition: 25,
+                dcTractionControl3: 1.35,
+                dcMGUKDeployFixed: 12,
+                PlayerCarTeamIncidentCount: 42,
+                IsOnTrack: true,
+                dcABS: 12,
+                WeekendInfo: {
+                    WeekendOptions: {
+                        IncidentLimit: 100
+                    }
+                },
+                DriverInfo: {
+                    Drivers: {
+                        0 : {CarPath: 'test'},
+                    },
+                    DriverCarIdx: 0
+                },
+                EnergyERSBatteryPct: .874,
+                EnergyMGU_KLapDeployPct: .124,
+                PowerMGU_K: 0,
+                FuelLevel: 7.89,
+                LapLastLapTime: 102.645,
+                LapBestLapTime: 101.543,
+                LapOptimalLapTime: 199.546,
+                SessionTimeRemain: 56899.435,
+                OnPitRoad: false,
+                PlayerCarIdx: 15,
+                dcTractionControl: 12,
+                Lap: 178,
+                Throttle: .56,
+                Brake: 1,
+                TrackTemp: 26.78,
+                AirTemp: 24.56,
+                SessionLapsRemain: 5467,
+                CarLeftRight: 0
+            }
+        };
+
+        $rootScope.Clutch = 0.35
+
+        $rootScope.lapsSincelastPitStop = 26
+
+        $rootScope.driverAheadPos = 24
+        $rootScope.driverAheadClassPos = 14
+        $rootScope.driverAheadLapTime = '01:42.520'
+        $rootScope.driverAheadName = 'Jimmy Orange'
+        $rootScope.driverAheadLapTimeGap = 0.12
+        $rootScope.driverAheadLiveGap = 12.34
+
+        $rootScope.driverBehindPos = 26
+        $rootScope.driverBehindClassPos = 4
+        $rootScope.driverBehindLapTime = '01:42.878'
+        $rootScope.driverBehindName = 'Dave Appleseed'
+        $rootScope.driverBehindLapTimeGap = -0.23
+        $rootScope.driverBehindLiveGap = -4.76
+
+        $rootScope.driverCarClassColor = '#FFCE33'
+        $rootScope.driverAheadCarClassColor = '#FFCE33'
+        $rootScope.driverBehindCarClassColor = '#ad6afe'
+
+        $rootScope.backgroundColor = 'grey'
+
+        return ir;
+    });
 
     app.controller('MainCtrl', function($rootScope, $scope, iRService, $http, $interval) {
 

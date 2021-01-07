@@ -1,15 +1,20 @@
 {
   "name": "laptics-dash",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "MIT",
   "description": "A iRacing Dashboard",
   "author": "Marnix de Wit <marnixwit@outlook.com>",
   "main": "main.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/labtreeo/Laptics_Dash.git"
+  },
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "deploy": "electron-builder build --publish always"
   },
   "build": {
     "appId": "Myapp.com",
