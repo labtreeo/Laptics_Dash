@@ -20,6 +20,6 @@ There are currently 2 versions one which uses kapps and the other that is a stan
 
 ### Installation Stand alone App:
 
-1: Download the latest version from Github 
+1: Download the latest version from [GitHub](https://github.com/labtreeo/Laptics_Dash/releases)
 
 2: Open de zip file and open the dist folder and run the EXE file
