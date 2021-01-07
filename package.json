@@ -6,8 +6,8 @@
   "author": "Marnix de Wit <marnixwit@outlook.com>",
   "main": "main.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/labtreeo/Laptics_Dash.git"
+    "type": "git",
+    "url": "https://github.com/labtreeo/Laptics_Dash.git"
   },
   "scripts": {
     "postinstall": "install-app-deps",

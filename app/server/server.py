@@ -49,6 +49,7 @@ def loop():
                 'LapDeltaToSessionOptimalLap': ir['LapDeltaToSessionOptimalLap'],
                 'LapDeltaToSessionLastlLap': ir['LapDeltaToSessionLastlLap'],
                 'PlayerCarClassPosition': ir['PlayerCarClassPosition'],
+                'PlayerCarPosition': ir['PlayerCarPosition'],
                 'dcTractionControl3': ir['dcTractionControl3'],
                 'dcMGUKDeployFixed': ir['dcMGUKDeployFixed'],
                 'PlayerCarTeamIncidentCount': ir['PlayerCarTeamIncidentCount'],
@@ -90,9 +91,9 @@ def loop():
             }
 
             await websocket.send(json.dumps({'data': liveData}))
-            await asyncio.sleep(0.1)
+            await asyncio.sleep(0.033)
 
-    start_server = websockets.serve(time, "127.0.0.1", 8182)
+    start_server = websockets.serve(time, "127.0.0.1", 8180)
 
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()

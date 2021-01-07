@@ -2,12 +2,28 @@
     let IRacing,
         __slice = [].slice;
 
+    function isElectron() {
+        if (typeof require !== 'function') return false;
+        if (typeof window !== 'object') return false;
+        try {
+            const electron = require('electron');
+            if (typeof electron !== 'object') return false;
+        } catch(e) {
+            return false;
+        }
+        return true;
+    }
+
     window.IRacing = IRacing = (function() {
         function IRacing(_at_requestParams, _at_requestParamsOnce, _at_fps, _at_server, _at_readIbt, _at_record) {
             this.requestParams = _at_requestParams != null ? _at_requestParams : [];
             this.requestParamsOnce = _at_requestParamsOnce != null ? _at_requestParamsOnce : [];
             this.fps = _at_fps != null ? _at_fps : 1;
+            if(isElectron()) {
+                this.server = _at_server != null ? _at_server : '127.0.0.1:8180';
+            }else{
                 this.server = _at_server != null ? _at_server : '127.0.0.1:8182';
+            }
             this.readIbt = _at_readIbt != null ? _at_readIbt : false;
             this.record = _at_record != null ? _at_record : null;
             this.data = {};

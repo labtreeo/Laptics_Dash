@@ -15,7 +15,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     width: 500,
-    height: 400,
+    height: 321,
     frame: false,
     transparent: true,
     resizable: false,
@@ -35,7 +35,7 @@ function createWindow () {
   mainWindow.once('ready-to-show', () => {
     splash.destroy()
     mainWindow.webContents.setZoomFactor(zoomFactor);
-    mainWindow.setSize(500 * zoomFactor, 400 * zoomFactor)
+    mainWindow.setSize(500 * zoomFactor, 321 * zoomFactor)
 
     autoUpdater.checkForUpdatesAndNotify();
 
@@ -70,18 +70,6 @@ app.on('ready', () => {
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
-
-ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
-});
-
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
-});
-
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
-});
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();

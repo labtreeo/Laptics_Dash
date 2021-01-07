@@ -7,10 +7,6 @@
     src: url(../libs/fonts/digital-7.ttf);
 }
 
-.hidden {
-    display: none;
-}
-
 .mainHub{
     max-width: 500px;
     font-family: Roboto Black, sans-serif;
@@ -53,11 +49,7 @@
     font-size: 26px;
 }
 
-.lapTime,.position{
-    font-size: 23px;
-}
-
-.lapTimeRival,.rivalPosition,.lastLap,.delta{
+.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position{
     font-size: 21px;
 }
 
