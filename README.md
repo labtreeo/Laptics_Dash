@@ -111,11 +111,11 @@ For the Kapps Version you will need it installed and have that running on your s
 
 5: Paste the link in the URL Text field and that's it
 
-### installation Stand alone App:
+### Installation Stand alone App:
 
-1: Download the EXE from the Updates channel on Discord
+1: Download the latest version from Github 
 
-2: Run The EXE and the app should install
+2: Open de zip file and open the dist folder and run the EXE file
 
 
 
