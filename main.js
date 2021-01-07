@@ -12,15 +12,15 @@ function createWindow () {
   // Create the browser window.
 
   const mainWindow = new BrowserWindow({
-    title: 'Main',
+    title: 'Laptics Dash',
     width: 500,
     height: 321,
-    backgroundColor: '#01000000',
     frame: false,
     transparent: true,
     resizable: false,
     maximizable: false,
     movable: true,
+    useContentSize: true,
 
     webPreferences: {
       nodeIntegration: true,
@@ -28,6 +28,15 @@ function createWindow () {
       enableRemoteModule: true,
     }
   });
+
+  let zoomFactor = 1
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.webContents.setZoomFactor(zoomFactor);
+    mainWindow.setSize(500 * zoomFactor, 321 * zoomFactor)
+  })
+
+  mainWindow.webContents.session.clearStorageData()
 
   mainWindow.setMenuBarVisibility(false)
   // and load the dash-index.html of the app.

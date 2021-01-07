@@ -338,14 +338,14 @@
     //
     //     $rootScope.driverAheadPos = 24
     //     $rootScope.driverAheadClassPos = 14
-    //     $rootScope.driverAheadLapTime = '01:42:520'
+    //     $rootScope.driverAheadLapTime = '01:42.520'
     //     $rootScope.driverAheadName = 'Jimmy Orange'
     //     $rootScope.driverAheadLapTimeGap = 0.12
     //     $rootScope.driverAheadLiveGap = 12.34
     //
     //     $rootScope.driverBehindPos = 26
     //     $rootScope.driverBehindClassPos = 4
-    //     $rootScope.driverBehindLapTime = '01:42:878'
+    //     $rootScope.driverBehindLapTime = '01:42.878'
     //     $rootScope.driverBehindName = 'Dave Appleseed'
     //     $rootScope.driverBehindLapTimeGap = -0.23
     //     $rootScope.driverBehindLiveGap = -4.76

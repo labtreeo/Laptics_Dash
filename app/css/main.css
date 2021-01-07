@@ -14,7 +14,11 @@
     white-space: nowrap;
     user-select: none;
     overflow: hidden;
-    animation: fadein 2s;
+    animation: fadein 1s;
+}
+
+.btn{
+    -webkit-app-region: no-drag;
 }
 
 ::-webkit-scrollbar {

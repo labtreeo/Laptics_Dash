@@ -11,14 +11,13 @@
 	<link rel="stylesheet" href="css/main.css">
 
 	<!-- JS, Popper.js, and jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.min.js"></script>
 	<script src="https://kit.fontawesome.com/ddde85d45b.js" crossorigin="anonymous"></script>
 
 	<!-- angular -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
 	<script src="js/ir.js"></script>
 </head>
 
@@ -26,13 +25,13 @@
 
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
-<div class="container mainHub text-light rounded-3 border border-4 overflow-hidden">
+<div class="container mainHub text-light rounded-3 border border-4 overflow-hidden drag">
 
 	<div class="row" style="min-height: 24px">
 		<div class="col-sm-12">
 			<div class="row">
 
-				<div class="col-sm-3 drag">
+				<div class="col-sm-3 ">
 					<div class="row">
 						<div class="col-sm-8">
 							<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
@@ -48,7 +47,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 drag">
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0">
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
 					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>
@@ -65,12 +64,12 @@
 
 				<div ng-if="isElectron" class="col-sm-3">
 					<div class="row">
-						<div class="col-sm-6 text-end align-self-center drag">
+						<div class="col-sm-6 text-end align-self-center ">
 							<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
 						</div>
 						<div class="col-sm-6" style="max-height: 24px;">
-							<button type="button" class="btn btn-sm text-secondary ps-2 pb-1 p-0" id="min-button"><i class="fas fa-minus fa-fw fa-xs"></i></button>
-							<button type="button" class="btn btn-sm text-secondary ps-1 pb-1 p-0" id="close-button"><i class="fas fa-times fa-fw fa-xs"></i></button>
+							<button type="button" class="btn btn-sm text-secondary ps-1 p-0" id="min-button"><i class="fas fa-minus fa-fw fa-xm"></i></button>
+							<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fas fa-times fa-fw fa-xm"></i></button>
 						</div>
 					</div>
 				</div>
@@ -79,7 +78,7 @@
 		</div>
 	</div>
 
-	<div class="row drag" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919'">
+	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919'">
 		<div class="col col-sm-6 border-top border-4 p-1 ps-2 pe-2">
 			<div class="border border-2 rounded-1 battery">
 
@@ -115,7 +114,7 @@
 		</div>
 	</div>
 
-	<div class="row drag" style="min-height: 63px">
+	<div class="row " style="min-height: 63px">
 		<div class="col-sm-5 border-top border-4">
 			<div class="row">
 				<div class="col-sm-4">
@@ -155,7 +154,7 @@
 		</div>
 	</div>
 
-	<div class="row drag" style="min-height: 70px">
+	<div class="row " style="min-height: 70px">
 		<div class="col-sm-5 border-top border-4">
 
 			<div class="row">
@@ -223,7 +222,7 @@
 		</div>
 	</div>
 
-	<div class="row drag" style="min-height: 63px">
+	<div class="row " style="min-height: 63px">
 		<div class="col-sm-5 border-top border-4">
 			<div class="row">
 				<div class="col-sm-4">
@@ -264,7 +263,7 @@
 		</div>
 	</div>
 
-	<div class="row text-center drag" style="min-height: 54px">
+	<div class="row text-center " style="min-height: 54px">
 		<div class="col-sm-5 border-top border-4">
 			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">Fuel</div>
