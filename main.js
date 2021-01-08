@@ -102,7 +102,7 @@ autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('update_downloaded');
 });
 
-ipcMain.on('lmp1', (event, arg) => {
+ipcMain.on('lmp1', () => {
   mainWindow.setSize(500,321)
 })
 

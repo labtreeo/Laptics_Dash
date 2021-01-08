@@ -56,7 +56,7 @@
             'CarLeftRight',
             'LRCarLeft',
             'SessionInfo'
-        ], [], 30);
+        ], [], 30, null,null, null);
         ir.onConnect = function() {
             localStorage.setItem("lastPitStop", ir.data['Lap']);
             return console.log('connected');
@@ -71,7 +71,6 @@
             let currentDriverId = ir.data['PlayerCarIdx'];
             let drivers = ir.data['DriverInfo']['Drivers'];
             let lastLapTime = ir.data['CarIdxLastLapTime'];
-            let bestLapTime = ir.data['CarIdxBestLapTime'];
             let classPositions = ir.data['CarIdxClassPosition'];
             let positions = ir.data['CarIdxPosition'];
             let CarIdxF2Time = ir.data['CarIdxF2Time'];
@@ -367,8 +366,8 @@
 
         if (isElectron()) {
             const { ipcRenderer } = require('electron');
-            if (iRService.data.DriverInfo){
-                if (iRService.data.DriverInfo.Drivers[iRService.data.DriverInfo.DriverCarIdx].CarPath === 'audir18' || iRService.data.DriverInfo.Drivers[iRService.data.DriverInfo.DriverCarIdx].CarPath === 'porsche919') {
+            if (iRService.data['DriverInfo']){
+                if (iRService.data['DriverInfo']['Drivers'][iRService.data['DriverInfo']['DriverCarIdx']]['CarPath'] === 'audir18' || iRService.data['DriverInfo']['Drivers'][iRService.data['DriverInfo']['DriverCarIdx']]['CarPath'] === 'porsche919') {
                     ipcRenderer.send('lmp1')
                 }
             }
