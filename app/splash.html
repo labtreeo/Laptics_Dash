@@ -14,9 +14,21 @@
     <div style="background-color: rgba(10, 36, 71, 0.8); border-radius: 5px; padding: 5px;font-family: 'Arial Black',serif">
         <img height="150" width="150" src="https://cdn.discordapp.com/attachments/661852420942462987/728641842853183508/Laptics_Dash_Logo.png" alt="">
         <br>
-        <span>Laptics Dash Version 1.2.1</span>
+        <p id="version"></p>
     </div>
 
 </body>
 
+<script>
+    const { ipcRenderer } = require('electron');
+    const version = document.getElementById('version');
+
+    ipcRenderer.send('app_version');
+    ipcRenderer.on('app_version', (event, arg) => {
+        ipcRenderer.removeAllListeners('app_version');
+        version.innerText = 'Laptics Dash Version ' + arg.version;
+    });
+</script>
+
+<script src="../renderer.js"></script>
 </html>

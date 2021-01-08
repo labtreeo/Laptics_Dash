@@ -25,6 +25,7 @@ function createWindow () {
 
     webPreferences: {
       nodeIntegration: true,
+      contextIsolation: false,
       preload: path.join(__dirname, 'preload.js'),
       enableRemoteModule: true,
     }
@@ -62,9 +63,21 @@ function closeAll(){
 }
 
 app.on('ready', () => {
-  splash = new BrowserWindow({width: 300, height: 300, transparent: true, frame: false, alwaysOnTop: true});
+  splash = new BrowserWindow({
+    width: 300,
+    height: 250,
+    transparent: true,
+    frame: false,
+    alwaysOnTop: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  });
   splash.loadFile('app/splash.html');
-  createWindow()
+  setTimeout(function () {
+    createWindow()
+  }, 750);
 });
 
 app.on('window-all-closed', function () {
@@ -73,5 +86,9 @@ app.on('window-all-closed', function () {
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
+});
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
 });
 
