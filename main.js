@@ -14,9 +14,9 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
-    width: 500,
-    height: 321,
     frame: false,
+    height: 283,
+    width: 500,
     transparent: true,
     resizable: false,
     maximizable: false,
@@ -33,10 +33,16 @@ function createWindow () {
 
   let zoomFactor = 1
 
+  let widthRaw = mainWindow.getSize()[0] * zoomFactor
+  let heightRaw = mainWindow.getSize()[1] * zoomFactor
+
+  let width = parseInt(widthRaw.toFixed(0))
+  let height = parseInt(heightRaw.toFixed(0))
+
   mainWindow.once('ready-to-show', () => {
     splash.destroy()
     mainWindow.webContents.setZoomFactor(zoomFactor);
-    mainWindow.setSize(500 * zoomFactor, 321 * zoomFactor)
+    mainWindow.setSize(width, height)
 
     autoUpdater.checkForUpdatesAndNotify();
 
@@ -65,7 +71,7 @@ function closeAll(){
 app.on('ready', () => {
   splash = new BrowserWindow({
     width: 300,
-    height: 250,
+    height: 300,
     transparent: true,
     frame: false,
     alwaysOnTop: true,
@@ -82,13 +88,25 @@ app.on('ready', () => {
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
-})
-
-ipcMain.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
 });
 
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
+});
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('lmp1', (event, arg) => {
+  mainWindow.setSize(500,321)
+})
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
 });
 

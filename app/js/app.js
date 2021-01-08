@@ -365,6 +365,15 @@
 
         $scope.isElectron = isElectron();
 
+        if (isElectron()) {
+            const { ipcRenderer } = require('electron');
+            if (iRService.data.DriverInfo){
+                if (iRService.data.DriverInfo.Drivers[iRService.data.DriverInfo.DriverCarIdx].CarPath === 'audir18' || iRService.data.DriverInfo.Drivers[iRService.data.DriverInfo.DriverCarIdx].CarPath === 'porsche919') {
+                    ipcRenderer.send('lmp1')
+                }
+            }
+        }
+
         $interval(function() {
             $scope.CurrentTime = new Date()
         }, 100)
@@ -382,6 +391,24 @@
             return false;
         }
         return true;
+    }
+
+    if (isElectron()){
+        const { ipcRenderer } = require('electron');
+        const notification = document.getElementById('notification');
+        const message = document.getElementById('message');
+
+        ipcRenderer.on('update_available', () => {
+            ipcRenderer.removeAllListeners('update_available');
+            message.innerText = 'A new update is available. Downloading now...';
+            notification.classList.remove('hidden');
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            ipcRenderer.removeAllListeners('update_downloaded');
+            message.innerText = 'Update Downloaded. It will be installed on restart.';
+            notification.classList.remove('hidden');
+        });
     }
 
     app.filter('customNumber', function() {
