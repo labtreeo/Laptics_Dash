@@ -7,6 +7,10 @@ const exec = require('child_process').spawn;
 child = exec('app/server/server.exe', {detached: false});
 let splash
 let mainWindow
+let settings
+let width
+let height
+let lmp1height
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
@@ -15,7 +19,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 283,
+    height: 281,
     width: 500,
     transparent: true,
     resizable: false,
@@ -35,9 +39,11 @@ function createWindow () {
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor
+  let lmp1heightRaw = (heightRaw + 40)*zoomFactor
 
-  let width = parseInt(widthRaw.toFixed(0))
-  let height = parseInt(heightRaw.toFixed(0))
+  width = parseInt(widthRaw.toFixed(0))
+  height = parseInt(heightRaw.toFixed(0))
+  lmp1height = parseInt(lmp1heightRaw.toFixed(0))
 
   mainWindow.once('ready-to-show', () => {
     splash.destroy()
@@ -63,6 +69,7 @@ function createWindow () {
 }
 
 function closeAll(){
+  settings.close()
   kill(child.pid);
   child.kill('SIGABRT')
   app.exit()
@@ -103,7 +110,7 @@ autoUpdater.on('update-downloaded', () => {
 });
 
 ipcMain.on('lmp1', () => {
-  mainWindow.setSize(500,321)
+  mainWindow.setSize(500, lmp1height)
 })
 
 ipcMain.on('restart_app', () => {

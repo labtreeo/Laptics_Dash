@@ -89,8 +89,8 @@
 		</div>
 	</div>
 
-	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919'">
-		<div class="col col-sm-6 border-top border-4 p-1 ps-2 pe-2">
+	<div class="row border-top border-4" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919'">
+		<div class="col col-sm-6 p-1 ps-2 pe-2">
 			<div class="border border-2 rounded-1 battery">
 
 				<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 226 + 'px'}" class="bg-success" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
@@ -107,7 +107,7 @@
 			</div>
 		</div>
 
-		<div class="col col-sm-6 border-top border-4 p-1 ps-2 pe-2">
+		<div class="col col-sm-6 p-1 ps-2 pe-2">
 			<div class="border border-2 rounded-2 battery">
 
 				<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 226 + 'px'}" class="bg-primary" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
@@ -125,8 +125,8 @@
 		</div>
 	</div>
 
-	<div class="row " style="min-height: 63px">
-		<div class="col-sm-5 border-top border-4">
+	<div class="row border-top border-4" style="min-height: 63px">
+		<div class="col-sm-5 border-end border-4">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
@@ -148,11 +148,11 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 border-start border-end border-top border-4 p-0" >
+		<div class="col-sm-2 p-0" >
 			<div class="RPM text-center pt-2" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-4">
+		<div class="col-sm-5 border-start border-4">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverAheadName"></span>
 
@@ -164,8 +164,8 @@
 		</div>
 	</div>
 
-	<div class="row " style="min-height: 70px">
-		<div class="col-sm-5 border-top border-4">
+	<div class="row" style="min-height: 70px">
+		<div class="col-sm-5 border-top border-bottom border-end border-4">
 
 			<div class="row">
 				<div class="col-sm-3">
@@ -203,13 +203,13 @@
 
 		</div>
 
-		<div class="col-sm-2 border-start border-end border-4">
+		<div class="col-sm-2">
 			<div class="gear text-center" ng-if="ir.Gear == -1">R</div>
 			<div class="gear text-center" ng-if="ir.Gear == 0">N</div>
 			<div class="gear text-center" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-4">
+		<div class="col-sm-5 border-top border-bottom border-start border-4">
 			<div class="row" >
 				<div class="col-sm-7 text-center p-0">
 					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
@@ -232,8 +232,8 @@
 		</div>
 	</div>
 
-	<div class="row " style="min-height: 63px">
-		<div class="col-sm-5 border-top border-4">
+	<div class="row border-bottom border-4" style="min-height: 63px">
+		<div class="col-sm-5 border-end border-4">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
@@ -256,11 +256,11 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 border-start border-end border-4 p-0">
+		<div class="col-sm-2 p-0">
 			<div class="speed text-center pt-2" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-4">
+		<div class="col-sm-5 border-start border-4">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverBehindName"></span>
 
@@ -272,8 +272,8 @@
 		</div>
 	</div>
 
-	<div class="row text-center " style="min-height: 54px">
-		<div class="col-sm-5 border-top border-4">
+	<div class="row text-center" style="min-height: 50px">
+		<div class="col-sm-5">
 			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">Fuel</div>
 				<div class="col-sm-6">Lap</div>
@@ -292,7 +292,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 border-top border-4">
+		<div class="col-sm-2">
 			<div class="row pq-1">
 				<i class="fas fa-bolt bottomRowText text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
 			</div>
@@ -304,7 +304,7 @@
 			</div>
 		</div>
 
-		<div class="col-sm-5 border-top border-4">
+		<div class="col-sm-5">
 			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">Since Pit</div>
 				<div class="col-sm-6">Inc</div>
