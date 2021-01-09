@@ -66,8 +66,6 @@
         };
         ir.onUpdate = function() {
 
-            console.log(ir.data['PlayerCarPosition'])
-
             let currentDriverId = ir.data['PlayerCarIdx'];
             let drivers = ir.data['DriverInfo']['Drivers'];
             let lastLapTime = ir.data['CarIdxLastLapTime'];
@@ -190,6 +188,8 @@
                             driverAheadLiveGap = moment.duration(driverAheadLiveGapRaw, "seconds").format("s.SS", {trim: false})
                         }else{
                             driverAheadLiveGapRaw =  CarIdxLap[currentDriverId] - CarIdxLap[driverAheadId]
+                            driverAheadLiveGapRaw = Math.abs(driverAheadLiveGapRaw)
+                            console.log(driverAheadLiveGapRaw)
                             driverAheadLiveGap = '+' + driverAheadLiveGapRaw + ' Lap'
                         }
                     }

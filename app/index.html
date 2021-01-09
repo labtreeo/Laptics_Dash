@@ -129,7 +129,7 @@
 		<div class="col-sm-5 border-top border-4">
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0" ng-bind=" 'P' + driverAheadPos" ></span>
+					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
 					<span class="rivalPosition text-secondary" ng-if="driverAheadPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
@@ -144,7 +144,6 @@
 				<div class="col-sm-8 text-end">
 					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
 					<span class="driverGap text-success" ng-if="driverAheadLapTimeGap < 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
-					<span class="driverGap" ng-if="driverAheadLapTimeGap == 0">--,--</span>
 				</div>
 			</div>
 		</div>
@@ -237,7 +236,7 @@
 		<div class="col-sm-5 border-top border-4">
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0" ng-bind=" 'P' + driverBehindPos" ></span>
+					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
 					<span class="rivalPosition text-secondary" ng-if="driverBehindPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
@@ -253,7 +252,6 @@
 				<div class="col-sm-8 text-end">
 					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
 					<span class="driverGap text-danger" ng-if="driverBehindLapTimeGap > 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
-					<span class="driverGap" ng-if="driverBehindLapTimeGap == 0">--,--</span>
 				</div>
 			</div>
 		</div>
