@@ -22,7 +22,7 @@ function createWindow () {
     height: 281,
     width: 500,
     transparent: true,
-    resizable: false,
+    resizable: true,
     maximizable: false,
     movable: true,
     useContentSize: true,
@@ -39,7 +39,7 @@ function createWindow () {
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor
-  let lmp1heightRaw = (heightRaw + 40)*zoomFactor
+  let lmp1heightRaw = (heightRaw + 40) * zoomFactor
 
   width = parseInt(widthRaw.toFixed(0))
   height = parseInt(heightRaw.toFixed(0))
