@@ -287,7 +287,7 @@
     //             RPM: 6723,
     //             Gear: 6,
     //             RaceLaps: 124,
-    //             ShiftIndicatorPct: .75,
+    //             ShiftIndicatorPct: .5,
     //             dcBrakeBias: 51,
     //             dcPitSpeedLimiterToggle: false,
     //             dcHysNoBoostToggle: false,
@@ -310,7 +310,7 @@
     //             },
     //             DriverInfo: {
     //                 Drivers: {
-    //                     0 : {CarPath: 'audir18'},
+    //                     0 : {CarPath: 'test'},
     //                 },
     //                 DriverCarIdx: 0
     //             },
@@ -425,12 +425,12 @@
         }
     });
 
-    app.filter('percentage', function(){
-        return function(input){
-            input = input ? input : 0
-            return  input + " %"
-        }
-    });
+    // app.filter('percentage', function(){
+    //     return function(input){
+    //         input = input ? input : 0
+    //         return  input + "%"
+    //     }
+    // });
 
     app.filter('toMinSec', function(){
         return function(input){

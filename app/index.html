@@ -58,7 +58,18 @@
 					</div>
 				</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0">
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.15}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.20}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.25}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-warning': ir.ShiftIndicatorPct > 0.30}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-warning': ir.ShiftIndicatorPct > 0.35}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-danger': ir.ShiftIndicatorPct > 0.45}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-danger': ir.ShiftIndicatorPct > 0.5}"></span>
+				</div>
+
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18'&& ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'porsche919' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
 					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>
@@ -96,14 +107,14 @@
 
 			<div class="row">
 				<div class="col col-sm-6">
-					<i ng-if="ir.EnergyERSBatteryPct <= .0499" class="fas fa-battery-empty batteryPercentage ps-1"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .05 && ir.EnergyERSBatteryPct <= .2499" class="fas fa-battery-quarter batteryPercentage ps-1"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .25 && ir.EnergyERSBatteryPct <= .4999" class="fas fa-battery-half batteryPercentage ps-1"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .50 && ir.EnergyERSBatteryPct <= .7499" class="fas fa-battery-three-quarters batteryPercentage ps-1"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .75" class="fas fa-battery-full batteryPercentage ps-1"></i>
+					<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty batteryPercentage" style="padding-left: .79rem !important;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter batteryPercentage" style="padding-left: .79rem !important;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half batteryPercentage" style="padding-left: .79rem !important;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters batteryPercentage" style="padding-left: .79rem !important;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full batteryPercentage" style="padding-left: .79rem !important;"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
-					<span class="batteryPercentage pe-1" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2 | percentage" ></span>
+					<span class="batteryPercentage" style="padding-right: .79rem !important;" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2" ></span>
 				</div>
 			</div>
 
@@ -114,11 +125,11 @@
 		</div>
 
 		<div class="col-sm-1">
-			<i ng-if="ir.EnergyERSBatteryPct <= .0499" class="fas fa-battery-empty text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .05 && ir.EnergyERSBatteryPct <= .2499" class="fas fa-battery-quarter text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .25 && ir.EnergyERSBatteryPct <= .4999" class="fas fa-battery-half text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .50 && ir.EnergyERSBatteryPct <= .7499" class="fas fa-battery-three-quarters text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .75" class="fas fa-battery-full text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
 		</div>
 
 		<div class="col col-sm-5 border-start border-4 p-0">
@@ -127,10 +138,10 @@
 
 			<div class="row">
 				<div class="col col-sm-6">
-					<i class="fas fa-caret-right batteryPercentage ps-1"></i>
+					<i class="fas fa-caret-right batteryPercentage" style="padding-left: .79rem !important;"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
-					<span class="batteryPercentage pe-1" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2 | percentage" ></span>
+					<span class="batteryPercentage" style="padding-right: .79rem !important;" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2" ></span>
 				</div>
 			</div>
 
@@ -287,19 +298,17 @@
 	<div class="row text-center" style="min-height: 50px">
 		<div class="col-sm-5">
 			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6">Fuel</div>
 				<div class="col-sm-6">Lap</div>
+				<div class="col-sm-6">Since Pit</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-6 bottomRow">
-					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
-				</div>
-				<div class="col-sm-6 bottomRow">
+			<div class="row" ng-if="ir.WeekendInfo">
+				<div class="col-sm-6 bottomRow" >
 					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
 					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
+				</div>
+				<div class="col-sm-6 bottomRow">
+					<span ng-if="lapsSincelastPitStop > 0" ng-bind="lapsSincelastPitStop"></span>
+					<span ng-if="!lapsSincelastPitStop || lapsSincelastPitStop == 0">-</span>
 				</div>
 			</div>
 		</div>
@@ -318,14 +327,17 @@
 
 		<div class="col-sm-5">
 			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6">Since Pit</div>
+				<div class="col-sm-6">Fuel</div>
 				<div class="col-sm-6">Inc</div>
 			</div>
 			<div class="row" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6 bottomRow">
-					<span ng-if="lapsSincelastPitStop > 0" ng-bind="lapsSincelastPitStop + ' laps'"></span>
-					<span ng-if="!lapsSincelastPitStop || lapsSincelastPitStop == 0">-</span>
+					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
 				</div>
+
 				<div class="col-sm-6 bottomRow">
 					<div ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'">
 						<span ng-bind="ir.PlayerCarTeamIncidentCount"></span>
