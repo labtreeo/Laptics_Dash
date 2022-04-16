@@ -19,10 +19,10 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 281,
+    height: 321,
     width: 500,
     transparent: true,
-    resizable: true,
+    resizable: false,
     maximizable: false,
     movable: true,
     useContentSize: true,
@@ -109,9 +109,9 @@ autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('update_downloaded');
 });
 
-ipcMain.on('lmp1', () => {
-  mainWindow.setSize(500, lmp1height)
-})
+// ipcMain.on('lmp1', () => {
+//   mainWindow.setSize(500, lmp1height)
+// })
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();
