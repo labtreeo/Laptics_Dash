@@ -109,12 +109,10 @@
 
             if (ir.data['dcHeadlightFlash'] === true){
                 $rootScope.HeadlightFlash = true
-                setTimeout(() => {  $rootScope.HeadlightFlash = false }, 2000);
+                setTimeout(() => $rootScope.HeadlightFlash = false, 2000);
             }
 
-            if (ir.data['dcHysBoostHold'] === true){
-                $rootScope.HysBoostHold = true
-            }
+            $rootScope.HysBoostHold = ir.data['dcHysBoostHold'] === true;
 
             if (ir.data['SessionInfo']['Sessions'][2]){
                 $rootScope.SessionLaps = ir.data['SessionInfo']['Sessions'][2]['SessionLaps']
