@@ -112,6 +112,10 @@
                 setTimeout(() => {  $rootScope.HeadlightFlash = false }, 2000);
             }
 
+            if (ir.data['dcHysBoostHold'] === true){
+                $rootScope.HysBoostHold = true
+            }
+
             if (ir.data['SessionInfo']['Sessions'][2]){
                 $rootScope.SessionLaps = ir.data['SessionInfo']['Sessions'][2]['SessionLaps']
             }
@@ -308,12 +312,12 @@
     //             },
     //             DriverInfo: {
     //                 Drivers: {
-    //                     0 : {CarPath: 'test'},
+    //                     0 : {CarPath: 'audir18'},
     //                 },
     //                 DriverCarIdx: 0
     //             },
-    //             EnergyERSBatteryPct: .874,
-    //             EnergyMGU_KLapDeployPct: .124,
+    //             EnergyERSBatteryPct: .8743,
+    //             EnergyMGU_KLapDeployPct: .1247,
     //             PowerMGU_K: 0,
     //             FuelLevel: 7.89,
     //             LapLastLapTime: 102.645,

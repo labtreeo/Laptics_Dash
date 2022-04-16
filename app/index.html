@@ -90,38 +90,50 @@
 	</div>
 
 	<div class="row border-top border-4" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-		<div class="col col-sm-6 p-1 ps-2 pe-2">
-			<div class="border border-2 rounded-1 battery">
+		<div class="col col-sm-5 border-end border-4 p-0">
 
-				<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 226 + 'px'}" class="bg-success" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
+			<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 201 + 'px'}" class="bg-success" style="position: absolute; color: transparent;">-</div>
 
-				<div class="row">
-					<div class="col col-sm-6">
-						<i class="fas fa-battery-half batteryPercentage ps-1"></i>
-					</div>
-					<div class="col col-sm-6 text-end">
-						<span class="batteryPercentage pe-1" ng-bind="ir.EnergyERSBatteryPct * 100 | number:1 | percentage" ></span>
-					</div>
+			<div class="row">
+				<div class="col col-sm-6">
+					<i ng-if="ir.EnergyERSBatteryPct <= .0499" class="fas fa-battery-empty batteryPercentage ps-1"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .05 && ir.EnergyERSBatteryPct <= .2499" class="fas fa-battery-quarter batteryPercentage ps-1"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .25 && ir.EnergyERSBatteryPct <= .4999" class="fas fa-battery-half batteryPercentage ps-1"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .50 && ir.EnergyERSBatteryPct <= .7499" class="fas fa-battery-three-quarters batteryPercentage ps-1"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .75" class="fas fa-battery-full batteryPercentage ps-1"></i>
 				</div>
-
+				<div class="col col-sm-6 text-end">
+					<span class="batteryPercentage pe-1" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2 | percentage" ></span>
+				</div>
 			</div>
+
 		</div>
 
-		<div class="col col-sm-6 p-1 ps-2 pe-2">
-			<div class="border border-2 rounded-2 battery">
+		<div class="col-sm-1">
+			<i class="fas fa-bolt text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+		</div>
 
-				<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 226 + 'px'}" class="bg-primary" style="position: absolute; color: transparent; border-radius: 1px;">-</div>
+		<div class="col-sm-1">
+			<i ng-if="ir.EnergyERSBatteryPct <= .0499" class="fas fa-battery-empty text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .05 && ir.EnergyERSBatteryPct <= .2499" class="fas fa-battery-quarter text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .25 && ir.EnergyERSBatteryPct <= .4999" class="fas fa-battery-half text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .50 && ir.EnergyERSBatteryPct <= .7499" class="fas fa-battery-three-quarters text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .75" class="fas fa-battery-full text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
+		</div>
 
-				<div class="row">
-					<div class="col col-sm-6">
-						<i class="fas fa-caret-right batteryPercentage ps-1"></i>
-					</div>
-					<div class="col col-sm-6 text-end">
-						<span class="batteryPercentage pe-1" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:1 | percentage" ></span>
-					</div>
+		<div class="col col-sm-5 border-start border-4 p-0">
+
+			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 201 + 'px'}" class="bg-primary" style="position: absolute; color: transparent;">-</div>
+
+			<div class="row">
+				<div class="col col-sm-6">
+					<i class="fas fa-caret-right batteryPercentage ps-1"></i>
 				</div>
-
+				<div class="col col-sm-6 text-end">
+					<span class="batteryPercentage pe-1" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2 | percentage" ></span>
+				</div>
 			</div>
+
 		</div>
 	</div>
 
@@ -293,8 +305,8 @@
 		</div>
 
 		<div class="col-sm-2">
-			<div class="row pq-1">
-				<i class="fas fa-bolt bottomRowText text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
+				<div class="col-sm-6">Time left</div>
 			</div>
 			<div class="row">
 				<div class="bottomRow p-0">
