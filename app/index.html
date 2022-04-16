@@ -58,18 +58,18 @@
 					</div>
 				</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.15}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.20}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-success': ir.ShiftIndicatorPct > 0.25}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-warning': ir.ShiftIndicatorPct > 0.30}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-warning': ir.ShiftIndicatorPct > 0.35}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-danger': ir.ShiftIndicatorPct > 0.45}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.6, 'bg-danger': ir.ShiftIndicatorPct > 0.5}"></span>
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3800}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3925}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4050}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4175}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4300}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4400}"></span>
+					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4500}"></span>
+					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4550}"></span>
 				</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18'&& ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'porsche919' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
+				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
 					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
 					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>

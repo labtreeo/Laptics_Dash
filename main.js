@@ -35,7 +35,7 @@ function createWindow () {
     }
   });
 
-  let zoomFactor = 1
+  let zoomFactor = 2.5
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor
