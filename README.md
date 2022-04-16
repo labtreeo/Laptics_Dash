@@ -49,7 +49,6 @@
     ·
     <a href="https://github.com/Labtreeo/Laptics_Dash/issues">Request Feature</a>
   </p>
-</p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -82,7 +81,7 @@
 
 Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
-<img src="https://cdn.discordapp.com/attachments/728629548266291288/793410916623450112/Laptics_Dash_V2.PNG" height="200">
+<img src="https://cdn.discordapp.com/attachments/661852420942462987/964837222555738142/Schermafbeelding_2022-04-16_om_12.37.59.png" height="200">
 
 
 ### Built With
@@ -132,8 +131,6 @@ See the [open issues](https://github.com/Labtreeo/Laptics_Dash/issues) for a lis
 Marnix de Wit - marnixwit@outlook.com
 
 Project Link: [https://github.com/Labtreeo/Laptics_Dash](https://github.com/Labtreeo/Laptics_Dash)
-
-Discord: [https://discord.gg/ECRSnVQ](https://discord.gg/ECRSnVQ)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->

@@ -308,7 +308,7 @@
     //             },
     //             DriverInfo: {
     //                 Drivers: {
-    //                     0 : {CarPath: 'audir18'},
+    //                     0 : {CarPath: 'test'},
     //                 },
     //                 DriverCarIdx: 0
     //             },
