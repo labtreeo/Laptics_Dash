@@ -25,9 +25,9 @@
 
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
-<div class="container mainHub text-light rounded-3 border border-4 overflow-hidden drag">
+<div class="container mainHub text-light rounded overflow-hidden drag">
 
-	<div id="notification" class="alert border border-4 hidden">
+	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
 			<div class="col-sm-10">
 				<p id="message" class="m-1"></p>
@@ -39,71 +39,65 @@
 	</div>
 
 	<div class="row" style="min-height: 24px">
-		<div class="col-sm-12">
+		<div class="col-sm-3 ">
 			<div class="row">
-
-				<div class="col-sm-3 ">
-					<div class="row">
-						<div class="col-sm-8">
-							<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
-							<span ng-if="ir.dcABS > 0" class="ABS text-danger" ng-bind="ir.dcABS"></span>
-							<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
-						</div>
-
-						<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
-							<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
-							<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
-							<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
-						</div>
-					</div>
+				<div class="col-sm-8">
+					<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
+					<span ng-if="ir.dcABS > 0" class="ABS text-danger" ng-bind="ir.dcABS"></span>
+					<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
 				</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3800}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3925}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4050}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4175}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4300}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4400}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4500}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4550}"></span>
+				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0">
+					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
 				</div>
+			</div>
+		</div>
 
-				<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.4}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.5}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.6}"></span>
-					<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.7}"></span>
-					<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.8}"></span>
-				</div>
+		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3800}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3925}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4050}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4175}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4300}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4400}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4500}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4550}"></span>
+		</div>
 
-				<div ng-if="!isElectron" class="col-sm-3 text-end">
+		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.1}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.2}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.3}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-success': ir.ShiftIndicatorPct > 0.4}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.5}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-warning': ir.ShiftIndicatorPct > 0.6}"></span>
+			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.7}"></span>
+			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.ShiftIndicatorPct > 0.85, 'bg-danger': ir.ShiftIndicatorPct > 0.8}"></span>
+		</div>
+
+		<div ng-if="!isElectron" class="col-sm-3 text-end">
+			<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
+		</div>
+
+		<div ng-if="isElectron" class="col-sm-3">
+			<div class="row">
+				<div class="col-sm-7 align-self-center">
 					<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
 				</div>
-
-				<div ng-if="isElectron" class="col-sm-3">
-					<div class="row">
-						<div class="col-sm-7 align-self-center">
-							<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
-						</div>
-						<div class="col-sm-5 d-flex justify-content-evenly" style="max-height: 24px;">
-							<button type="button" class="btn btn-sm text-secondary ps-2 p-0" id="min-button"><i class="fas fa-minus fa-fw icons"></i></button>
-							<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fas fa-times fa-fw icons"></i></button>
-						</div>
-					</div>
+				<div class="col-sm-5 d-flex justify-content-evenly" style="max-height: 24px;">
+					<button type="button" class="btn btn-sm text-secondary p-0" id="min-button"><i class="fas fa-minus fa-fw icons"></i></button>
+					<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fas fa-times fa-fw icons"></i></button>
 				</div>
-
 			</div>
 		</div>
 	</div>
 
-	<div class="row border-top border-4" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-		<div class="col col-sm-5 border-end border-4 p-0">
+	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+		<div class="col col-sm-5 border-top border-end border-3 p-0">
 
-			<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 201 + 'px'}" class="bg-success" style="position: absolute; color: transparent;">-</div>
+			<div class="" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'progress-bar-striped progress-bar-animated' : ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .25, 'bg-warning' : ir.EnergyERSBatteryPct <= .25, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
 
 			<div class="row">
 				<div class="col col-sm-6">
@@ -120,36 +114,34 @@
 
 		</div>
 
-		<div class="col-sm-1 align-self-center">
-			<i class="fas fa-fw fa-bolt text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+		<div class="col-sm-2 border-top border-3 p-1 ps-3 pe-3">
+			<i class="fas fa-bolt text-secondary" style="float: left" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+
+			<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
+			<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
 		</div>
 
-		<div class="col-sm-1 align-self-center">
-			<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-fw fa-battery-empty text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-fw fa-battery-quarter text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-fw fa-battery-half text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-fw fa-battery-three-quarters text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-fw fa-battery-full text-secondary" ng-class="{'text-white' : HysBoostHold}"></i>
-		</div>
+		<div class="col col-sm-5 border-bottom border-end border-3 p-0" style="transform: rotate(180deg);">
 
-		<div class="col col-sm-5 border-start border-4 p-0">
+			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .50, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .50 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}" style="position: absolute; color: transparent;">-</div>
 
-			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 201 + 'px'}" class="bg-primary" style="position: absolute; color: transparent;">-</div>
-
-			<div class="row">
+			<div class="row" style="transform: rotate(-180deg);">
 				<div class="col col-sm-6">
-					<i class="fas fa-caret-right batteryPercentage ps-2"></i>
+					<span class="batteryPercentage ps-2" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2" ></span>
 				</div>
 				<div class="col col-sm-6 text-end">
-					<span class="batteryPercentage pe-2" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2" ></span>
+					<i class="fas fa-caret-left batteryPercentage pe-2"></i>
 				</div>
 			</div>
 
 		</div>
 	</div>
 
-	<div class="row border-top border-4" style="min-height: 64px">
-		<div class="col-sm-5 border-end border-4">
+	<div class="row" style="min-height: 63px">
+		<div class="col-sm-5 border-top border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
@@ -175,7 +167,7 @@
 			<div class="RPM text-center pt-2" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></div>
 		</div>
 
-		<div class="col-sm-5 border-start border-4">
+		<div class="col-sm-5 border-top border-start border-3">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverAheadName"></span>
 
@@ -187,8 +179,8 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 71px">
-		<div class="col-sm-5 border-top border-bottom border-end border-4">
+	<div class="row" style="min-height: 70px">
+		<div class="col-sm-5 border-top border-bottom border-end border-3">
 
 			<div class="row">
 				<div class="col-sm-3">
@@ -232,7 +224,7 @@
 			<div class="gear text-center" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-bottom border-start border-4">
+		<div class="col-sm-5 border-top border-bottom border-start border-3">
 			<div class="row" >
 				<div class="col-sm-7 text-center p-0">
 					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
@@ -255,8 +247,8 @@
 		</div>
 	</div>
 
-	<div class="row border-bottom border-4" style="min-height: 64px">
-		<div class="col-sm-5 border-end border-4">
+	<div class="row" style="min-height: 63px">
+		<div class="col-sm-5 border-bottom border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
@@ -279,11 +271,11 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 p-0">
+		<div class="col-sm-2 border-bottom border-3 p-0">
 			<div class="speed text-center pt-2" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
-		<div class="col-sm-5 border-start border-4">
+		<div class="col-sm-5 border-bottom border-start border-3">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverBehindName"></span>
 
@@ -295,54 +287,51 @@
 		</div>
 	</div>
 
-	<div class="row text-center" style="min-height: 51px">
-		<div class="col-sm-4">
-			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6">Lap</div>
-				<div class="col-sm-6">Since Pit</div>
-			</div>
-			<div class="row" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6 bottomRow">
+	<div class="row text-center" style="min-height: 24px">
+		<div class="col-sm-5">
+			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
+				<div class="col-sm-4">
+					<span class="text-secondary">Lap:</span>
 					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
 					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
 				</div>
-				<div class="col-sm-6 bottomRow">
+
+				<div class="col-sm-8">
+					<span class="text-secondary">Since Pit:</span>
 					<span ng-if="lapsSincelastPitStop > 0" ng-bind="lapsSincelastPitStop"></span>
 					<span ng-if="!lapsSincelastPitStop || lapsSincelastPitStop == 0">-</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-4">
-			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
-				<span ng-if="ir.SessionNum == 0">Practice</span>
-				<span ng-if="ir.SessionNum == 1">Qualifying</span>
-				<span ng-if="ir.SessionNum == 2">Race</span>
+		<div class="col-sm-2">
+			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
+				<span ng-if="ir.SessionTimeRemain < 600000" ng-bind="ir.SessionTimeRemain | secondsToDateTime"></span>
+				<span ng-if="ir.SessionTimeRemain > 600000">--,--</span>
 			</div>
 			<div class="row">
 				<div class="bottomRow p-0">
-					<span ng-if="ir.SessionTimeRemain < 600000" ng-bind="ir.SessionTimeRemain | secondsToDateTime"></span>
-					<span ng-if="ir.SessionTimeRemain > 600000">--,--</span>
+
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-4">
-			<div class="row text-center bottomRowText text-secondary" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6">Incidents</div>
-				<div class="col-sm-6">Fuel</div>
-			</div>
-			<div class="row" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6 bottomRow">
-					<div ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'">
-						<span ng-bind="ir.PlayerCarTeamIncidentCount"></span>
-					</div>
-					<div ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'">
-						<span ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
-					</div>
+		<div class="col-sm-5">
+			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
+				<div class="col-sm-2">
+					<span class="text-secondary">Inc:</span>
 				</div>
 
-				<div class="col-sm-6 bottomRow">
+				<div class="col-sm-4">
+					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount"></span>
+					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
+				</div>
+
+				<div class="col-sm-2">
+					<span class="text-secondary">Fuel:</span>
+				</div>
+
+				<div class="col-sm-4">
 					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
