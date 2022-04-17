@@ -1,7 +1,7 @@
 (function() {
     let app;
 
-    app = angular.module('Dashboard', []);
+    app = angular.module('Dashboard', ['kutu.ir-service']);
 
     app.service('iRService', function($rootScope) {
         let ir;
@@ -279,92 +279,92 @@
         return ir;
     });
 
-    app.service('iRService', function($rootScope) {
-
-        let ir;
-        ir = {
-            data : {
-                Speed: 90,
-                RPM: 4510,
-                Gear: 6,
-                RaceLaps: 124,
-                ShiftIndicatorPct: .5,
-                dcBrakeBias: 51,
-                dcPitSpeedLimiterToggle: false,
-                dcHysNoBoostToggle: false,
-                dcHysBoostHold: false,
-                dcHeadlightFlash: false,
-                LapDeltaToSessionLastlLap: -2.44,
-                LapDeltaToSessionBestLap: -1.24,
-                LapDeltaToSessionOptimalLap: 2.54,
-                PlayerCarClassPosition: 15,
-                PlayerCarPosition: 25,
-                dcTractionControl3: 1.35,
-                dcMGUKDeployFixed: 12,
-                PlayerCarTeamIncidentCount: 42,
-                IsOnTrack: true,
-                dcABS: 12,
-                WeekendInfo: {
-                    WeekendOptions: {
-                        IncidentLimit: 100
-                    }
-                },
-                DriverInfo: {
-                    Drivers: {
-                        0 : {CarPath: 'test'},
-                    },
-                    DriverCarIdx: 0
-                },
-                EnergyERSBatteryPct: .8743,
-                EnergyMGU_KLapDeployPct: .1247,
-                PowerMGU_K: 0,
-                FuelLevel: 7.89,
-                LapLastLapTime: 102.645,
-                LapBestLapTime: 101.543,
-                LapOptimalLapTime: 199.546,
-                SessionTimeRemain: 6899.435,
-                OnPitRoad: false,
-                PlayerCarIdx: 15,
-                dcTractionControl: 12,
-                Lap: 20,
-                SessionLapsRemain: 24,
-                Throttle: 1,
-                Brake: .09,
-                TrackTemp: 26.78,
-                AirTemp: 24.56,
-                SessionNum: 2,
-                CarLeftRight: 0
-            }
-        };
-
-        $rootScope.Clutch = 0.35
-
-        $rootScope.lastPitStop = 6
-
-        $rootScope.driverAheadPos = 24
-        $rootScope.driverAheadClassPos = 14
-        $rootScope.driverAheadLapTime = '01:42.520'
-        $rootScope.driverAheadName = 'Jimmy Orange'
-        $rootScope.driverAheadLapTimeGap = 0.12
-        $rootScope.driverAheadLiveGap = 12.34
-
-        $rootScope.driverBehindPos = 26
-        $rootScope.driverBehindClassPos = 4
-        $rootScope.driverBehindLapTime = '01:42.878'
-        $rootScope.driverBehindName = 'Dave Appleseed'
-        $rootScope.driverBehindLapTimeGap = -0.23
-        $rootScope.driverBehindLiveGap = -4.76
-
-        $rootScope.driverCarClassColor = '#FFCE33'
-        $rootScope.driverAheadCarClassColor = '#FFCE33'
-        $rootScope.driverBehindCarClassColor = '#ad6afe'
-
-        $rootScope.backgroundColor = 'grey'
-        $rootScope.HysBoostHold = false;
-        $rootScope.SessionLaps = 45;
-
-        return ir;
-    });
+    // app.service('iRService', function($rootScope) {
+    //
+    //     let ir;
+    //     ir = {
+    //         data : {
+    //             Speed: 90,
+    //             RPM: 4510,
+    //             Gear: 6,
+    //             RaceLaps: 124,
+    //             ShiftIndicatorPct: .5,
+    //             dcBrakeBias: 51,
+    //             dcPitSpeedLimiterToggle: false,
+    //             dcHysNoBoostToggle: false,
+    //             dcHysBoostHold: false,
+    //             dcHeadlightFlash: false,
+    //             LapDeltaToSessionLastlLap: -2.44,
+    //             LapDeltaToSessionBestLap: -1.24,
+    //             LapDeltaToSessionOptimalLap: 2.54,
+    //             PlayerCarClassPosition: 15,
+    //             PlayerCarPosition: 25,
+    //             dcTractionControl3: 1.35,
+    //             dcMGUKDeployFixed: 12,
+    //             PlayerCarTeamIncidentCount: 42,
+    //             IsOnTrack: true,
+    //             dcABS: 12,
+    //             WeekendInfo: {
+    //                 WeekendOptions: {
+    //                     IncidentLimit: 100
+    //                 }
+    //             },
+    //             DriverInfo: {
+    //                 Drivers: {
+    //                     0 : {CarPath: 'test'},
+    //                 },
+    //                 DriverCarIdx: 0
+    //             },
+    //             EnergyERSBatteryPct: .8743,
+    //             EnergyMGU_KLapDeployPct: .1247,
+    //             PowerMGU_K: 0,
+    //             FuelLevel: 7.89,
+    //             LapLastLapTime: 102.645,
+    //             LapBestLapTime: 101.543,
+    //             LapOptimalLapTime: 199.546,
+    //             SessionTimeRemain: 6899.435,
+    //             OnPitRoad: false,
+    //             PlayerCarIdx: 15,
+    //             dcTractionControl: 12,
+    //             Lap: 20,
+    //             SessionLapsRemain: 24,
+    //             Throttle: 1,
+    //             Brake: .09,
+    //             TrackTemp: 26.78,
+    //             AirTemp: 24.56,
+    //             SessionNum: 2,
+    //             CarLeftRight: 0
+    //         }
+    //     };
+    //
+    //     $rootScope.Clutch = 0.35
+    //
+    //     $rootScope.lastPitStop = 6
+    //
+    //     $rootScope.driverAheadPos = 24
+    //     $rootScope.driverAheadClassPos = 14
+    //     $rootScope.driverAheadLapTime = '01:42.520'
+    //     $rootScope.driverAheadName = 'Jimmy Orange'
+    //     $rootScope.driverAheadLapTimeGap = 0.12
+    //     $rootScope.driverAheadLiveGap = 12.34
+    //
+    //     $rootScope.driverBehindPos = 26
+    //     $rootScope.driverBehindClassPos = 4
+    //     $rootScope.driverBehindLapTime = '01:42.878'
+    //     $rootScope.driverBehindName = 'Dave Appleseed'
+    //     $rootScope.driverBehindLapTimeGap = -0.23
+    //     $rootScope.driverBehindLiveGap = -4.76
+    //
+    //     $rootScope.driverCarClassColor = '#FFCE33'
+    //     $rootScope.driverAheadCarClassColor = '#FFCE33'
+    //     $rootScope.driverBehindCarClassColor = '#ad6afe'
+    //
+    //     $rootScope.backgroundColor = 'grey'
+    //     $rootScope.HysBoostHold = false;
+    //     $rootScope.SessionLaps = 45;
+    //
+    //     return ir;
+    // });
 
     app.controller('MainCtrl', function($rootScope, $scope, iRService, $http, $interval) {
 
@@ -384,6 +384,116 @@
         }, 100)
 
         return $scope.ir = iRService.data;
+    });
+
+    app.directive('appFuelLevel', function() {
+        return {
+            link: function(scope, element, attrs) {
+                var ir, updateFuelLevel;
+                ir = scope.ir;
+                element.text('0.00');
+                updateFuelLevel = function() {
+                    var fuel;
+                    if (ir.FuelLevel == null) {
+                        return;
+                    }
+                    fuel = scope.normalizeFuelLevel(ir.FuelLevel);
+                    return element.text(fuel.toFixed(fuel < 100 ? 2 : 1));
+                };
+                scope.$watch('ir.DisplayUnits', updateFuelLevel);
+                return scope.$watch('ir.FuelLevel', updateFuelLevel);
+            }
+        };
+    });
+
+    app.directive('appFuelPerLap', function() {
+        return {
+            link: function(scope, element, attrs) {
+                var ir, updateFuelPerLap;
+                ir = scope.ir;
+                updateFuelPerLap = function() {
+                    var fuel;
+                    if (ir.fuelPerLap == null) {
+                        element.text('-.--');
+                        return;
+                    }
+                    fuel = scope.normalizeFuelLevel(ir.fuelPerLap);
+                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : (Math.ceil(fuel * 10) / 10).toFixed(1));
+                };
+                scope.$watch('ir.DisplayUnits', updateFuelPerLap);
+                return scope.$watch('ir.fuelPerLap', updateFuelPerLap);
+            }
+        };
+    });
+
+    app.directive('appFuelRemainLaps', function() {
+        return {
+            link: function(scope, element, attrs) {
+                return scope.$watch('ir.fuelRemainLaps', function(n, o) {
+                    if (n == null) {
+                        element.text('--.--');
+                        return;
+                    }
+                    return element.text(n.toFixed(n < 100 ? 2 : 1));
+                });
+            }
+        };
+    });
+
+    app.directive('appFuelNeedRefuel', function() {
+        return {
+            link: function(scope, element, attrs) {
+                var ir, updateFuelNeedRefuel;
+                ir = scope.ir;
+                updateFuelNeedRefuel = function() {
+                    var fuel;
+                    if (ir.fuelNeedRefuel == null) {
+                        element.text('--.-');
+                        return;
+                    }
+                    fuel = scope.normalizeFuelLevel(ir.fuelNeedRefuel);
+                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : fuel <= 99.9 ? (Math.ceil(fuel * 10) / 10).toFixed(1) : Math.ceil(fuel));
+                };
+                scope.$watch('ir.DisplayUnits', updateFuelNeedRefuel);
+                return scope.$watch('ir.fuelNeedRefuel', updateFuelNeedRefuel);
+            }
+        };
+    });
+
+    app.directive('appRaceLaps', function() {
+        return {
+            link: function(scope, element, attrs) {
+                return scope.$watch('ir.raceLaps', function(n, o) {
+                    var laps;
+                    if (n == null) {
+                        element.text('--.--');
+                        return;
+                    }
+                    laps = n;
+                    return element.text(laps <= 99.99 ? (Math.ceil(laps * 100) / 100).toFixed(2) : laps <= 999.9 ? (Math.ceil(laps * 10) / 10).toFixed(1) : Math.ceil(laps));
+                });
+            }
+        };
+    });
+
+    app.directive('appRaceFuel', function() {
+        return {
+            link: function(scope, element, attrs) {
+                var ir, updateRaceFuel;
+                ir = scope.ir;
+                updateRaceFuel = function() {
+                    var fuel;
+                    if (ir.raceFuel == null) {
+                        element.text('--.-');
+                        return;
+                    }
+                    fuel = scope.normalizeFuelLevel(ir.raceFuel);
+                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : fuel <= 99.9 ? (Math.ceil(fuel * 10) / 10).toFixed(1) : Math.ceil(fuel));
+                };
+                scope.$watch('ir.DisplayUnits', updateRaceFuel);
+                return scope.$watch('ir.raceFuel', updateRaceFuel);
+            }
+        };
     });
 
     function isElectron() {
