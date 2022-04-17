@@ -1,7 +1,7 @@
 (function() {
     let app;
 
-    app = angular.module('Dashboard', ['kutu.ir-service']);
+    app = angular.module('Dashboard', []);
 
     app.service('iRService', function($rootScope) {
         let ir;
@@ -384,116 +384,6 @@
         }, 100)
 
         return $scope.ir = iRService.data;
-    });
-
-    app.directive('appFuelLevel', function() {
-        return {
-            link: function(scope, element, attrs) {
-                var ir, updateFuelLevel;
-                ir = scope.ir;
-                element.text('0.00');
-                updateFuelLevel = function() {
-                    var fuel;
-                    if (ir.FuelLevel == null) {
-                        return;
-                    }
-                    fuel = scope.normalizeFuelLevel(ir.FuelLevel);
-                    return element.text(fuel.toFixed(fuel < 100 ? 2 : 1));
-                };
-                scope.$watch('ir.DisplayUnits', updateFuelLevel);
-                return scope.$watch('ir.FuelLevel', updateFuelLevel);
-            }
-        };
-    });
-
-    app.directive('appFuelPerLap', function() {
-        return {
-            link: function(scope, element, attrs) {
-                var ir, updateFuelPerLap;
-                ir = scope.ir;
-                updateFuelPerLap = function() {
-                    var fuel;
-                    if (ir.fuelPerLap == null) {
-                        element.text('-.--');
-                        return;
-                    }
-                    fuel = scope.normalizeFuelLevel(ir.fuelPerLap);
-                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : (Math.ceil(fuel * 10) / 10).toFixed(1));
-                };
-                scope.$watch('ir.DisplayUnits', updateFuelPerLap);
-                return scope.$watch('ir.fuelPerLap', updateFuelPerLap);
-            }
-        };
-    });
-
-    app.directive('appFuelRemainLaps', function() {
-        return {
-            link: function(scope, element, attrs) {
-                return scope.$watch('ir.fuelRemainLaps', function(n, o) {
-                    if (n == null) {
-                        element.text('--.--');
-                        return;
-                    }
-                    return element.text(n.toFixed(n < 100 ? 2 : 1));
-                });
-            }
-        };
-    });
-
-    app.directive('appFuelNeedRefuel', function() {
-        return {
-            link: function(scope, element, attrs) {
-                var ir, updateFuelNeedRefuel;
-                ir = scope.ir;
-                updateFuelNeedRefuel = function() {
-                    var fuel;
-                    if (ir.fuelNeedRefuel == null) {
-                        element.text('--.-');
-                        return;
-                    }
-                    fuel = scope.normalizeFuelLevel(ir.fuelNeedRefuel);
-                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : fuel <= 99.9 ? (Math.ceil(fuel * 10) / 10).toFixed(1) : Math.ceil(fuel));
-                };
-                scope.$watch('ir.DisplayUnits', updateFuelNeedRefuel);
-                return scope.$watch('ir.fuelNeedRefuel', updateFuelNeedRefuel);
-            }
-        };
-    });
-
-    app.directive('appRaceLaps', function() {
-        return {
-            link: function(scope, element, attrs) {
-                return scope.$watch('ir.raceLaps', function(n, o) {
-                    var laps;
-                    if (n == null) {
-                        element.text('--.--');
-                        return;
-                    }
-                    laps = n;
-                    return element.text(laps <= 99.99 ? (Math.ceil(laps * 100) / 100).toFixed(2) : laps <= 999.9 ? (Math.ceil(laps * 10) / 10).toFixed(1) : Math.ceil(laps));
-                });
-            }
-        };
-    });
-
-    app.directive('appRaceFuel', function() {
-        return {
-            link: function(scope, element, attrs) {
-                var ir, updateRaceFuel;
-                ir = scope.ir;
-                updateRaceFuel = function() {
-                    var fuel;
-                    if (ir.raceFuel == null) {
-                        element.text('--.-');
-                        return;
-                    }
-                    fuel = scope.normalizeFuelLevel(ir.raceFuel);
-                    return element.text(fuel <= 9.99 ? (Math.ceil(fuel * 100) / 100).toFixed(2) : fuel <= 99.9 ? (Math.ceil(fuel * 10) / 10).toFixed(1) : Math.ceil(fuel));
-                };
-                scope.$watch('ir.DisplayUnits', updateRaceFuel);
-                return scope.$watch('ir.raceFuel', updateRaceFuel);
-            }
-        };
     });
 
     function isElectron() {
