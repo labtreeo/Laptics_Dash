@@ -19,7 +19,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 310,
+    height: 271,
     width: 500,
     transparent: true,
     resizable: false,
@@ -35,7 +35,7 @@ function createWindow () {
     }
   });
 
-  let zoomFactor = 1
+  let zoomFactor = 2.5
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor

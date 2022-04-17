@@ -226,19 +226,19 @@
 
 		<div class="col-sm-5 border-top border-bottom border-start border-3">
 			<div class="row" >
-				<div class="col-sm-7 text-center p-0">
+				<div class="col-sm-7">
 					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
 				</div>
-				<div class="col-sm-5 text-end align-self-center ps-0" ng-if="ir.AirTemp">
+				<div class="col-sm-5 text-end align-self-center" ng-if="ir.AirTemp">
 					<i class="fas fa-fw" ng-class="{'fa-thermometer-empty' : ir.AirTemp < 20, 'fa-thermometer-half' : ir.AirTemp > 20 && ir.AirTemp < 40, 'fa-thermometer-full' : ir.AirTemp > 40}"></i>
 					<span class="weather">{{ir.AirTemp | number:1}}</span>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-7 text-center p-0">
+				<div class="col-sm-7">
 					<span ng-if="ir.LapLastLapTime > 10" class="lastLap" ng-bind="ir.LapLastLapTime | toMinSec"></span>
 				</div>
-				<div class="col-sm-5 text-end align-self-center ps-0" ng-if="ir.TrackTemp">
+				<div class="col-sm-5 text-end align-self-center" ng-if="ir.TrackTemp">
 					<i class="fas fa-road fa-fw"></i>
 					<span class="weather">{{ir.TrackTemp | number:1}}</span>
 				</div>
@@ -287,52 +287,40 @@
 		</div>
 	</div>
 
-	<div class="row text-center" style="min-height: 24px">
-		<div class="col-sm-5">
+	<div class="row" style="min-height: 24px">
+		<div class="col-sm-5 border-end border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
-				<div class="col-sm-4">
+				<div class="col-sm-6">
 					<span class="text-secondary">Lap:</span>
 					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
 					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
 				</div>
 
-				<div class="col-sm-8">
-					<span class="text-secondary">Since Pit:</span>
-					<span ng-if="lapsSincelastPitStop > 0" ng-bind="lapsSincelastPitStop"></span>
-					<span ng-if="!lapsSincelastPitStop || lapsSincelastPitStop == 0">-</span>
+				<div class="col-sm-6 text-end">
+					<span class="text-secondary">Pit lap:</span>
+					<span ng-if="lastPitStop > 0" ng-bind="lastPitStop"></span>
+					<span ng-if="!lastPitStop || lastPitStop == 0">-</span>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-2">
+		<div class="col-sm-2 text-center">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<span ng-if="ir.SessionTimeRemain < 600000" ng-bind="ir.SessionTimeRemain | secondsToDateTime"></span>
 				<span ng-if="ir.SessionTimeRemain > 600000">--,--</span>
 			</div>
-			<div class="row">
-				<div class="bottomRow p-0">
-
-				</div>
-			</div>
 		</div>
 
-		<div class="col-sm-5">
+		<div class="col-sm-5 border-start border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
-				<div class="col-sm-2">
+				<div class="col-sm-6">
 					<span class="text-secondary">Inc:</span>
-				</div>
-
-				<div class="col-sm-4">
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount"></span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
 				</div>
-
-				<div class="col-sm-2">
+				<div class="col-sm-6 text-end">
 					<span class="text-secondary">Fuel:</span>
-				</div>
-
-				<div class="col-sm-4">
-					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
+					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2'"></span>
 					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
