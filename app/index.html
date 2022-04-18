@@ -97,7 +97,7 @@
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-3 p-0">
 
-			<div class="" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'progress-bar-striped progress-bar-animated' : ir.Brake >= .10 && ir.Brake != 1, 'bg-success' : ir.EnergyERSBatteryPct >= .25, 'bg-warning' : ir.EnergyERSBatteryPct <= .25, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
+			<div class="" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.Brake >= .10 && ir.Brake != 1, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
 
 			<div class="row">
 				<div class="col col-sm-6">
@@ -126,7 +126,7 @@
 
 		<div class="col col-sm-5 border-bottom border-end border-3 p-0" style="transform: rotate(180deg);">
 
-			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .50, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .50 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}" style="position: absolute; color: transparent;">-</div>
+			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}" style="position: absolute; color: transparent;">-</div>
 
 			<div class="row" style="transform: rotate(-180deg);">
 				<div class="col col-sm-6">
