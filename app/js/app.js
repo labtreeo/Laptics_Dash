@@ -339,7 +339,7 @@
     //
     //     $rootScope.Clutch = 0.35
     //
-    //     $rootScope.lastPitStop = 6
+    //     $rootScope.lastPitStop = 10
     //
     //     $rootScope.driverAheadPos = 24
     //     $rootScope.driverAheadClassPos = 14

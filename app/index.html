@@ -97,7 +97,7 @@
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-3 p-0">
 
-			<div class="" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'progress-bar-striped progress-bar-animated' : ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .25, 'bg-warning' : ir.EnergyERSBatteryPct <= .25, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
+			<div class="" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'progress-bar-striped progress-bar-animated' : ir.Brake >= .10 && ir.Brake != 1, 'bg-success' : ir.EnergyERSBatteryPct >= .25, 'bg-warning' : ir.EnergyERSBatteryPct <= .25, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
 
 			<div class="row">
 				<div class="col col-sm-6">
@@ -320,7 +320,7 @@
 				</div>
 				<div class="col-sm-6 text-end">
 					<span class="text-secondary">Fuel:</span>
-					<span ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2'"></span>
+					<span class="text-light" ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
