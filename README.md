@@ -81,7 +81,7 @@
 
 Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
-<img src="https://cdn.discordapp.com/attachments/661852420942462987/964893733172686858/Schermafbeelding_2022-04-16_om_16.20.15.png" height="250">
+<img src="https://cdn.discordapp.com/attachments/661852420942462987/966378556865269760/Schermafbeelding_2022-04-20_om_18.43.08.png" height="250">
 
 
 ### Built With
