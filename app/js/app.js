@@ -123,7 +123,7 @@
             }
 
             $rootScope.lapsSincelastPitStop = ir.data['Lap'] - localStorage.getItem("lastPitStop");
-            $rootScope.lastPitStop = ir.data['Lap'] - localStorage.getItem("lastPitStop");
+            $rootScope.lastPitStop = localStorage.getItem("lastPitStop");
 
             if(clutch < 1.01){
                 $rootScope.Clutch =  Math.abs(clutch - 1)
