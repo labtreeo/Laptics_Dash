@@ -144,8 +144,8 @@
 		<div class="col-sm-5 border-top border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
-					<span class="rivalPosition text-secondary" ng-if="driverAheadPos == 0" >P-</span>
+					<span class="rivalPosition text-light" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
+					<span class="rivalPosition text-light" ng-if="driverAheadPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
 					<span class="lapTimeRival" ng-bind="driverAheadLapTime"></span>
@@ -153,8 +153,8 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="smallRivalPosition text-secondary" ng-style="{color: driverAheadCarClassColor}" ng-if="driverAheadClassPos > 0" ng-bind=" 'P' + driverAheadClassPos" ></span>
-					<span class="smallRivalPosition text-secondary" ng-if="driverAheadClassPos == 0" >P-</span>
+					<span class="smallRivalPosition" ng-style="{color: driverAheadCarClassColor}" ng-if="driverAheadClassPos > 0" ng-bind=" 'P' + driverAheadClassPos"></span>
+					<span class="smallRivalPosition" ng-if="driverAheadClassPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
 					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
@@ -188,7 +188,7 @@
 					<span class="position" ng-if="ir.PlayerCarPosition == 0" >P-</span>
 				</div>
 				<div class="col-sm-3 text-end align-self-center">
-					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Best</span>
+					<span class="deltaText" ng-if="ir.WeekendInfo">Best</span>
 				</div>
 				<div class="col-sm-6 text-end">
 					<span class="delta" ng-if="ir.LapDeltaToSessionBestLap == 0">--,--</span>
@@ -203,7 +203,7 @@
 					<span class="smallPosition" ng-if="ir.PlayerCarClassPosition == 0" >P-</span>
 				</div>
 				<div class="col-sm-3 text-end align-self-center">
-					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Last</span>
+					<span class="deltaText" ng-if="ir.WeekendInfo">Last</span>
 				</div>
 				<div class="col-sm-6 text-end">
 					<span class="delta" ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap == 0">--,--</span>
@@ -251,8 +251,8 @@
 		<div class="col-sm-5 border-bottom border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
-					<span class="rivalPosition text-secondary" ng-if="driverBehindPos == 0" >P-</span>
+					<span class="rivalPosition text-light" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
+					<span class="rivalPosition text-light" ng-if="driverBehindPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
 					<span class="lapTimeRival" ng-bind="driverBehindLapTime"></span>
@@ -261,8 +261,8 @@
 
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="smallRivalPosition text-secondary" ng-style="{color: driverBehindCarClassColor}" ng-if="driverBehindClassPos > 0" ng-bind=" 'P' + driverBehindClassPos" ></span>
-					<span class="smallRivalPosition text-secondary" ng-if="driverBehindClassPos == 0" >P-</span>
+					<span class="smallRivalPosition" ng-style="{color: driverBehindCarClassColor}" ng-if="driverBehindClassPos > 0" ng-bind=" 'P' + driverBehindClassPos" ></span>
+					<span class="smallRivalPosition" ng-if="driverBehindClassPos == 0" >P-</span>
 				</div>
 				<div class="col-sm-8 text-end">
 					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
@@ -291,13 +291,13 @@
 		<div class="col-sm-5 border-end border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
-					<span class="text-secondary">Lap:</span>
+					<span class="text-light">Lap:</span>
 					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
 					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
 				</div>
 
 				<div class="col-sm-6 text-end">
-					<span class="text-secondary">Pit lap:</span>
+					<span class="text-light">Pit lap:</span>
 					<span ng-if="lastPitStop > 0" ng-bind="lastPitStop"></span>
 					<span ng-if="!lastPitStop || lastPitStop == 0">-</span>
 				</div>
@@ -314,12 +314,12 @@
 		<div class="col-sm-5 border-start border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
-					<span class="text-secondary">Inc:</span>
+					<span class="text-light">Inc:</span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount"></span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
 				</div>
 				<div class="col-sm-6 text-end">
-					<span class="text-secondary">Fuel:</span>
+					<span class="text-light">Fuel:</span>
 					<span class="text-light" ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
 					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
