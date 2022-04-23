@@ -20,11 +20,11 @@ function isElectron() {
 if(isElectron()) {
     const electron = require('electron');
     const windowStateKeeper = require('electron-window-state');
-    const BrowserWindow = electron.remote.BrowserWindow;
+    // const BrowserWindow = electron.remote.BrowserWindow;
 
-    const remote = require('electron').remote;
+    const remote = require("@electron/remote").BrowserWindow;
 
-    const win = remote.getCurrentWindow(); /* Note this is different to the
+    const win = remote.getFocusedWindow(); /* Note this is different to the
     html global `window` variable */
 
     // When document has loaded, initialise

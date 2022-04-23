@@ -7,7 +7,6 @@ const exec = require('child_process').spawn;
 child = exec('app/server/server.exe', {detached: false});
 let splash
 let mainWindow
-let settings
 let width
 let height
 let lmp1height
@@ -30,10 +29,14 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js'),
       enableRemoteModule: true,
+      preload: path.join(__dirname, 'preload.js'),
+
     }
   });
+
+  require("@electron/remote/main").initialize();
+  require("@electron/remote/main").enable(mainWindow.webContents);
 
   let zoomFactor = 1
 
@@ -69,8 +72,9 @@ function createWindow () {
 }
 
 function closeAll(){
-  settings.close()
-  kill(child.pid);
+  window.removeAllListeners('close');
+  child.destroy()
+  kill(child.pid)
   child.kill('SIGABRT')
   app.exit()
 }
