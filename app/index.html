@@ -41,13 +41,13 @@
 	<div class="row" style="min-height: 24px">
 		<div class="col-sm-3 ">
 			<div class="row">
-				<div class="col-sm-8" style="min-height: 24px">
+				<div class="col-sm-8">
 					<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
 					<span ng-if="ir.dcABS > 0" class="ABS text-danger" ng-bind="ir.dcABS"></span>
 					<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
 				</div>
 
-				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0">
+				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
 					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
 					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
 					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
