@@ -95,7 +95,7 @@
 	</div>
 
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-		<div class="col col-sm-5 border-top border-end border-3 p-0">
+		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
 			<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
 
@@ -114,7 +114,7 @@
 
 		</div>
 
-		<div class="col-sm-2 border-top border-3 p-1 ps-3 pe-3">
+		<div class="col-sm-2 border-top border-secondary border-3 p-1 ps-3 pe-3">
 			<i class="fas fa-bolt text-secondary" style="float: left" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
 
 			<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
@@ -124,7 +124,7 @@
 			<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
 		</div>
 
-		<div class="col col-sm-5 border-bottom border-end border-3 p-0" style="transform: rotate(180deg);">
+		<div class="col col-sm-5 border-bottom border-secondary border-end border-3 p-0" style="transform: rotate(180deg);">
 
 			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}" style="position: absolute; color: transparent;">-</div>
 
@@ -141,7 +141,7 @@
 	</div>
 
 	<div class="row" style="min-height: 63px">
-		<div class="col-sm-5 border-top border-end border-3">
+		<div class="col-sm-5 border-top border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverAheadPos > 0 && driverAheadName" ng-bind=" 'P' + driverAheadPos" ></span>
@@ -167,7 +167,7 @@
 			<div class="RPM text-center pt-2" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-start border-3">
+		<div class="col-sm-5 border-top border-secondary border-start border-3">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverAheadName"></span>
 
@@ -180,32 +180,33 @@
 	</div>
 
 	<div class="row" style="min-height: 70px">
-		<div class="col-sm-5 border-top border-bottom border-end border-3">
+		<div class="col-sm-5 border-top border-secondary border-bottom border-end border-3">
 
 			<div class="row">
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<span class="position" ng-if="ir.PlayerCarPosition > 0" ng-bind=" 'P' + ir.PlayerCarPosition" ></span>
 					<span class="position" ng-if="ir.PlayerCarPosition == 0" >P-</span>
 				</div>
-				<div class="col-sm-3 text-end align-self-center">
+				<div class="col-sm-3 align-self-center">
 					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Best</span>
 				</div>
-				<div class="col-sm-6 text-end">
+				<div class="col-sm-5 text-end">
 					<span class="delta" ng-if="ir.LapDeltaToSessionBestLap == 0">--,--</span>
 
 					<span class="delta text-success" ng-if="ir.LapDeltaToSessionBestLap < 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
 					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionBestLap > 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
 				</div>
 			</div>
+
 			<div class="row">
-				<div class="col-sm-3 align-self-center">
+				<div class="col-sm-4 align-self-center">
 					<span class="smallPosition" ng-style="{color: driverCarClassColor}" ng-if="ir.PlayerCarClassPosition > 0" ng-bind=" 'P' + ir.PlayerCarClassPosition" ></span>
 					<span class="smallPosition" ng-if="ir.PlayerCarClassPosition == 0" >P-</span>
 				</div>
-				<div class="col-sm-3 text-end align-self-center">
+				<div class="col-sm-3 align-self-center">
 					<span class="deltaText text-secondary" ng-if="ir.WeekendInfo">Last</span>
 				</div>
-				<div class="col-sm-6 text-end">
+				<div class="col-sm-5 text-end">
 					<span class="delta" ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap == 0">--,--</span>
 
 					<span class="delta text-success " ng-if="ir.LapDeltaToSessionLastlLap == 0 && ir.LapDeltaToSessionOptimalLap < 0" ng-bind="ir.LapDeltaToSessionOptimalLap | number:2 | plusOrMinus"></span>
@@ -224,7 +225,7 @@
 			<div class="gear text-center" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></div>
 		</div>
 
-		<div class="col-sm-5 border-top border-bottom border-start border-3">
+		<div class="col-sm-5 border-top border-secondary border-bottom border-start border-3">
 			<div class="row" >
 				<div class="col-sm-7">
 					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
@@ -248,7 +249,7 @@
 	</div>
 
 	<div class="row" style="min-height: 63px">
-		<div class="col-sm-5 border-bottom border-end border-3">
+		<div class="col-sm-5 border-bottom border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
 					<span class="rivalPosition text-secondary" ng-if="driverBehindPos > 0 && driverBehindName" ng-bind=" 'P' + driverBehindPos" ></span>
@@ -271,11 +272,11 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 border-bottom border-3 p-0">
+		<div class="col-sm-2 border-bottom border-secondary border-3 p-0">
 			<div class="speed text-center pt-2" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
-		<div class="col-sm-5 border-bottom border-start border-3">
+		<div class="col-sm-5 border-bottom border-secondary border-start border-3">
 			<div class="row text-end">
 				<span class="driverName" ng-bind="driverBehindName"></span>
 
@@ -314,7 +315,7 @@
 		<div class="col-sm-5 border-start border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
-					<span class="text-light">Inc:</span>
+					<span class="text-secondary">Inc:</span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount"></span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
 				</div>
