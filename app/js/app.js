@@ -1,3 +1,5 @@
+// noinspection JSValidateTypes,JSCheckFunctionSignatures
+
 (function() {
     let app;
 

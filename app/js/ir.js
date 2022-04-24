@@ -1,7 +1,6 @@
-(function() {
-    let IRacing,
-        __slice = [].slice;
+// noinspection ThisExpressionReferencesGlobalObjectJS,JSUnusedAssignment
 
+(function() {
     function isElectron() {
         if (typeof require !== 'function') return false;
         if (typeof window !== 'object') return false;
@@ -14,14 +13,14 @@
         return true;
     }
 
-    window.IRacing = IRacing = (function() {
+    window.IRacing = (function () {
         function IRacing(_at_requestParams, _at_requestParamsOnce, _at_fps, _at_server, _at_readIbt, _at_record) {
             this.requestParams = _at_requestParams != null ? _at_requestParams : [];
             this.requestParamsOnce = _at_requestParamsOnce != null ? _at_requestParamsOnce : [];
             this.fps = _at_fps != null ? _at_fps : 1;
-            if(isElectron()) {
+            if (isElectron()) {
                 this.server = _at_server != null ? _at_server : '127.0.0.1:8180';
-            }else{
+            } else {
                 this.server = _at_server != null ? _at_server : '127.0.0.1:8182';
             }
             this.readIbt = _at_readIbt != null ? _at_readIbt : false;
@@ -36,6 +35,7 @@
             this.reconnectTimeout = null;
             this.connected = false;
             this.firstTimeConnect = true;
+            let record;
             if (typeof record !== "undefined" && record !== null) {
                 this.loadRecord();
             } else {
@@ -43,26 +43,26 @@
             }
         }
 
-        IRacing.prototype.connect = function() {
+        IRacing.prototype.connect = function () {
             this.ws = new WebSocket("ws://" + this.server + "/ws");
-            this.ws.onopen = (function(_this) {
-                return function() {
+            this.ws.onopen = (function (_this) {
+                return function () {
                     return _this.onopen.apply(_this, arguments);
                 };
             })(this);
-            this.ws.onmessage = (function(_this) {
-                return function() {
+            this.ws.onmessage = (function (_this) {
+                return function () {
                     return _this.onmessage.apply(_this, arguments);
                 };
             })(this);
-            return this.ws.onclose = (function(_this) {
-                return function() {
+            return this.ws.onclose = (function (_this) {
+                return function () {
                     return _this.onclose.apply(_this, arguments);
                 };
             })(this);
         };
 
-        IRacing.prototype.onopen = function() {
+        IRacing.prototype.onopen = function () {
             let k;
             if (typeof this.onWSConnect === "function") {
                 this.onWSConnect();
@@ -81,8 +81,9 @@
             }));
         };
 
-        IRacing.prototype.onmessage = function(event) {
+        IRacing.prototype.onmessage = function (event) {
             let data, k, keys, v, _ref;
+            data.disconnected = undefined;
             data = JSON.parse(event.data.replace(/\bNaN\b/g, 'null'));
             if (data.disconnected) {
                 this.connected = false;
@@ -116,7 +117,7 @@
             }
         };
 
-        IRacing.prototype.onclose = function() {
+        IRacing.prototype.onclose = function () {
             if (typeof this.onWSDisconnect === "function") {
                 this.onWSDisconnect();
             }
@@ -129,27 +130,17 @@
                     this.onDisconnect();
                 }
             }
-            return this.reconnectTimeout = setTimeout(((function(_this) {
-                return function() {
+            return this.reconnectTimeout = setTimeout(((function (_this) {
+                return function () {
                     return _this.connect.apply(_this);
                 };
             })(this)), 2000);
         };
-
-        IRacing.prototype.sendCommand = function() {
-            var args, command;
-            command = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-            return this.ws.send(JSON.stringify({
-                command: command,
-                args: args
-            }));
-        };
-
-        IRacing.prototype.loadRecord = function() {
-            var r;
+        IRacing.prototype.loadRecord = function () {
+            let r;
             r = new XMLHttpRequest();
-            r.onreadystatechange = function() {
-                var data;
+            r.onreadystatechange = function () {
+                let data;
                 if (r.readyState === 4 && r.status === 200) {
                     data = JSON.parse(r.responseText);
                     return console.log(data);
