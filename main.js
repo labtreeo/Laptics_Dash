@@ -19,7 +19,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 271,
+    height: 270,
     width: 500,
     transparent: true,
     resizable: false,
@@ -39,7 +39,7 @@ function createWindow () {
   require("@electron/remote/main").initialize();
   require("@electron/remote/main").enable(mainWindow.webContents);
 
-  let zoomFactor = 2.5
+  let zoomFactor = 1
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor

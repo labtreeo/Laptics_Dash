@@ -7,13 +7,20 @@
     src: url(../libs/fonts/digital-7.ttf);
 }
 
+@font-face {
+    font-family: Spantaran Regular;
+    font-style: normal;
+    font-weight: normal;
+    src: local('Spantaran Regular'), url('../libs/fonts/Spantaran.woff') format('woff');
+}
+
 .hidden {
     display: none;
 }
 
 .mainHub{
     max-width: 500px;
-    font-family: Roboto Black, sans-serif;
+    font-family: Spantaran Regular, sans-serif;
     background-color: rgba(0, 0, 0, 0.6);
     white-space: nowrap;
     user-select: none;
@@ -41,7 +48,7 @@
 
 .gear{
     font-size: 95px;
-    font-family: digital-7, sans-serif;
+    /*font-family: digital-7, sans-serif;*/
     line-height: 70px;
 }
 
