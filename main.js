@@ -1,6 +1,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, ipcMain} = require('electron')
 const { autoUpdater } = require('electron-updater');
+require('electron-reload')(__dirname);
 const kill = require('tree-kill');
 const path = require('path')
 const exec = require('child_process').spawn;
@@ -38,7 +39,7 @@ function createWindow () {
   require("@electron/remote/main").initialize();
   require("@electron/remote/main").enable(mainWindow.webContents);
 
-  let zoomFactor = 1
+  let zoomFactor = 2.5
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor

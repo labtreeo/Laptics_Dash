@@ -30,7 +30,7 @@
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
 			<div class="col-sm-10">
-				<p id="message" class="m-1"></p>
+				<p id="message" class="m-1">hey msn</p>
 			</div>
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-sm text-secondary" data-bs-dismiss="alert"><i class="fas fa-times"></i></button>
@@ -169,7 +169,7 @@
 
 		<div class="col-sm-5 border-top border-secondary border-start border-3">
 			<div class="row text-end">
-				<span class="driverName" ng-bind="driverAheadName"></span>
+				<span class="driverName text-truncate" ng-bind="driverAheadName"></span>
 
 				<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
 				<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
@@ -278,7 +278,7 @@
 
 		<div class="col-sm-5 border-bottom border-secondary border-start border-3">
 			<div class="row text-end">
-				<span class="driverName" ng-bind="driverBehindName"></span>
+				<span class="driverName text-truncate" ng-bind="driverBehindName"></span>
 
 				<span class="driverGap text-success" ng-if="driverBehindLiveGap < 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
 				<span class="driverGap text-danger" ng-if="driverBehindLiveGap > 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>

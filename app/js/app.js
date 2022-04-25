@@ -286,7 +286,7 @@
     //         data : {
     //             Speed: 90,
     //             RPM: 4510,
-    //             Gear: 6,
+    //             Gear: 1,
     //             RaceLaps: 124,
     //             ShiftIndicatorPct: .5,
     //             dcBrakeBias: 51,

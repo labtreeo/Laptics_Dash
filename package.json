@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
+    "electron-reload": "^2.0.0-alpha.1",
     "electron-settings": "^4.0.2",
     "electron-store": "^5.2.0",
     "electron-updater": "^4.3.5",
