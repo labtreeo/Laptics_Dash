@@ -362,6 +362,7 @@
     //     $rootScope.backgroundColor = 'grey'
     //     $rootScope.HysBoostHold = false;
     //     $rootScope.SessionLaps = 45;
+    //     $rootScope.HeadlightFlash = false;
     //
     //     return ir;
     // });

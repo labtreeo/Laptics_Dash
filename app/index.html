@@ -14,7 +14,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.min.js"></script>
-	<script src="https://kit.fontawesome.com/ddde85d45b.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/1ed802d53c.js" crossorigin="anonymous"></script>
 
 	<!-- angular -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
@@ -30,7 +30,7 @@
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
 			<div class="col-sm-10">
-				<p id="message" class="m-1">hey msn</p>
+				<p id="message" class="m-1"></p>
 			</div>
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-sm text-secondary" data-bs-dismiss="alert"><i class="fas fa-times"></i></button>
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 24px">
+	<div class="row">
 		<div class="col-sm-3 ">
 			<div class="row">
 				<div class="col-sm-8">
@@ -97,7 +97,7 @@
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
-			<div ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}" style="position: absolute; color: transparent;">-</div>
+			<span class="batteryBar" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
 
 			<div class="row">
 				<div class="col col-sm-6">
@@ -114,19 +114,17 @@
 
 		</div>
 
-		<div class="col-sm-2 border-top border-secondary border-3 p-1 ps-3 pe-3">
-			<i class="fas fa-bolt text-secondary" style="float: left" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+		<div class="col-sm-1 d-flex align-items-center justify-content-center border-top border-secondary border-3">
+			<i class="fas fa-bolt text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+		</div>
 
-			<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
-			<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full text-secondary" style="float: right" ng-class="{'text-white' : HysBoostHold}"></i>
+		<div class="col-sm-1 d-flex align-items-center justify-content-center border-top border-secondary border-3">
+			<i class="fas fa-rocket text-secondary" ng-class="{'text-white fa-shake' : HysBoostHold}"></i>
 		</div>
 
 		<div class="col col-sm-5 border-bottom border-secondary border-end border-3 p-0" style="transform: rotate(180deg);">
 
-			<div ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}" style="position: absolute; color: transparent;">-</div>
+			<div class="batteryBar" ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}"></div>
 
 			<div class="row" style="transform: rotate(-180deg);">
 				<div class="col col-sm-6">
@@ -140,7 +138,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 62px">
+	<div class="row">
 		<div class="col-sm-5 border-top border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
@@ -163,8 +161,8 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 p-0" >
-			<div class="RPM text-center pt-2" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></div>
+		<div class="col-sm-2 d-flex align-items-center justify-content-center">
+			<span class="RPM" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></span>
 		</div>
 
 		<div class="col-sm-5 border-top border-secondary border-start border-3">
@@ -179,7 +177,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 70px">
+	<div class="row">
 		<div class="col-sm-5 border-top border-secondary border-bottom border-end border-3">
 
 			<div class="row">
@@ -219,10 +217,10 @@
 
 		</div>
 
-		<div class="col-sm-2">
-			<div class="gear text-center" ng-if="ir.Gear == -1">R</div>
-			<div class="gear text-center" ng-if="ir.Gear == 0">N</div>
-			<div class="gear text-center" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></div>
+		<div class="col-sm-2 d-flex align-items-center justify-content-center">
+			<span class="gear" ng-if="ir.Gear == -1">R</span>
+			<span class="gear" ng-if="ir.Gear == 0">N</span>
+			<span class="gear" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></span>
 		</div>
 
 		<div class="col-sm-5 border-top border-secondary border-bottom border-start border-3">
@@ -248,7 +246,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 62px">
+	<div class="row">
 		<div class="col-sm-5 border-bottom border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
@@ -272,8 +270,8 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 border-bottom border-secondary border-3 p-0">
-			<div class="speed text-center pt-2" ng-bind="ir.Speed * 3.6 | number:0 "></div>
+		<div class="col-sm-2 d-flex align-items-center justify-content-center border-bottom border-secondary border-3">
+			<div class="speed" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
 		<div class="col-sm-5 border-bottom border-secondary border-start border-3">
@@ -288,7 +286,7 @@
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 24px">
+	<div class="row">
 		<div class="col-sm-5 border-end border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
@@ -321,10 +319,10 @@
 				</div>
 				<div class="col-sm-6 text-end">
 					<span class="text-secondary">Fuel:</span>
-					<span class="text-light" ng-if="ir.FuelLevel > 10" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="ir.FuelLevel | number:2"></span>
-					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="ir.FuelLevel | number:2"></span>
+					<span class="text-light" ng-if="ir.FuelLevel > 10" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>
+					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>
+					<span class="text-danger" ng-if="ir.FuelLevel > 2 && ir.FuelLevel <= 5" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>
+					<span class="text-danger pitLimiterFuel" ng-if="ir.FuelLevel > 0 && ir.FuelLevel <= 2" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>
 				</div>
 			</div>
 		</div>

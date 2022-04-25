@@ -19,7 +19,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 270,
+    height: 262,
     width: 500,
     transparent: true,
     resizable: false,

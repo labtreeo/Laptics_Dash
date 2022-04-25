@@ -47,9 +47,8 @@
 }
 
 .gear{
-    font-size: 95px;
-    /*font-family: digital-7, sans-serif;*/
-    line-height: 70px;
+    font-size: 80px;
+    line-height: 40px;
 }
 
 .speed{
@@ -60,11 +59,7 @@
     font-size: 26px;
 }
 
-.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position{
-    font-size: 20px;
-}
-
-.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
+.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position,.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
     font-size: 19px;
 }
 
@@ -77,9 +72,14 @@
     z-index: 10;
 }
 
+.batteryBar{
+    position: absolute;
+    height: 24px;
+}
+
 .revLed{
-    height: .70rem;
-    width: 1.9rem;
+    height: 12px;
+    width: 31px;
     clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
 }
 
@@ -110,7 +110,7 @@
 #notification{
     position: fixed;
     top: 15px;
-    z-index: 10;
+    z-index: 20;
     -webkit-app-region: no-drag;
     font-size: 15px;
     background-color: rgb(37, 37, 37);
