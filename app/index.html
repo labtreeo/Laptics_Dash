@@ -38,7 +38,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="min-height: 24px;">
 		<div class="col-sm-3 ">
 			<div class="row">
 				<div class="col-sm-8">
@@ -143,7 +143,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="min-height: 51px;">
 		<div class="col-sm-5 border-top border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
@@ -166,17 +166,17 @@
 			</div>
 		</div>
 
-		<div class="col-sm-2 d-flex align-items-center justify-content-center">
+		<div class="col-sm-2 d-flex align-items-center justify-content-center" ng-class="{'border-top border-secondary border-3' : ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'porsche919' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'}">
 			<span class="RPM" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></span>
 		</div>
 
 		<div class="col-sm-1 d-flex align-items-center border-top border-secondary border-start border-3">
-			<i class="fa-solid fa-square-arrow-up text-secondary"></i>
+			<i ng-if="ir.WeekendInfo" class="fa-solid fa-square-arrow-up text-secondary"></i>
 		</div>
 
 		<div class="col-sm-4 border-top border-secondary border-3">
 			<div class="row text-end">
-				<div class="col-sm-12 slide-left">
+				<div class="col-sm-12">
 					<span class="driverName text-truncate" ng-bind="driverAheadName"></span>
 				</div>
 				<div class="col-sm-12">
@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="min-height: 54px;">
 		<div class="col-sm-5 border-top border-secondary border-bottom border-end border-3">
 
 			<div class="row">
@@ -258,7 +258,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="min-height: 51px;">
 		<div class="col-sm-5 border-bottom border-secondary border-end border-3">
 			<div class="row">
 				<div class="col-sm-4">
@@ -287,12 +287,12 @@
 		</div>
 
 		<div class="col-sm-1 d-flex align-items-center border-bottom border-secondary border-start border-3">
-			<i class="fa-solid fa-square-arrow-down text-secondary"></i>
+			<i ng-if="ir.WeekendInfo" class="fa-solid fa-square-arrow-down text-secondary"></i>
 		</div>
 
 		<div class="col-sm-4 border-bottom border-secondary border-3">
 			<div class="row text-end">
-				<div class="col-sm-12 slide-left">
+				<div class="col-sm-12">
 					<span class="driverName text-truncate" ng-bind="driverBehindName"></span>
 				</div>
 				<div class="col-sm-12">
@@ -305,7 +305,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row" style="min-height: 22px;">
 		<div class="col-sm-5 border-end border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">

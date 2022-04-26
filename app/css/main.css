@@ -12,7 +12,7 @@
 .mainHub{
     max-width: 500px;
     font-family: Spantaran Regular, sans-serif;
-    background-color: rgba(183, 183, 183, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
     user-select: none;
     overflow: hidden;
@@ -98,20 +98,6 @@
     font-size: 15px;
     background-color: rgb(37, 37, 37);
     padding: 0;
-}
-
-div.slide-left span {
-    animation: slide-left 1s;
-}
-
-@keyframes slide-left {
-    from {
-        margin-left: 100%;
-    }
-
-    to {
-        margin-left: 0;
-    }
 }
 
 @-webkit-keyframes blink{
