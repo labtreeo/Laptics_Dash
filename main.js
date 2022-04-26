@@ -10,7 +10,6 @@ let splash
 let mainWindow
 let width
 let height
-let lmp1height
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
@@ -19,7 +18,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     title: 'Laptics Dash',
     frame: false,
-    height: 262,
+    height: 230,
     width: 500,
     transparent: true,
     resizable: false,
@@ -39,7 +38,7 @@ function createWindow () {
   require("@electron/remote/main").initialize();
   require("@electron/remote/main").enable(mainWindow.webContents);
 
-  let zoomFactor = 1
+  let zoomFactor = 2.5
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor
@@ -113,10 +112,6 @@ autoUpdater.on('update-available', () => {
 autoUpdater.on('update-downloaded', () => {
   mainWindow.webContents.send('update_downloaded');
 });
-
-// ipcMain.on('lmp1', () => {
-//   mainWindow.setSize(500, lmp1height)
-// })
 
 ipcMain.on('restart_app', () => {
   autoUpdater.quitAndInstall();

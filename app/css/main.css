@@ -1,13 +1,4 @@
 @font-face {
-    font-family: Roboto Black;
-    src: url(../libs/fonts/Roboto-Black.ttf);
-}
-@font-face {
-    font-family: digital-7;
-    src: url(../libs/fonts/digital-7.ttf);
-}
-
-@font-face {
     font-family: Spantaran Regular;
     font-style: normal;
     font-weight: normal;
@@ -21,24 +12,15 @@
 .mainHub{
     max-width: 500px;
     font-family: Spantaran Regular, sans-serif;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(183, 183, 183, 0.7);
     white-space: nowrap;
     user-select: none;
     overflow: hidden;
     animation: fadein 1s;
 }
 
-.btn{
-    -webkit-app-region: no-drag;
-}
-
 ::-webkit-scrollbar {
     display: none;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }
 
 .drag{
@@ -61,6 +43,7 @@
 
 .lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position,.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
     font-size: 19px;
+    line-height: 22px;
 }
 
 .BB,.ABS,.TC,.currentTime,.bottomRowText,.battery,.icons{
@@ -117,6 +100,20 @@
     padding: 0;
 }
 
+div.slide-left span {
+    animation: slide-left 1s;
+}
+
+@keyframes slide-left {
+    from {
+        margin-left: 100%;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
 @-webkit-keyframes blink{
     from, to {
         opacity: 0.2;
@@ -124,4 +121,9 @@
     50% {
         opacity: 1;
     }
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

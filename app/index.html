@@ -14,7 +14,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" ></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-duration-format/2.3.2/moment-duration-format.min.js"></script>
-	<script src="https://kit.fontawesome.com/1ed802d53c.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/0d2e2c562b.js" crossorigin="anonymous"></script>
 
 	<!-- angular -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
@@ -48,9 +48,11 @@
 				</div>
 
 				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
-					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
-					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
-					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
+					<span class="pedals bg-primary" ng-class="{'rounded-top' : Clutch < 1}" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+					<span style="min-width: 2px"></span>
+					<span class="pedals bg-danger" ng-class="{'rounded-top' : ir.Brake < 1}" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+					<span style="min-width: 2px"></span>
+					<span class="pedals bg-success" ng-class="{'rounded-top' : ir.Throttle < 1}" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
 				</div>
 			</div>
 		</div>
@@ -64,6 +66,7 @@
 			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4400}"></span>
 			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4500}"></span>
 			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4550}"></span>
+
 		</div>
 
 		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
@@ -87,8 +90,8 @@
 					<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
 				</div>
 				<div class="col-sm-5 d-flex justify-content-evenly" style="max-height: 24px;">
-					<button type="button" class="btn btn-sm text-secondary p-0" id="min-button"><i class="fas fa-minus fa-fw icons"></i></button>
-					<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fas fa-times fa-fw icons"></i></button>
+					<button type="button" class="btn btn-sm text-secondary p-0" id="min-button"><i class="fa-solid fa-square-minus fa-fw"></i></button>
+					<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fa-solid fa-square-xmark fa-fw"></i></button>
 				</div>
 			</div>
 		</div>
@@ -97,38 +100,40 @@
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
-			<span class="batteryBar" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
+			<span class="batteryBar rounded-end" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
 
 			<div class="row">
 				<div class="col col-sm-6">
-					<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full batteryPercentage ps-2"></i>
+					<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full fa-beat batteryPercentage ps-2"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
-					<span class="batteryPercentage pe-2" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2" ></span>
+					<span class="batteryPercentage" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2" ></span>
+					<i class="fa-solid fa-percent fa-xs fa-fw pe-2 batteryPercentage"></i>
 				</div>
 			</div>
 
 		</div>
 
 		<div class="col-sm-1 d-flex align-items-center justify-content-center border-top border-secondary border-3">
-			<i class="fas fa-bolt text-secondary" ng-class="{flashing : HeadlightFlash, 'text-white' : HeadlightFlash}"></i>
+			<i class="fas fa-bolt text-secondary" style="--fa-animation-duration: .5s" ng-class="{'fa-beat-fade text-white' : HeadlightFlash}"></i>
 		</div>
 
 		<div class="col-sm-1 d-flex align-items-center justify-content-center border-top border-secondary border-3">
-			<i class="fas fa-rocket text-secondary" ng-class="{'text-white fa-shake' : HysBoostHold}"></i>
+			<i class="fas fa-rocket text-secondary" style="--fa-animation-iteration-count:1;" ng-class="{'text-white fa-rocket-launch fa-beat' : HysBoostHold}"></i>
 		</div>
 
 		<div class="col col-sm-5 border-bottom border-secondary border-end border-3 p-0" style="transform: rotate(180deg);">
 
-			<div class="batteryBar" ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}"></div>
+			<div class="batteryBar rounded-end" ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}"></div>
 
 			<div class="row" style="transform: rotate(-180deg);">
 				<div class="col col-sm-6">
 					<span class="batteryPercentage ps-2" ng-bind="ir.EnergyMGU_KLapDeployPct * 100 | number:2" ></span>
+					<i class="fa-solid fa-percent fa-xs fa-fw"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
 					<i class="fas fa-caret-left batteryPercentage pe-2"></i>
@@ -165,14 +170,21 @@
 			<span class="RPM" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></span>
 		</div>
 
-		<div class="col-sm-5 border-top border-secondary border-start border-3">
-			<div class="row text-end">
-				<span class="driverName text-truncate" ng-bind="driverAheadName"></span>
+		<div class="col-sm-1 d-flex align-items-center border-top border-secondary border-start border-3">
+			<i class="fa-solid fa-square-arrow-up text-secondary"></i>
+		</div>
 
-				<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
-				<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
-				<span class="driverGap" ng-if="driverAheadLiveGap == 0">--,--</span>
-				<span class="driverGap" ng-if="driverAheadLiveGap.includes('L')" ng-bind="driverAheadLiveGap"></span>
+		<div class="col-sm-4 border-top border-secondary border-3">
+			<div class="row text-end">
+				<div class="col-sm-12 slide-left">
+					<span class="driverName text-truncate" ng-bind="driverAheadName"></span>
+				</div>
+				<div class="col-sm-12">
+					<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
+					<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
+					<span class="driverGap" ng-if="driverAheadLiveGap == 0">--,--</span>
+					<span class="driverGap" ng-if="driverAheadLiveGap.includes('L')" ng-bind="driverAheadLiveGap"></span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -226,10 +238,10 @@
 		<div class="col-sm-5 border-top border-secondary border-bottom border-start border-3">
 			<div class="row" >
 				<div class="col-sm-7">
-					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
+					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime fa-beat" ng-bind="ir.LapBestLapTime | toMinSec"></span>
 				</div>
 				<div class="col-sm-5 text-end align-self-center" ng-if="ir.AirTemp">
-					<i class="fas fa-fw" ng-class="{'fa-thermometer-empty' : ir.AirTemp < 20, 'fa-thermometer-half' : ir.AirTemp > 20 && ir.AirTemp < 40, 'fa-thermometer-full' : ir.AirTemp > 40}"></i>
+					<i class="fas fa-sm fa-fw" ng-class="{'fa-thermometer-empty' : ir.AirTemp < 20, 'fa-thermometer-half' : ir.AirTemp > 20 && ir.AirTemp < 40, 'fa-thermometer-full' : ir.AirTemp > 40}"></i>
 					<span class="weather">{{ir.AirTemp | number:1}}</span>
 				</div>
 			</div>
@@ -238,7 +250,7 @@
 					<span ng-if="ir.LapLastLapTime > 10" class="lastLap" ng-bind="ir.LapLastLapTime | toMinSec"></span>
 				</div>
 				<div class="col-sm-5 text-end align-self-center" ng-if="ir.TrackTemp">
-					<i class="fas fa-road fa-fw"></i>
+					<i class="fas fa-sm fa-road fa-fw"></i>
 					<span class="weather">{{ir.TrackTemp | number:1}}</span>
 				</div>
 			</div>
@@ -274,14 +286,21 @@
 			<div class="speed" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
-		<div class="col-sm-5 border-bottom border-secondary border-start border-3">
-			<div class="row text-end">
-				<span class="driverName text-truncate" ng-bind="driverBehindName"></span>
+		<div class="col-sm-1 d-flex align-items-center border-bottom border-secondary border-start border-3">
+			<i class="fa-solid fa-square-arrow-down text-secondary"></i>
+		</div>
 
-				<span class="driverGap text-success" ng-if="driverBehindLiveGap < 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
-				<span class="driverGap text-danger" ng-if="driverBehindLiveGap > 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
-				<span class="driverGap" ng-if="driverBehindLiveGap == 0">--,--</span>
-				<span class="driverGap" ng-if="driverBehindLiveGap.includes('L')" ng-bind="driverBehindLiveGap"></span>
+		<div class="col-sm-4 border-bottom border-secondary border-3">
+			<div class="row text-end">
+				<div class="col-sm-12 slide-left">
+					<span class="driverName text-truncate" ng-bind="driverBehindName"></span>
+				</div>
+				<div class="col-sm-12">
+					<span class="driverGap text-success" ng-if="driverBehindLiveGap < 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
+					<span class="driverGap text-danger" ng-if="driverBehindLiveGap > 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
+					<span class="driverGap" ng-if="driverBehindLiveGap == 0">--,--</span>
+					<span class="driverGap" ng-if="driverBehindLiveGap.includes('L')" ng-bind="driverBehindLiveGap"></span>
+				</div>
 			</div>
 		</div>
 	</div>

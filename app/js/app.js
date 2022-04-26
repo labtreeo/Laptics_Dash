@@ -286,7 +286,7 @@
     //         data : {
     //             Speed: 90,
     //             RPM: 4510,
-    //             Gear: 1,
+    //             Gear: 6,
     //             RaceLaps: 124,
     //             ShiftIndicatorPct: .5,
     //             dcBrakeBias: 51,
@@ -370,15 +370,6 @@
     app.controller('MainCtrl', function($rootScope, $scope, iRService, $http, $interval) {
 
         $scope.isElectron = isElectron();
-
-        if (isElectron()) {
-            const { ipcRenderer } = require('electron');
-            if (iRService.data['DriverInfo']){
-                if (iRService.data['DriverInfo']['Drivers'][iRService.data['DriverInfo']['DriverCarIdx']]['CarPath'] === 'audir18' || iRService.data['DriverInfo']['Drivers'][iRService.data['DriverInfo']['DriverCarIdx']]['CarPath'] === 'porsche919') {
-                    ipcRenderer.send('lmp1')
-                }
-            }
-        }
 
         $interval(function() {
             $scope.CurrentTime = new Date()
