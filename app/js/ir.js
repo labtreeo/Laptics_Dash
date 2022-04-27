@@ -20,7 +20,7 @@
             this.requestParamsOnce = _at_requestParamsOnce != null ? _at_requestParamsOnce : [];
             this.fps = _at_fps != null ? _at_fps : 1;
             if(isElectron()) {
-                this.server = _at_server != null ? _at_server : '127.0.0.1:8182';
+                this.server = _at_server != null ? _at_server : '127.0.0.1:8180';
             }else{
                 this.server = _at_server != null ? _at_server : '127.0.0.1:8182';
             }
