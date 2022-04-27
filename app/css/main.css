@@ -41,28 +41,13 @@
     font-size: 26px;
 }
 
-.lastLap,.delta,.lapTime,.position,.smallPosition,.deltaText,.smallLapTimeRival,.weather,.bottomRow{
+.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position,.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
     font-size: 19px;
-    line-height: 22px;
-}
-
-.driverName,.smallRivalPosition,.driverGap{
-    font-size: 17px;
     line-height: 22px;
 }
 
 .BB,.ABS,.TC,.currentTime,.bottomRowText,.battery,.icons{
     font-size: 15px;
-}
-
-.fuelTextSize{
-    font-size: 10px;
-    line-height: 11px;
-}
-
-.fuelSize{
-    font-size: 12px;
-    line-height: 13px;
 }
 
 .batteryPercentage{

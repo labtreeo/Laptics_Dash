@@ -421,6 +421,13 @@
         }
     });
 
+    // app.filter('percentage', function(){
+    //     return function(input){
+    //         input = input ? input : 0
+    //         return  input + "%"
+    //     }
+    // });
+
     app.filter('toMinSec', function(){
         return function(input){
             return (moment.duration(input, "seconds").format("mm:ss.SSS"));
