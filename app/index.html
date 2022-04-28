@@ -48,25 +48,23 @@
 				</div>
 
 				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
-					<span class="pedals bg-primary" ng-class="{'rounded-top' : Clutch < 1}" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
 					<span style="min-width: 2px"></span>
-					<span class="pedals bg-danger" ng-class="{'rounded-top' : ir.Brake < 1}" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
 					<span style="min-width: 2px"></span>
-					<span class="pedals bg-success" ng-class="{'rounded-top' : ir.Throttle < 1}" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
+					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3800}"></span>
-			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 3925}"></span>
-			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4050}"></span>
-			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-success': ir.RPM > 4175}"></span>
-			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4300}"></span>
-			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-warning': ir.RPM > 4400}"></span>
-			<span class="revLed bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4500}"></span>
-			<span class="revLed revLedUp bg-secondary" ng-class="{revLimiter: ir.RPM > 4600, 'bg-danger': ir.RPM > 4550}"></span>
-
+		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+			<span class="fak fa-2xl fa-revled-up text-secondary"  style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 3800}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 3950}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 4200}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-warning': ir.RPM > 4300}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-warning': ir.RPM > 4400}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-danger': ir.RPM > 4500}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-danger': ir.RPM > 4550}"></span>
 		</div>
 
 		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">

@@ -82,14 +82,6 @@
     animation: 1.2s blink ease infinite;
 }
 
-.revLimiter{
-    animation: .6s blink step-start infinite;
-}
-
-.flashing {
-    animation: .3s blink step-start infinite;
-}
-
 #notification{
     position: fixed;
     top: 15px;
