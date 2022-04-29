@@ -107,6 +107,10 @@
 
             $rootScope.mguCharging = Math.abs(ir.data['PowerMGU_K']);
 
+            $rootScope.incPercentage = ir.data['PlayerCarTeamIncidentCount']/ir.data['WeekendInfo']['WeekendOptions.IncidentLimit']
+            $rootScope.incYellow = $rootScope.incPercentage >= .8;
+            $rootScope.incRed = ir.data['PlayerCarTeamIncidentCount'] >= ir.data['WeekendInfo']['WeekendOptions.IncidentLimit'];
+
             if (ir.data['dcHeadlightFlash'] === true){
                 $rootScope.HeadlightFlash = true
                 setTimeout(() => $rootScope.HeadlightFlash = false, 2000);
@@ -301,12 +305,12 @@
     //             PlayerCarPosition: 25,
     //             dcTractionControl3: 1.35,
     //             dcMGUKDeployFixed: 12,
-    //             PlayerCarTeamIncidentCount: 42,
+    //             PlayerCarTeamIncidentCount: 12,
     //             IsOnTrack: true,
     //             dcABS: 12,
     //             WeekendInfo: {
     //                 WeekendOptions: {
-    //                     IncidentLimit: 100
+    //                     IncidentLimit: 17
     //                 }
     //             },
     //             DriverInfo: {
@@ -363,6 +367,10 @@
     //     $rootScope.HysBoostHold = false;
     //     $rootScope.SessionLaps = 45;
     //     $rootScope.HeadlightFlash = false;
+    //
+    //     $rootScope.incPercentage = ir.data.PlayerCarTeamIncidentCount/ir.data.WeekendInfo.WeekendOptions.IncidentLimit
+    //     $rootScope.incYellow = $rootScope.incPercentage >= .8;
+    //     $rootScope.incRed = ir.data.PlayerCarTeamIncidentCount >= ir.data.WeekendInfo.WeekendOptions.IncidentLimit;
     //
     //     return ir;
     // });

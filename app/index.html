@@ -239,7 +239,7 @@
 				</div>
 				<div class="col-sm-5 text-end align-self-center" ng-if="ir.AirTemp">
 					<i class="fas fa-sm fa-fw" ng-class="{'fa-thermometer-empty' : ir.AirTemp < 20, 'fa-thermometer-half' : ir.AirTemp > 20 && ir.AirTemp < 40, 'fa-thermometer-full' : ir.AirTemp > 40}"></i>
-					<span class="weather">{{ir.AirTemp | number:1}}</span>
+					<span class="weather" ng-bind="ir.AirTemp | number:1"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -248,7 +248,7 @@
 				</div>
 				<div class="col-sm-5 text-end align-self-center" ng-if="ir.TrackTemp">
 					<i class="fas fa-sm fa-road fa-fw"></i>
-					<span class="weather">{{ir.TrackTemp | number:1}}</span>
+					<span class="weather" ng-bind="ir.TrackTemp | number:1"></span>
 				</div>
 			</div>
 
@@ -330,8 +330,8 @@
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
 					<span class="text-secondary">Inc:</span>
-					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount"></span>
-					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit"></span>
+					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + 'x'"></span>
+					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-class="{'text-warning' : incYellow, 'text-danger' : incRed}" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit + 'x'"></span>
 				</div>
 				<div class="col-sm-6 text-end">
 					<span class="text-secondary">Fuel:</span>
