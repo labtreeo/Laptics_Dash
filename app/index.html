@@ -97,7 +97,7 @@
 	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
-			<span class="batteryBar rounded-end" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
+			<span class="batteryBar" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'rounded-end' : ir.EnergyERSBatteryPct < .99999,'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake <= .80 && ir.Brake >= .10, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
 
 			<div class="row">
 				<div class="col col-sm-6">
@@ -105,7 +105,7 @@
 					<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
 					<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
 					<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full fa-beat batteryPercentage ps-2"></i>
+					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full fa-beat batteryPercentage ps-2" style="--fa-animation-iteration-count:1;"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
 					<span class="batteryPercentage" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2" ></span>
@@ -125,7 +125,7 @@
 
 		<div class="col col-sm-5 border-bottom border-secondary border-end border-3 p-0" style="transform: rotate(180deg);">
 
-			<div class="batteryBar rounded-end" ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}"></div>
+			<div class="batteryBar" ng-style="{ 'width': ir.EnergyMGU_KLapDeployPct * 205.3 + 'px'}" ng-class="{'rounded-end' : ir.EnergyMGU_KLapDeployPct < .99999, 'progress-bar-striped progress-bar-animated' : HysBoostHold, 'bg-primary' : ir.EnergyMGU_KLapDeployPct <= .75, 'bg-warning' : ir.EnergyMGU_KLapDeployPct >= .75 && ir.EnergyMGU_KLapDeployPct <= 1, 'bg-danger' : ir.EnergyMGU_KLapDeployPct == 1}"></div>
 
 			<div class="row" style="transform: rotate(-180deg);">
 				<div class="col col-sm-6">
