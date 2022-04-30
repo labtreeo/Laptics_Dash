@@ -38,6 +38,12 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-sm-12">
+
+		</div>
+	</div>
+
 	<div class="row" style="min-height: 24px;">
 		<div class="col-sm-3 ">
 			<div class="row">
@@ -58,23 +64,23 @@
 		</div>
 
 		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 3800}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 3950}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-success': ir.RPM > 4200}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-warning': ir.RPM > 4300}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-warning': ir.RPM > 4400}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-danger': ir.RPM > 4500}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600, 'text-danger': ir.RPM > 4550}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3800 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3950 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 4200 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.RPM > 4300 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.RPM > 4400 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.RPM > 4500 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.RPM > 4550 || ir.dcPitSpeedLimiterToggle}"></span>
 		</div>
 
 		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-success': ir.ShiftIndicatorPct > 0.114}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-success': ir.ShiftIndicatorPct > 0.228}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-success': ir.ShiftIndicatorPct > 0.342}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-warning': ir.ShiftIndicatorPct > 0.456}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-warning': ir.ShiftIndicatorPct > 0.57}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-danger': ir.ShiftIndicatorPct > 0.684}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85, 'text-danger': ir.ShiftIndicatorPct > 0.8}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.114 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.228 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.342 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.456 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.57 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.ShiftIndicatorPct > 0.684 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.ShiftIndicatorPct > 0.8 || ir.dcPitSpeedLimiterToggle}"></span>
 		</div>
 
 		<div ng-if="!isElectron" class="col-sm-3 text-end">
