@@ -41,13 +41,17 @@
     font-size: 26px;
 }
 
-.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position,.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow,.driverName{
+.lapTimeRival,.rivalPosition,.lastLap,.delta,.lapTime,.position,.smallPosition,.driverGap,.deltaText,.smallLapTimeRival,.smallRivalPosition,.weather,.bottomRow{
     font-size: 19px;
     line-height: 22px;
 }
 
 .BB,.ABS,.TC,.currentTime,.bottomRowText,.battery,.icons{
     font-size: 15px;
+}
+
+.driverName{
+    font-size: 17px;
 }
 
 .batteryPercentage{
@@ -66,6 +70,22 @@
 
 .bestTime{
     color: #e008e0;
+}
+
+.rocket{
+    --fa-secondary-color: orange;
+}
+
+.fa-thermometer-empty{
+    --fa-primary-color: #0dcaf0;
+}
+
+.fa-thermometer-half{
+    --fa-primary-color: #ffc107;
+}
+
+.fa-thermometer-full{
+    --fa-primary-color: #dc3545;
 }
 
 .blinkingFuel {

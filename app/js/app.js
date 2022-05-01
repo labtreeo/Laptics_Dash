@@ -333,7 +333,7 @@
     //             Lap: 20,
     //             SessionLapsRemain: 24,
     //             Throttle: 1,
-    //             Brake: .09,
+    //             Brake: 0,
     //             TrackTemp: 26.78,
     //             AirTemp: 24.56,
     //             SessionNum: 2,
@@ -428,13 +428,6 @@
             return input > 0 ? "+"+input : input
         }
     });
-
-    // app.filter('percentage', function(){
-    //     return function(input){
-    //         input = input ? input : 0
-    //         return  input + "%"
-    //     }
-    // });
 
     app.filter('toMinSec', function(){
         return function(input){
