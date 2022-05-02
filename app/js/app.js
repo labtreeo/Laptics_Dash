@@ -55,10 +55,14 @@
             'SessionLapsRemain',
             'CarLeftRight',
             'LRCarLeft',
-            'SessionInfo'
+            'SessionInfo',
+            'LapDistPct',
+            'SplitTimeInfo',
+            'LapCurrentLapTime'
         ], [], 30, null,null, null);
         ir.onConnect = function() {
             localStorage.setItem("lastPitStop", ir.data['Lap']);
+
             return console.log('connected');
         };
         ir.onDisconnect = function() {
@@ -74,6 +78,9 @@
             let CarIdxF2Time = ir.data['CarIdxF2Time'];
             let CarIdxLap = ir.data['CarIdxLap'];
             let clutch = ir.data['Clutch'];
+            let sectors = ir.data['SplitTimeInfo']['Sectors'];
+            let lapDistPct = ir.data['LapDistPct'];
+            let LapDeltaToSessionBestLap = ir.data['LapDeltaToSessionBestLap']
 
             let driverCarClassColor
             let currentDriver = drivers[currentDriverId]
@@ -107,9 +114,40 @@
 
             $rootScope.mguCharging = Math.abs(ir.data['PowerMGU_K']);
 
-            $rootScope.incPercentage = ir.data['PlayerCarTeamIncidentCount']/ir.data['WeekendInfo']['WeekendOptions.IncidentLimit']
+            $rootScope.incPercentage = ir.data['PlayerCarTeamIncidentCount']/ir.data['WeekendInfo']['WeekendOptions']['IncidentLimit'];
             $rootScope.incYellow = $rootScope.incPercentage >= .8;
-            $rootScope.incRed = ir.data['PlayerCarTeamIncidentCount'] >= ir.data['WeekendInfo']['WeekendOptions.IncidentLimit'];
+            $rootScope.incRed = ir.data['PlayerCarTeamIncidentCount'] >= ir.data['WeekendInfo']['WeekendOptions']['IncidentLimit'];
+
+            angular.forEach(sectors, function(sector, key){
+
+                const nextSector = sectors[key + 1]
+                const previousSector = sectors[key - 1]
+                if (nextSector !== undefined){
+                    sector.SectorEndPct = nextSector.SectorStartPct
+                }else{
+                    sector.SectorEndPct = 1
+                }
+
+                if (lapDistPct >= sector.SectorStartPct && lapDistPct <= sector.SectorEndPct){
+                    if (sector.SectorNum === 0){
+
+                        angular.forEach(sectors, function(sector){
+                            if (sector.SectorNum !== 0) {
+                                localStorage.setItem(sector.SectorNum, null)
+                            }
+                        });
+
+                        localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap)
+                    }else{
+                        let previousSectorDelta = localStorage.getItem(previousSector.SectorNum)
+
+                        localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap - previousSectorDelta)
+                    }
+                }
+
+                sector.SectorDelta = localStorage.getItem(sector.SectorNum)
+
+            });
 
             if (ir.data['dcHeadlightFlash'] === true){
                 $rootScope.HeadlightFlash = true
@@ -276,6 +314,8 @@
                 $rootScope.driverBehindCarClassColor = driverBehindCarClassColor
                 $rootScope.driverBehindName = driverBehindName
                 $rootScope.driverBehindLiveGap = driverBehindLiveGap
+
+                $rootScope.sectors = sectors
             }
 
             return $rootScope.$apply();
@@ -318,6 +358,15 @@
     //                     0 : {CarPath: 'test'},
     //                 },
     //                 DriverCarIdx: 0
+    //             },
+    //             SplitTimeInfo: {
+    //                 Sectors:[
+    //                     {SectorNum: 0},
+    //                     {SectorNum: 1},
+    //                     {SectorNum: 2},
+    //                     {SectorNum: 3},
+    //                     {SectorNum: 4},
+    //                 ]
     //             },
     //             EnergyERSBatteryPct: .8743,
     //             EnergyMGU_KLapDeployPct: .1247,
@@ -371,6 +420,8 @@
     //     $rootScope.incPercentage = ir.data.PlayerCarTeamIncidentCount/ir.data.WeekendInfo.WeekendOptions.IncidentLimit
     //     $rootScope.incYellow = $rootScope.incPercentage >= .8;
     //     $rootScope.incRed = ir.data.PlayerCarTeamIncidentCount >= ir.data.WeekendInfo.WeekendOptions.IncidentLimit;
+    //
+    //     $rootScope.sectors = ir.data.SplitTimeInfo.Sectors
     //
     //     return ir;
     // });
