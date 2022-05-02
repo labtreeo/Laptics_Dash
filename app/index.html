@@ -187,15 +187,21 @@
 		</div>
 
 		<div class="col-sm-5 border-start border-top border-secondary border-3">
-			<div class="row">
-				<div class="col-sm-12 text-center lastLap" style="min-height: 24px">
-					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec"></span>
-					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">--,--</span>
+			<div class="row" style="min-height: 24px">
+
+				<div class="col-sm-4 align-self-center">
+					<i ng-if="ir.WeekendInfo && ir.dcPitSpeedLimiterToggle" style="--fa-animation-duration: 0.5s;" class="fas fa-fw fa-beat-fade text-warning fa-sm fa-gauge-low"></i>
+					<span class="lastLap text-warning" ng-if="ir.WeekendInfo && ir.dcPitSpeedLimiterToggle">PIT</span>
+				</div>
+
+				<div class="col-sm-8 text-end lastLap" >
+					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec2"></span>
+					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">00:00.000</span>
 				</div>
 
 				<div class="col-sm-12" style="max-height: 24px">
 					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
-						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: slategray; font-size: 8px;" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
+						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 10px;" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'text-' : ir.LapDistPct >= sector.SectorStartPct && ir.LapDistPct <= sector.SectorEndPct, 'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
 							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
 						</div>
 					</div>
@@ -296,8 +302,8 @@
 				<div class="col-sm-8 text-end">
 					<i ng-if="ir.WeekendInfo" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}"></i>
 
-					<span class="delta text-success" ng-if="ir.LapDeltaToSessionBestLap < 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
-					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionBestLap > 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
+					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap text-danger" ng-if="driverBehindLapTimeGap > 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
 				</div>
 			</div>
 		</div>

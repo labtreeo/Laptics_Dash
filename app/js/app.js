@@ -95,9 +95,12 @@
             let CarIdxF2Time = ir.data['CarIdxF2Time'];
             let CarIdxLap = ir.data['CarIdxLap'];
             let clutch = ir.data['Clutch'];
+
             let sectors = ir.data['SplitTimeInfo']['Sectors'];
             let lapDistPct = ir.data['LapDistPct'];
             let LapDeltaToSessionBestLap = ir.data['LapDeltaToSessionBestLap']
+            let LapDeltaToSessionOptimalLap = ir.data['LapDeltaToSessionOptimalLap']
+            let LapDelta;
 
             let driverCarClassColor
             let currentDriver = drivers[currentDriverId]
@@ -135,6 +138,12 @@
             $rootScope.incYellow = $rootScope.incPercentage >= .8;
             $rootScope.incRed = ir.data['PlayerCarTeamIncidentCount'] >= ir.data['WeekendInfo']['WeekendOptions']['IncidentLimit'];
 
+            if (LapDeltaToSessionBestLap === 0 ){
+                LapDelta = LapDeltaToSessionOptimalLap
+            }else{
+                LapDelta = LapDeltaToSessionBestLap
+            }
+
             angular.forEach(sectors, function(sector, key){
 
                 const nextSector = sectors[key + 1]
@@ -153,16 +162,16 @@
                                 localStorage.setItem('D' + sector.SectorNum, null)
                             }
                         });
-                        localStorage.setItem('D' + sector.SectorNum, LapDeltaToSessionBestLap)
-                        localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap)
+                        localStorage.setItem('D' + sector.SectorNum, LapDelta)
+                        localStorage.setItem(sector.SectorNum, LapDelta)
                     }else{
                         let previousSectorDelta = localStorage.getItem('D' + previousSector.SectorNum)
 
                         console.log(previousSectorDelta)
 
-                        localStorage.setItem('D' + sector.SectorNum, LapDeltaToSessionBestLap)
+                        localStorage.setItem('D' + sector.SectorNum, LapDelta)
 
-                        localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap - previousSectorDelta)
+                        localStorage.setItem(sector.SectorNum, LapDelta - previousSectorDelta)
                     }
                 }
 
@@ -356,7 +365,7 @@
     //             RaceLaps: 124,
     //             ShiftIndicatorPct: .5,
     //             dcBrakeBias: 51,
-    //             dcPitSpeedLimiterToggle: false,
+    //             dcPitSpeedLimiterToggle: true,
     //             dcHysNoBoostToggle: false,
     //             dcHysBoostHold: false,
     //             dcHeadlightFlash: false,
@@ -404,7 +413,7 @@
     //             LapBestLapTime: 101.543,
     //             LapOptimalLapTime: 199.546,
     //             SessionTimeRemain: 6899.435,
-    //             OnPitRoad: false,
+    //             OnPitRoad: true,
     //             PlayerCarIdx: 15,
     //             dcTractionControl: 12,
     //             Lap: 20,
@@ -414,7 +423,7 @@
     //             TrackTemp: 26.78,
     //             AirTemp: 24.56,
     //             SessionNum: 2,
-    //             LapCurrentLapTime: 93.546,
+    //             LapCurrentLapTime: 3.546,
     //         }
     //     };
     //
@@ -511,6 +520,12 @@
     app.filter('toMinSec', function(){
         return function(input){
             return (moment.duration(input, "seconds").format("mm:ss.SSS"));
+        }
+    });
+
+    app.filter('toMinSec2', function(){
+        return function(input){
+            return (moment.duration(input, "seconds").format("mm:ss.SSS", {trim: false}));
         }
     });
 
