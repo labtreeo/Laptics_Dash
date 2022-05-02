@@ -176,7 +176,8 @@
 				<div class="col-sm-8 text-end">
 					<i ng-if="ir.WeekendInfo" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverAheadLapTimeGap > 0, 'text-success' : driverAheadLapTimeGap < 0}"></i>
 
-					<span class="driverGap " ng-class="{'text-danger' : driverAheadLapTimeGap > 0, 'text-success' : driverAheadLapTimeGap < 0}" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
+					<span class="driverGap text-success" ng-if="driverAheadLapTimeGap < 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
 				</div>
 			</div>
 		</div>
@@ -188,8 +189,8 @@
 		<div class="col-sm-5 border-start border-top border-secondary border-3">
 			<div class="row">
 				<div class="col-sm-12 text-center lastLap" style="min-height: 24px">
-					<span ng-bind="ir.LapCurrentLapTime | toMinSec"></span>
-					<span ng-if="!ir.LapCurrentLapTime">--,--</span>
+					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec"></span>
+					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">--,--</span>
 				</div>
 
 				<div class="col-sm-12" style="max-height: 24px">
@@ -295,7 +296,8 @@
 				<div class="col-sm-8 text-end">
 					<i ng-if="ir.WeekendInfo" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}"></i>
 
-					<span class="driverGap " ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
+					<span class="delta text-success" ng-if="ir.LapDeltaToSessionBestLap < 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
+					<span class="delta text-danger" ng-if="ir.LapDeltaToSessionBestLap > 0" ng-bind="ir.LapDeltaToSessionBestLap | number:2 | plusOrMinus"></span>
 				</div>
 			</div>
 		</div>

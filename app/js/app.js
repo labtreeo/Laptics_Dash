@@ -66,6 +66,23 @@
             return console.log('connected');
         };
         ir.onDisconnect = function() {
+
+            $rootScope.driverAheadPos = null
+            $rootScope.driverAheadClassPos = null
+            $rootScope.driverAheadLapTime = null
+            $rootScope.driverAheadLapTimeGap = null
+            $rootScope.driverAheadCarClassColor = null
+            $rootScope.driverAheadName = null
+            $rootScope.driverAheadLiveGap = null
+
+            $rootScope.driverBehindPos = null
+            $rootScope.driverBehindClassPos = null
+            $rootScope.driverBehindLapTime = null
+            $rootScope.driverBehindLapTimeGap = null
+            $rootScope.driverBehindCarClassColor = null
+            $rootScope.driverBehindName = null
+            $rootScope.driverBehindLiveGap = null
+
             return console.log('disconnected');
         };
         ir.onUpdate = function() {
@@ -127,19 +144,23 @@
                 }else{
                     sector.SectorEndPct = 1
                 }
-
                 if (lapDistPct >= sector.SectorStartPct && lapDistPct <= sector.SectorEndPct){
                     if (sector.SectorNum === 0){
 
                         angular.forEach(sectors, function(sector){
                             if (sector.SectorNum !== 0) {
                                 localStorage.setItem(sector.SectorNum, null)
+                                localStorage.setItem('D' + sector.SectorNum, null)
                             }
                         });
-
+                        localStorage.setItem('D' + sector.SectorNum, LapDeltaToSessionBestLap)
                         localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap)
                     }else{
-                        let previousSectorDelta = localStorage.getItem(previousSector.SectorNum)
+                        let previousSectorDelta = localStorage.getItem('D' + previousSector.SectorNum)
+
+                        console.log(previousSectorDelta)
+
+                        localStorage.setItem('D' + sector.SectorNum, LapDeltaToSessionBestLap)
 
                         localStorage.setItem(sector.SectorNum, LapDeltaToSessionBestLap - previousSectorDelta)
                     }
@@ -362,11 +383,17 @@
     //             },
     //             SplitTimeInfo: {
     //                 Sectors:[
-    //                     {SectorNum: 0},
-    //                     {SectorNum: 1},
-    //                     {SectorNum: 2},
-    //                     {SectorNum: 3},
-    //                     {SectorNum: 4},
+    //                     {
+    //                         SectorNum: 0,
+    //                         SectorDelta: -0.45
+    //                     },
+    //                     {
+    //                         SectorNum: 1,
+    //                         SectorDelta: +0.45
+    //                     },
+    //                     {
+    //                         SectorNum: 2
+    //                     }
     //                 ]
     //             },
     //             EnergyERSBatteryPct: .8743,
@@ -387,7 +414,7 @@
     //             TrackTemp: 26.78,
     //             AirTemp: 24.56,
     //             SessionNum: 2,
-    //             CarLeftRight: 0
+    //             LapCurrentLapTime: 93.546,
     //         }
     //     };
     //
