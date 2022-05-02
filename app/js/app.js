@@ -149,6 +149,8 @@
 
             });
 
+            $rootScope.sectors = sectors
+
             if (ir.data['dcHeadlightFlash'] === true){
                 $rootScope.HeadlightFlash = true
                 setTimeout(() => $rootScope.HeadlightFlash = false, 2000);
@@ -315,7 +317,6 @@
                 $rootScope.driverBehindName = driverBehindName
                 $rootScope.driverBehindLiveGap = driverBehindLiveGap
 
-                $rootScope.sectors = sectors
             }
 
             return $rootScope.$apply();
