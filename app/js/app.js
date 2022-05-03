@@ -9,7 +9,6 @@
             'Speed',
             'RPM',
             'Gear',
-            'dcBrakeBias',
             'dcPitSpeedLimiterToggle',
             'dcHysNoBoostToggle',
             'dcHysBoostHold',
@@ -18,7 +17,6 @@
             'LapDeltaToSessionOptimalLap',
             'LapDeltaToSessionLastlLap',
             'PlayerCarClassPosition',
-            'dcTractionControl3',
             'dcMGUKDeployFixed',
             'PlayerCarTeamIncidentCount',
             'IsOnTrack',
@@ -34,7 +32,6 @@
             'SessionTimeRemain',
             'OnPitRoad',
             'PlayerCarIdx',
-            'dcTractionControl',
             'ShiftIndicatorPct',
             'DriverInfo',
             'Lap',
@@ -58,7 +55,16 @@
             'SessionInfo',
             'LapDistPct',
             'SplitTimeInfo',
-            'LapCurrentLapTime'
+            'LapCurrentLapTime',
+            'dcBrakeBias',
+            'dcThrottleShape',
+            'dcTractionControl',
+            'dcTractionControl2',
+            'dcTractionControl3',
+            'dcTractionControl4',
+            'SessionFlags',
+            'dcThrottleShape'
+
         ], [], 30, null,null, null);
         ir.onConnect = function() {
             localStorage.setItem("lastPitStop", ir.data['Lap']);
@@ -365,7 +371,7 @@
     //             RaceLaps: 124,
     //             ShiftIndicatorPct: .5,
     //             dcBrakeBias: 51,
-    //             dcPitSpeedLimiterToggle: true,
+    //             dcPitSpeedLimiterToggle: false,
     //             dcHysNoBoostToggle: false,
     //             dcHysBoostHold: false,
     //             dcHeadlightFlash: false,
@@ -378,7 +384,7 @@
     //             dcMGUKDeployFixed: 12,
     //             PlayerCarTeamIncidentCount: 12,
     //             IsOnTrack: true,
-    //             dcABS: 12,
+    //             dcABS: 8,
     //             WeekendInfo: {
     //                 WeekendOptions: {
     //                     IncidentLimit: 17
@@ -413,7 +419,7 @@
     //             LapBestLapTime: 101.543,
     //             LapOptimalLapTime: 199.546,
     //             SessionTimeRemain: 6899.435,
-    //             OnPitRoad: true,
+    //             OnPitRoad: false,
     //             PlayerCarIdx: 15,
     //             dcTractionControl: 12,
     //             Lap: 20,
@@ -423,7 +429,9 @@
     //             TrackTemp: 26.78,
     //             AirTemp: 24.56,
     //             SessionNum: 2,
-    //             LapCurrentLapTime: 3.546,
+    //             LapCurrentLapTime: 93.546,
+    //             dcThrottleShape: 5,
+    //             SessionFlags: undefined
     //         }
     //     };
     //

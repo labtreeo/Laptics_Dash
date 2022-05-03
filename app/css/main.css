@@ -12,20 +12,11 @@
 .mainHub{
     max-width: 500px;
     font-family: Spantaran Regular, sans-serif;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     white-space: nowrap;
     user-select: none;
     overflow: hidden;
     animation: fadein 1s;
-}
-
-::-webkit-scrollbar {
-    display: none;
-}
-
-.drag{
-    -webkit-user-select: none;
-    -webkit-app-region: drag;
 }
 
 .gear{
@@ -41,7 +32,7 @@
     font-size: 26px;
 }
 
-.lastLap,.delta,.lapTime,.position,.smallPosition,.deltaText,.smallLapTimeRival,.weather,.bottomRow{
+.currentLapTime,.lastLap,.delta,.lapTime,.position,.smallPosition,.deltaText,.smallLapTimeRival,.weather,.bottomRow{
     font-size: 19px;
     line-height: 22px;
 }
@@ -60,14 +51,9 @@
     font-size: 15px;
 }
 
-.fuelTextSize{
-    font-size: 10px;
-    line-height: 11px;
-}
-
-.fuelSize{
+.car-settings{
     font-size: 12px;
-    line-height: 13px;
+    line-height: 24px
 }
 
 .batteryPercentage{

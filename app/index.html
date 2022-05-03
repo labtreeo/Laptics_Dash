@@ -21,11 +21,11 @@
 	<script src="js/ir.js"></script>
 </head>
 
-<body ng-controller="MainCtrl" style="background-color: transparent;" ng-class="{'bg-secondary' : !isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'}">
+<body ng-controller="MainCtrl" style="background-color: transparent;" ng-class="{'bg-dark' : !isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'}">
 
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
-<div class="container mainHub text-light rounded overflow-hidden drag">
+<div class="container mainHub text-light rounded">
 
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
@@ -39,54 +39,61 @@
 	</div>
 
 	<div class="row" style="min-height: 24px;">
-		<div class="col-sm-3 ">
+		<div class="col-sm-2">
 			<div class="row">
-				<div class="col-sm-8">
-					<span ng-if="ir.dcBrakeBias > 0" class="BB" ng-bind="ir.dcBrakeBias | number:1"></span>
-					<span ng-if="ir.dcABS > 0" class="ABS text-danger" ng-bind="ir.dcABS"></span>
-					<span ng-if="ir.dcTractionControl > 0" class="TC text-success" ng-bind="ir.dcTractionControl"></span>
+				<div class="col-sm-11">
+					<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
 				</div>
-
-				<div class="col-sm-4 d-flex justify-content-center align-items-end p-0" style="height: 24px">
-					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
-					<span style="min-width: 2px"></span>
-					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
-					<span style="min-width: 2px"></span>
-					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
+				<div class="col-sm-1 p-0">
+					<i ng-if="ir.SessionFlags == '0x00000001'" class="fas fa-flag-checkered fa-xs"></i>
+					<i ng-if="ir.SessionFlags == '0x00000002'" class="fad fa-flag fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #ffffff"></i>
+					<i ng-if="ir.SessionFlags == '0x00000004' || ir.SessionFlags == '0x00000400' || ir.SessionFlags == '0x00000200'" class="fad fa-flag fa-fw fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #198754"></i>
+					<i ng-if="ir.SessionFlags == '0x00000008' || ir.SessionFlags == '0x00000100' || ir.SessionFlags == '0x00004000' || ir.SessionFlags == '0x00008000'" class="fad fa-flag fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #ffc107"></i>
+					<i ng-if="ir.SessionFlags == '0x00000010'" class="fad fa-flag fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #dc3545"></i>
+					<i ng-if="ir.SessionFlags == '0x00000020'" class="fad fa-flag fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #0d6efd"></i>
+					<i ng-if="ir.SessionFlags == '0x00010000' || ir.SessionFlags == '0x00020000'" class="fad fa-flag fa-xs" style="--fa-secondary-opacity: 1; --fa-secondary-color: #000000"></i>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3800 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3950 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 4200 || ir.dcPitSpeedLimiterToggle}"></span>
+		<div class="col-sm-8 d-flex justify-content-center align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3800 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 3925 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 4050 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.RPM > 4175 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.RPM > 4300 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.RPM > 4400 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.RPM > 4500 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.RPM > 4550 || ir.dcPitSpeedLimiterToggle}"></span>
 		</div>
 
-		<div class="col-sm-6 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.114 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.228 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.342 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.456 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.57 || ir.dcPitSpeedLimiterToggle}"></span>
-			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.ShiftIndicatorPct > 0.684 || ir.dcPitSpeedLimiterToggle}"></span>
+		<div class="col-sm-8 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.1 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.2 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.3 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.4 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.5 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-warning': ir.ShiftIndicatorPct > 0.6 || ir.dcPitSpeedLimiterToggle}"></span>
+			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.ShiftIndicatorPct > 0.7 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.ShiftIndicatorPct > 0.8 || ir.dcPitSpeedLimiterToggle}"></span>
 		</div>
 
-		<div ng-if="!isElectron" class="col-sm-3 text-end">
-			<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
+		<div ng-if="!isElectron" class="col-sm-2">
+			<div class="col-sm-12 d-flex justify-content-center align-items-end p-0" style="height: 24px">
+				<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+				<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+				<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
+			</div>
 		</div>
 
-		<div ng-if="isElectron" class="col-sm-3">
+		<div ng-if="isElectron" class="col-sm-2">
 			<div class="row">
-				<div class="col-sm-7 align-self-center">
-					<span class="currentTime">{{CurrentTime | date:'HH:mm:ss'}}</span>
+				<div class="col-sm-3 d-flex justify-content-center align-items-end p-0" style="height: 24px">
+					<span class="pedals bg-primary" ng-style="{'height': Clutch * 24 + 'px'}"></span>
+					<span class="pedals bg-danger" ng-style="{'height': ir.Brake * 24 + 'px'}"></span>
+					<span class="pedals bg-success" ng-style="{'height': ir.Throttle * 24 + 'px'}"></span>
 				</div>
-				<div class="col-sm-5 d-flex justify-content-evenly" style="max-height: 24px;">
+				<div class="col-sm-9 d-flex justify-content-evenly" style="max-height: 24px;">
 					<button type="button" class="btn btn-sm text-secondary p-0" id="min-button"><i class="fa-solid fa-square-minus fa-fw"></i></button>
 					<button type="button" class="btn btn-sm text-secondary p-0" id="close-button"><i class="fa-solid fa-square-xmark fa-fw"></i></button>
 				</div>
@@ -101,11 +108,7 @@
 
 			<div class="row">
 				<div class="col col-sm-6">
-					<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fas fa-battery-empty batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fas fa-battery-quarter batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fas fa-battery-half batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fas fa-battery-three-quarters batteryPercentage ps-2"></i>
-					<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fas fa-battery-full batteryPercentage ps-2"></i>
+					<i class="fas fa-car-battery batteryPercentage ps-2"></i>
 				</div>
 				<div class="col col-sm-6 text-end">
 					<span class="batteryPercentage" ng-bind="ir.EnergyERSBatteryPct * 100 | number:2" ></span>
@@ -122,11 +125,11 @@
 			</span>
 
 			<span class="fa-stack">
-				<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fad fa-rotate-270 fa-fw fa-battery-empty batteryPercentage text-secondary m-1" style="--fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fad fa-rotate-270 fa-fw fa-battery-quarter batteryPercentage m-1" style="--fa-primary-color: orange; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fad fa-rotate-270 fa-fw fa-battery-half batteryPercentage m-1" style="--fa-primary-color: yellow; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fad fa-rotate-270 fa-fw fa-battery-three-quarters batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fad fa-rotate-270 fa-fw fa-battery-full batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fad fa-fw fa-battery-empty batteryPercentage text-secondary m-1" style="--fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fad fa-fw fa-battery-quarter batteryPercentage m-1" style="--fa-primary-color: orange; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fad fa-fw fa-battery-half batteryPercentage m-1" style="--fa-primary-color: yellow; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fad fa-fw fa-battery-three-quarters batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fad fa-fw fa-battery-full batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
 			</span>
 
 			<span class="fa-stack">
@@ -166,7 +169,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					<i ng-if="driverAheadLiveGap > 0 || driverAheadLiveGap < 0" class="fa-solid" ng-class="{'text-danger fa-square-arrow-up' : driverAheadLiveGap > 0, 'text-success fa-square-arrow-down' : driverAheadLiveGap < 0}"></i>
+					<i ng-if="driverAheadLiveGap > 0 || driverAheadLiveGap < 0" class="fas" ng-class="{'text-danger fa-square-arrow-up' : driverAheadLiveGap > 0, 'text-success fa-square-arrow-down' : driverAheadLiveGap < 0}"></i>
 
 					<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
 					<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
@@ -174,7 +177,7 @@
 					<span class="driverGap" ng-if="driverAheadLiveGap.includes('L')" ng-bind="driverAheadLiveGap"></span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<i ng-if="ir.WeekendInfo" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverAheadLapTimeGap > 0, 'text-success' : driverAheadLapTimeGap < 0}"></i>
+					<i ng-if="ir.WeekendInfo && driverAheadLapTimeGap > 0 || driverAheadLapTimeGap < 0" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverAheadLapTimeGap > 0, 'text-success' : driverAheadLapTimeGap < 0}"></i>
 
 					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
 					<span class="driverGap text-success" ng-if="driverAheadLapTimeGap < 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
@@ -187,21 +190,21 @@
 		</div>
 
 		<div class="col-sm-5 border-start border-top border-secondary border-3">
-			<div class="row" style="min-height: 24px">
+			<div class="row">
 
-				<div class="col-sm-4 align-self-center">
-					<i ng-if="ir.WeekendInfo && ir.dcPitSpeedLimiterToggle" style="--fa-animation-duration: 0.5s;" class="fas fa-fw fa-beat-fade text-warning fa-sm fa-gauge-low"></i>
-					<span class="lastLap text-warning" ng-if="ir.WeekendInfo && ir.dcPitSpeedLimiterToggle">PIT</span>
+				<div ng-if="ir.WeekendInfo" class="col-sm-4 align-self-center">
+					<i ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" style="--fa-animation-duration: 0.5s;" class="fas fa-fw text-secondary fa-sm fa-gauge-simple-low" ng-class="{'fa-beat-fade text-warning' : ir.dcPitSpeedLimiterToggle}"></i>
+					<span class="currentLapTime text-secondary" ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" ng-class="{'text-warning' : ir.dcPitSpeedLimiterToggle}">PIT</span>
 				</div>
 
-				<div class="col-sm-8 text-end lastLap" >
+				<div class="col-sm-8 text-end currentLapTime" >
 					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec2"></span>
 					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">00:00.000</span>
 				</div>
 
 				<div class="col-sm-12" style="max-height: 24px">
 					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
-						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 10px;" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'text-' : ir.LapDistPct >= sector.SectorStartPct && ir.LapDistPct <= sector.SectorEndPct, 'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
+						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'text-' : ir.LapDistPct >= sector.SectorStartPct && ir.LapDistPct <= sector.SectorEndPct, 'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
 							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
 						</div>
 					</div>
@@ -300,7 +303,7 @@
 					<span class="driverGap" ng-if="driverBehindLiveGap.includes('L')" ng-bind="driverBehindLiveGap"></span>
 				</div>
 				<div class="col-sm-8 text-end">
-					<i ng-if="ir.WeekendInfo" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}"></i>
+					<i ng-if="ir.WeekendInfo && driverAheadLapTimeGap > 0 || driverAheadLapTimeGap < 0"  class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}"></i>
 
 					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
 					<span class="driverGap text-danger" ng-if="driverBehindLapTimeGap > 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
@@ -312,8 +315,35 @@
 			<div class="speed" ng-bind="ir.Speed * 3.6 | number:0 "></div>
 		</div>
 
-		<div class="col-sm-5 border-start border-bottom border-secondary border-3">
-
+		<div class="col-sm-5 border-start border-bottom border-secondary border-3 car-settings">
+			<div class="row">
+				<div class="col-sm-4">
+					<span class="text-secondary">BB:</span>
+					<span ng-if="ir.dcBrakeBias > 0" class="text-danger" ng-bind="ir.dcBrakeBias | number:1"></span>
+				</div>
+				<div class="col-sm-4">
+					<span ng-if="ir.dcTractionControl > 0" class="text-secondary">TC1:</span>
+					<span ng-if="ir.dcTractionControl > 0" class="text-primary" ng-bind="ir.dcTractionControl"></span>
+				</div>
+				<div class="col-sm-4">
+					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS:</span>
+					<span ng-if="ir.dcThrottleShape > 0" class="text-primary" ng-bind="ir.dcThrottleShape"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<span ng-if="ir.dcABS > 0" class="text-secondary">ABS:</span>
+					<span ng-if="ir.dcABS > 0" class="text-danger" ng-bind="ir.dcABS"></span>
+				</div>
+				<div class="col-sm-4">
+					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">TC3:</span>
+					<span ng-if="ir.dcTractionControl3 > 0" class="text-primary" ng-bind="ir.dcTractionControl3 | number:2"></span>
+				</div>
+				<div class="col-sm-4">
+					<span ng-if="ir.dcMGUKDeployFixed > 0" class="text-secondary">MGU</span>
+					<span ng-if="ir.dcMGUKDeployFixed > 0" class="text-success" ng-bind="ir.dcMGUKDeployFixed"></span>
+				</div>
+			</div>
 		</div>
 	</div>
 
