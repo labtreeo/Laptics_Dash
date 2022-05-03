@@ -67,7 +67,7 @@
 			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.RPM > 4600 || ir.dcPitSpeedLimiterToggle, 'text-danger': ir.RPM > 4550 || ir.dcPitSpeedLimiterToggle}"></span>
 		</div>
 
-		<div class="col-sm-8 d-flex justify-content-evenly align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
+		<div class="col-sm-8 d-flex justify-content-center align-content-center flex-wrap p-0 pt-3" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'">
 			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.1 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-up text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.2 || ir.dcPitSpeedLimiterToggle}"></span>
 			<span class="fak fa-2xl fa-revled-down text-secondary" style="--fa-animation-duration: 0.5s;" ng-class="{'fa-beat-fade': ir.ShiftIndicatorPct > 0.85 || ir.dcPitSpeedLimiterToggle, 'text-success': ir.ShiftIndicatorPct > 0.3 || ir.dcPitSpeedLimiterToggle}"></span>
@@ -344,7 +344,7 @@
 				</div>
 				<div class="col-sm-4 text-end">
 					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>
-					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4"></span>
+					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>
 				</div>
 			</div>
 		</div>

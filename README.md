@@ -20,6 +20,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![Version][version-shield]][version-url]
+[![Downloads][downloads-shield]][version-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -81,7 +83,7 @@
 
 Laptics Dash is simple dashboard solution I build mostly for myself as I wanted something I could customize on my own how ever I wanted and I decided to share with the community.
 
-<img src="https://cdn.discordapp.com/attachments/661852420942462987/966378556865269760/Schermafbeelding_2022-04-20_om_18.43.08.png" height="250">
+<img src="https://media.discordapp.net/attachments/661852420942462987/971147245967798272/Schermafbeelding_2022-05-03_om_22.32.07.png?width=1877&height=880" height="250">
 
 
 ### Built With
@@ -98,6 +100,12 @@ There are currently 2 versions one which uses kapps and the other that is a stan
 
 For the Kapps Version you will need it installed and have that running on your system
 
+### Installation Stand alone App:
+
+1: Download the latest version from [GitHub](https://github.com/labtreeo/Laptics_Dash/releases)
+
+2: Open de zip file and open the dist folder and run the EXE file
+
 ### Installation Kapps:
 
 1: Download the latest version from Github
@@ -109,12 +117,6 @@ For the Kapps Version you will need it installed and have that running on your s
 4: Open Kapps en go to your Racing Overlay settings and scroll down to the 'Add Custom Overlay button' and click that
 
 5: Paste the link in the URL Text field and that's it
-
-### Installation Stand alone App:
-
-1: Download the latest version from [GitHub](https://github.com/labtreeo/Laptics_Dash/releases)
-
-2: Open de zip file and open the dist folder and run the EXE file
 
 
 
@@ -147,3 +149,6 @@ Project Link: [https://github.com/Labtreeo/Laptics_Dash](https://github.com/Labt
 [license-url]: https://github.com/labtreeo/Laptics_Dash/blob/master/LICENSE.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/Labtreeo
+[version-shield]: https://img.shields.io/github/v/release/labtreeo/Laptics_Dash?style=for-the-badge
+[version-url]: https://github.com/labtreeo/Laptics_Dash/releases
+[downloads-shield]: https://img.shields.io/github/downloads/labtreeo/laptics_dash/total?style=for-the-badge
