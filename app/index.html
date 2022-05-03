@@ -25,7 +25,7 @@
 
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
-<div class="container mainHub text-light rounded">
+<div class="container mainHub text-light rounded drag">
 
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
@@ -121,15 +121,15 @@
 		<div class="col-sm-2 d-flex align-items-center justify-content-center border-top border-secondary border-3 text-secondary" style="max-height: 27px">
 
 			<span class="fa-stack">
-				<i class="fas fa-fw fa-bolt" style="--fa-animation-duration: .5s" ng-class="{'fa-beat-fade text-info' : HeadlightFlash}"></i>
+				<i class="fas fa-fw fa-bolt" style="--fa-animation-duration: .5s" ng-class="{'fa-beat-fade text-light' : HeadlightFlash}"></i>
 			</span>
 
 			<span class="fa-stack">
-				<i ng-if="ir.EnergyERSBatteryPct <= .0099" class="fad fa-fw fa-battery-empty batteryPercentage text-secondary m-1" style="--fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .01 && ir.EnergyERSBatteryPct <= .3332" class="fad fa-fw fa-battery-quarter batteryPercentage m-1" style="--fa-primary-color: orange; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .3333 && ir.EnergyERSBatteryPct <= .6665" class="fad fa-fw fa-battery-half batteryPercentage m-1" style="--fa-primary-color: yellow; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .6666 && ir.EnergyERSBatteryPct <= .9899" class="fad fa-fw fa-battery-three-quarters batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
-				<i ng-if="ir.EnergyERSBatteryPct >= .99" class="fad fa-fw fa-battery-full batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct == 0" class="fad fa-fw fa-battery-empty batteryPercentage text-secondary m-1" style="--fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct > 0 && ir.EnergyERSBatteryPct < .25" class="fad fa-fw fa-battery-quarter batteryPercentage m-1" style="--fa-primary-color: orange; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct > .25 && ir.EnergyERSBatteryPct < .5" class="fad fa-fw fa-battery-half batteryPercentage m-1" style="--fa-primary-color: yellow; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct > .5 && ir.EnergyERSBatteryPct < .75" class="fad fa-fw fa-battery-three-quarters batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
+				<i ng-if="ir.EnergyERSBatteryPct > .75" class="fad fa-fw fa-battery-full batteryPercentage m-1" style="--fa-primary-color: limegreen; --fa-secondary-opacity: 1.0"></i>
 			</span>
 
 			<span class="fa-stack">
@@ -204,7 +204,7 @@
 
 				<div class="col-sm-12" style="max-height: 24px">
 					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
-						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'text-' : ir.LapDistPct >= sector.SectorStartPct && ir.LapDistPct <= sector.SectorEndPct, 'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
+						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
 							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
 						</div>
 					</div>
@@ -318,16 +318,19 @@
 		<div class="col-sm-5 border-start border-bottom border-secondary border-3 car-settings">
 			<div class="row">
 				<div class="col-sm-4">
-					<span class="text-secondary">BB:</span>
+					<span ng-if="ir.dcBrakeBias > 0" class="text-secondary">BB:</span>
 					<span ng-if="ir.dcBrakeBias > 0" class="text-danger" ng-bind="ir.dcBrakeBias | number:1"></span>
 				</div>
-				<div class="col-sm-4">
-					<span ng-if="ir.dcTractionControl > 0" class="text-secondary">TC1:</span>
+				<div class="col-sm-4 text-center">
+					<span ng-if="ir.dcTractionControl > 0" class="text-secondary">TC:</span>
 					<span ng-if="ir.dcTractionControl > 0" class="text-primary" ng-bind="ir.dcTractionControl"></span>
 				</div>
-				<div class="col-sm-4">
-					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS:</span>
-					<span ng-if="ir.dcThrottleShape > 0" class="text-primary" ng-bind="ir.dcThrottleShape"></span>
+				<div class="col-sm-4 text-end">
+					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">FTC:</span>
+					<span ng-if="ir.dcTractionControl3 > 0" class="text-success" ng-bind="ir.dcTractionControl3 | number:2"></span>
+
+					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS</span>
+					<span ng-if="ir.dcThrottleShape > 0" class="text-success" ng-bind="ir.dcThrottleShape"></span>
 				</div>
 			</div>
 			<div class="row">
@@ -335,13 +338,13 @@
 					<span ng-if="ir.dcABS > 0" class="text-secondary">ABS:</span>
 					<span ng-if="ir.dcABS > 0" class="text-danger" ng-bind="ir.dcABS"></span>
 				</div>
-				<div class="col-sm-4">
-					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">TC3:</span>
-					<span ng-if="ir.dcTractionControl3 > 0" class="text-primary" ng-bind="ir.dcTractionControl3 | number:2"></span>
+				<div class="col-sm-4 text-center">
+					<span ng-if="ir.dcTractionControl2 > 0" class="text-secondary">TC2:</span>
+					<span ng-if="ir.dcTractionControl2 > 0" class="text-primary" ng-bind="ir.dcTractionControl2"></span>
 				</div>
-				<div class="col-sm-4">
-					<span ng-if="ir.dcMGUKDeployFixed > 0" class="text-secondary">MGU</span>
-					<span ng-if="ir.dcMGUKDeployFixed > 0" class="text-success" ng-bind="ir.dcMGUKDeployFixed"></span>
+				<div class="col-sm-4 text-end">
+					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>
+					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4"></span>
 				</div>
 			</div>
 		</div>
@@ -373,12 +376,12 @@
 
 		<div class="col-sm-5 border-start border-3" style="border-color: transparent !important;">
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
-				<div class="col-sm-6">
+				<div class="col-sm-5">
 					<span class="text-secondary">Inc:</span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit == 'unlimited'" ng-bind="ir.PlayerCarTeamIncidentCount + 'x'"></span>
 					<span ng-if="ir.WeekendInfo.WeekendOptions.IncidentLimit != 'unlimited'" ng-class="{'text-warning' : incYellow, 'text-danger' : incRed}" ng-bind="ir.PlayerCarTeamIncidentCount + '/' + ir.WeekendInfo.WeekendOptions.IncidentLimit + 'x'"></span>
 				</div>
-				<div class="col-sm-6 text-end">
+				<div class="col-sm-7 text-end">
 					<span class="text-secondary">Fuel:</span>
 					<span class="text-light" ng-if="ir.FuelLevel > 10" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>
 					<span class="text-warning" ng-if="ir.FuelLevel > 5 && ir.FuelLevel <= 10" ng-bind="(ir.FuelLevel | number:2) + ' L'"></span>

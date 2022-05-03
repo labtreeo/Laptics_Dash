@@ -172,11 +172,7 @@
                         localStorage.setItem(sector.SectorNum, LapDelta)
                     }else{
                         let previousSectorDelta = localStorage.getItem('D' + previousSector.SectorNum)
-
-                        console.log(previousSectorDelta)
-
                         localStorage.setItem('D' + sector.SectorNum, LapDelta)
-
                         localStorage.setItem(sector.SectorNum, LapDelta - previousSectorDelta)
                     }
                 }
@@ -430,7 +426,9 @@
     //             AirTemp: 24.56,
     //             SessionNum: 2,
     //             LapCurrentLapTime: 93.546,
-    //             dcThrottleShape: 5,
+    //             dcThrottleShape: 0,
+    //             dcTractionControl2: 10,
+    //             dcTractionControl4: 1.55,
     //             SessionFlags: undefined
     //         }
     //     };
