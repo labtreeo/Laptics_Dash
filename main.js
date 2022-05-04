@@ -38,7 +38,7 @@ function createWindow () {
   require("@electron/remote/main").initialize();
   require("@electron/remote/main").enable(mainWindow.webContents);
 
-  let zoomFactor = 2.5
+  let zoomFactor = 1
 
   let widthRaw = mainWindow.getSize()[0] * zoomFactor
   let heightRaw = mainWindow.getSize()[1] * zoomFactor
