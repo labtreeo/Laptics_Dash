@@ -9,11 +9,6 @@
     display: none;
 }
 
-.drag{
-    -webkit-user-select: none;
-    -webkit-app-region: drag;
-}
-
 .mainHub{
     max-width: 500px;
     font-family: Spantaran Regular, sans-serif;
@@ -22,6 +17,15 @@
     user-select: none;
     overflow: hidden;
     animation: fadein 1s;
+}
+
+.drag{
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
+}
+
+.btn{
+    -webkit-app-region: no-drag;
 }
 
 .gear{
