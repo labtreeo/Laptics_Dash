@@ -5,7 +5,7 @@ require('electron-reload')(__dirname);
 const kill = require('tree-kill');
 const path = require('path')
 const exec = require('child_process').spawn;
-child = exec('app/server/server.exe', {detached: false});
+child = exec('app/server/server.exe', {detached: true});
 let splash
 let mainWindow
 let width

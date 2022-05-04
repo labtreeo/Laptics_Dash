@@ -355,8 +355,8 @@
 			<div class="row bottomRowText" ng-if="ir.WeekendInfo">
 				<div class="col-sm-6">
 					<span class="text-secondary">Lap:</span>
-					<span ng-if="ir.SessionLapsRemain > 1000 || ir.SessionLapsRemain == 'unlimited'" ng-bind="ir.Lap"></span>
-					<span ng-if="ir.SessionLapsRemain < 1000 && ir.SessionLapsRemain != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
+					<span ng-if="ir.SessionLapsRemainEx > 1000 || ir.SessionLapsRemainEx == 'unlimited'" ng-bind="ir.Lap"></span>
+					<span ng-if="ir.SessionLapsRemainEx < 1000 && ir.SessionLapsRemainEx != 'unlimited'" ng-bind="ir.Lap + '/' + SessionLaps"></span>
 				</div>
 
 				<div class="col-sm-6 text-end">
