@@ -106,6 +106,7 @@
             let lapDistPct = ir.data['LapDistPct'];
             let LapDeltaToSessionBestLap = ir.data['LapDeltaToSessionBestLap']
             let LapDeltaToSessionOptimalLap = ir.data['LapDeltaToSessionOptimalLap']
+            let LapDeltaToSessionLastlLap = ir.data['LapDeltaToSessionLastlLap']
             let LapDelta;
 
             let driverCarClassColor
@@ -166,18 +167,44 @@
                             if (sector.SectorNum !== 0) {
                                 localStorage.setItem(sector.SectorNum, null)
                                 localStorage.setItem('D' + sector.SectorNum, null)
+                                localStorage.setItem('DL' + sector.SectorNum, null)
+                                localStorage.setItem('L' + sector.SectorNum, null)
                             }
                         });
+
                         localStorage.setItem('D' + sector.SectorNum, LapDelta)
                         localStorage.setItem(sector.SectorNum, LapDelta)
+
+                        localStorage.setItem('DL' + sector.SectorNum, LapDeltaToSessionLastlLap)
+                        localStorage.setItem('L' + sector.SectorNum, LapDeltaToSessionLastlLap)
+
                     }else{
+
                         let previousSectorDelta = localStorage.getItem('D' + previousSector.SectorNum)
+
                         localStorage.setItem('D' + sector.SectorNum, LapDelta)
                         localStorage.setItem(sector.SectorNum, LapDelta - previousSectorDelta)
+
+                        localStorage.setItem('DL' + sector.SectorNum, LapDeltaToSessionLastlLap)
+                        localStorage.setItem('L' + sector.SectorNum, LapDeltaToSessionLastlLap - previousSectorDelta)
+
                     }
                 }
 
                 sector.SectorDelta = localStorage.getItem(sector.SectorNum)
+                sector.SectorDeltaLastlap = localStorage.getItem('L' + sector.SectorNum)
+
+                if (sector.SectorDelta < 0 || sector.SectorDeltaLastlap < 0){
+                    if (sector.SectorDelta < 0){
+                        sector.SectorColor = 'bg-optimal'
+                    } else {
+                        sector.SectorColor = 'bg-success'
+                    }
+                } else if (sector.SectorDelta > 0 ){
+                    sector.SectorColor = 'bg-warning'
+                } else if (sector.SectorDelta > 1 ){
+                    sector.SectorColor = 'bg-danger'
+                }
 
             });
 

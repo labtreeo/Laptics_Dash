@@ -83,6 +83,10 @@
     color: #e008e0;
 }
 
+.bg-optimal {
+    background-color: #e008e0 !important;
+}
+
 .rocket{
     --fa-secondary-color: orange;
 }
