@@ -63,7 +63,9 @@
             'dcTractionControl3',
             'dcTractionControl4',
             'SessionFlags',
-            'dcThrottleShape'
+            'dcThrottleShape',
+            'dcMGUKDeployMode',
+            'EnergyBatteryToMGU_KLap',
 
         ], [], 30, null,null, null);
         ir.onConnect = function() {

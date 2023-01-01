@@ -25,7 +25,7 @@
 
 <br ng-if="!isElectron && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 
-<div class="container mainHub text-light rounded drag">
+<div class="container mainHub text-light rounded drag" ng-if="ir.IsOnTrack">
 
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
@@ -101,7 +101,7 @@
 		</div>
 	</div>
 
-	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'bmwlmdh' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
 			<span class="batteryBar" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'rounded-end' : ir.EnergyERSBatteryPct < .99999,'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake <= .80 && ir.Brake >= .05, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
@@ -325,27 +325,35 @@
 					<span ng-if="ir.dcTractionControl > 0" class="text-secondary">TC:</span>
 					<span ng-if="ir.dcTractionControl > 0" class="text-primary" ng-bind="ir.dcTractionControl"></span>
 				</div>
-				<div class="col-sm-4 text-end">
-					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">FTC:</span>
-					<span ng-if="ir.dcTractionControl3 > 0" class="text-success" ng-bind="ir.dcTractionControl3 | number:2"></span>
-
-					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS</span>
-					<span ng-if="ir.dcThrottleShape > 0" class="text-success" ng-bind="ir.dcThrottleShape"></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<span ng-if="ir.dcABS > 0" class="text-secondary">ABS:</span>
-					<span ng-if="ir.dcABS > 0" class="text-danger" ng-bind="ir.dcABS"></span>
-				</div>
 				<div class="col-sm-4 text-center">
 					<span ng-if="ir.dcTractionControl2 > 0" class="text-secondary">TC2:</span>
 					<span ng-if="ir.dcTractionControl2 > 0" class="text-primary" ng-bind="ir.dcTractionControl2"></span>
 				</div>
-				<div class="col-sm-4 text-end">
-					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>
-					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>
+<!--				<div class="col-sm-4 text-end">-->
+<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">FTC:</span>-->
+<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-success" ng-bind="ir.dcTractionControl3 | number:2"></span>-->
+
+<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS</span>-->
+<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-success" ng-bind="ir.dcThrottleShape"></span>-->
+<!--				</div>-->
+			</div>
+			<div class="row">
+				<div class="col-sm-4" ng-if="ir.dcABS > 0">
+					<span ng-if="ir.dcABS > 0" class="text-secondary">ABS:</span>
+					<span ng-if="ir.dcABS > 0" class="text-danger" ng-bind="ir.dcABS"></span>
 				</div>
+				<div class="col-sm-4" ng-if="ir.dcMGUKDeployMode >= 0">
+					<span ng-if="ir.dcMGUKDeployMode >= 0" class="text-secondary">MGU-K:</span>
+					<span ng-if="ir.dcMGUKDeployMode == 0" class="text-warning">No Deploy</span>
+					<span ng-if="ir.dcMGUKDeployMode == 1" class="text-warning">Qualy</span>
+					<span ng-if="ir.dcMGUKDeployMode == 3" class="text-warning">Balanced</span>
+					<span ng-if="ir.dcMGUKDeployMode == 2" class="text-warning">Attack</span>
+					<span ng-if="ir.dcMGUKDeployMode == 4" class="text-warning">Build</span>
+				</div>
+<!--				<div class="col-sm-4 text-end">-->
+<!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>-->
+<!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>-->
+<!--				</div>-->
 			</div>
 		</div>
 	</div>
