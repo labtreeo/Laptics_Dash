@@ -11,6 +11,10 @@
 
 .mainHub{
     max-width: 500px;
+    /*max-width: 480px;*/
+    /*min-width: 480px;*/
+    /*max-height: 272px;*/
+    /*min-height: 272px;*/
     font-family: Spantaran Regular, sans-serif;
     background-color: rgba(0, 0, 0, 0.6);
     white-space: nowrap;

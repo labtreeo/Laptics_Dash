@@ -204,8 +204,10 @@
 
 				<div class="col-sm-12" style="max-height: 24px">
 					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
-						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0 {{sector.SectorColor}}">
-							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
+						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 11px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0 {{sector.SectorColor}}">
+							<span ng-if="sector.SectorDelta == 'null'" ng-bind="'S' + (sector.SectorNum + 1)"></span>
+							<span ng-if="sector.SectorDelta != 'null' && sector.SectorDelta <= 0" ng-bind="sector.SectorDelta | limitTo: 5"></span>
+							<span ng-if="sector.SectorDelta != 'null' && sector.SectorDelta >= 0" ng-bind="'+' + sector.SectorDelta | limitTo: 5"></span>
 						</div>
 					</div>
 				</div>
