@@ -101,7 +101,7 @@
 		</div>
 	</div>
 
-	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'bmwlmdh' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
+	<div class="row" ng-if="ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'audir18'|| ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'porsche919' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'bmwlmdh' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'cadillacvseriesrgtp' || ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath === 'test'">
 		<div class="col col-sm-5 border-top border-end border-secondary border-3 p-0">
 
 			<span class="batteryBar" ng-style="{ 'width': ir.EnergyERSBatteryPct * 205.3 + 'px'}" ng-class="{'rounded-end' : ir.EnergyERSBatteryPct < .99999,'progress-bar-striped progress-bar-animated' : HysBoostHold || ir.EnergyERSBatteryPct != 1 && ir.Brake <= .80 && ir.Brake >= .05, 'bg-success' : ir.EnergyERSBatteryPct >= .20, 'bg-warning' : ir.EnergyERSBatteryPct <= .20, 'bg-danger' : ir.EnergyERSBatteryPct <= .10}"></span>
