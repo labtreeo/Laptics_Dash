@@ -350,6 +350,11 @@
 					<span ng-if="ir.dcMGUKDeployMode == 2" class="text-warning">Attack</span>
 					<span ng-if="ir.dcMGUKDeployMode == 4" class="text-warning">Build</span>
 				</div>
+				<div class="col-sm-4" ng-if="Clutch > 0.01">
+					<span ng-if="Clutch > 0.01" class="text-secondary">Clutch:</span>
+					<span ng-if="Clutch > 0.01" class="text-primary">{{Clutch * 100 + '% '}}</span>
+				</div>
+
 <!--				<div class="col-sm-4 text-end">-->
 <!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>-->
 <!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>-->
