@@ -4,6 +4,7 @@
     app = angular.module('Dashboard', []);
 
     app.service('iRService', function($rootScope) {
+
         let ir;
         ir = new IRacing([
             'Speed',
@@ -38,6 +39,7 @@
             'Throttle',
             'Brake',
             'Clutch',
+            'ClutchRaw',
             'PlayerCarPosition',
             'CarIdxLastLapTime',
             'CarIdxBestLapTime',
@@ -103,6 +105,7 @@
             let CarIdxF2Time = ir.data['CarIdxF2Time'];
             let CarIdxLap = ir.data['CarIdxLap'];
             let clutch = ir.data['Clutch'];
+            let clutchRaw = ir.data['ClutchRaw'];
 
             let sectors = ir.data['SplitTimeInfo']['Sectors'];
             let lapDistPct = ir.data['LapDistPct'];
@@ -205,6 +208,9 @@
 
             if(clutch < 1.01){
                 $rootScope.Clutch =  Math.abs(clutch - 1)
+            }
+            if(clutchRaw < 1.01){
+                $rootScope.ClutchRaw =  Math.abs(clutchRaw - 1)
             }
 
             if(currentDriver['CarClassColor'] > 0) {

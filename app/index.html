@@ -350,12 +350,14 @@
 					<span ng-if="ir.dcMGUKDeployMode == 2" class="text-warning">Attack</span>
 					<span ng-if="ir.dcMGUKDeployMode == 4" class="text-warning">Build</span>
 				</div>
-				<div class="col-sm-4" ng-if="Clutch > 0.01">
-					<span ng-if="Clutch > 0.01" class="text-secondary">Clutch:</span>
-					<span ng-if="Clutch > 0.01" class="text-primary">{{Clutch * 100 + '% '}}</span>
+				<div class="col-sm-4" ng-if="ClutchRaw > 0.01">
+					<span ng-if="ClutchRaw > 0.01" class="text-secondary">Clutch:</span>
+					<span ng-if="ClutchRaw > 0.01" class="text-primary" ng-bind="ClutchRaw * 100 | number:0">%</span>
 				</div>
 
-<!--				<div class="col-sm-4 text-end">-->
+<!--				<div class="col-sm-4" id="axes" class="text-primary" style="display: flex; flex-direction: column;"></div>-->
+
+				<!--				<div class="col-sm-4 text-end">-->
 <!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>-->
 <!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>-->
 <!--				</div>-->
@@ -406,6 +408,26 @@
 	</div>
 
 </div>
+
+<!--<script>-->
+<!--	window.addEventListener('gamepadconnected', (event) => {-->
+<!--		const update = () => {-->
+<!--			const output = document.getElementById('axes');-->
+
+<!--			const axis = event.gamepad.axes[2] * 0.5 + 0.5;-->
+<!--			const axis2 = axis.toFixed(2)-->
+
+<!--			output.innerHTML = ''; // clear the output-->
+<!--			output.insertAdjacentHTML('beforeend',-->
+<!--					`-->
+<!--						<span class="text-secondary">Clutch:</span>-->
+<!--						<span>${axis2 * 100}</span>-->
+<!--					`);-->
+<!--			requestAnimationFrame(update);-->
+<!--		};-->
+<!--		update();-->
+<!--	});-->
+<!--</script>-->
 
 </body>
 
