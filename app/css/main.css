@@ -33,16 +33,21 @@
 }
 
 .gear{
-    font-size: 70px;
-    line-height: 40px;
+    font-size: 50px;
+    line-height: 20px;
+    position: relative;
+    top: -8px;
 }
 
 .speed{
-    font-size: 32px;
+    font-size: 18px;
 }
 
 .RPM{
-    font-size: 26px;
+    font-size: 20px;
+    line-height: 30px;
+    position: relative;
+    top: 3px;
 }
 
 .currentLapTime,.lastLap,.delta,.lapTime,.position,.smallPosition,.deltaText,.smallLapTimeRival,.weather,.bottomRow{

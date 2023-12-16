@@ -27,6 +27,10 @@
 
 <div class="container mainHub text-light rounded drag" ng-if="ir.IsOnTrack">
 
+	<div style="position:absolute; top: 57px; right: 745px;">
+
+	</div>
+
 	<div id="notification" class="alert border border-3 hidden">
 		<div class="row">
 			<div class="col-sm-10">
@@ -159,64 +163,6 @@
 	<div class="row" style="min-height: 51px;">
 		<div class="col-sm-5 border-top border-secondary border-end border-3">
 			<div class="row">
-				<div class="col-sm-3">
-					<span class="smallRivalPosition text-secondary" ng-style="{color: driverAheadCarClassColor}" ng-if="driverAheadClassPos > 0" ng-bind=" 'P' + driverAheadClassPos" ></span>
-					<span class="smallRivalPosition text-secondary" ng-if="driverAheadClassPos == 0" >P-</span>
-				</div>
-				<div class="col-sm-9 text-end text-truncate ps-0">
-					<span class="driverName" ng-bind="driverAheadName"></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<i ng-if="driverAheadLiveGap > 0 || driverAheadLiveGap < 0" class="fas" ng-class="{'text-danger fa-square-arrow-up' : driverAheadLiveGap > 0, 'text-success fa-square-arrow-down' : driverAheadLiveGap < 0}"></i>
-
-					<span class="driverGap text-danger" ng-if="driverAheadLiveGap > 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
-					<span class="driverGap text-success" ng-if="driverAheadLiveGap < 0" ng-bind="driverAheadLiveGap | plusOrMinus"></span>
-					<span class="driverGap" ng-if="driverAheadLiveGap == 0">--,--</span>
-					<span class="driverGap" ng-if="driverAheadLiveGap.includes('L')" ng-bind="driverAheadLiveGap"></span>
-				</div>
-				<div class="col-sm-8 text-end">
-					<i ng-if="ir.WeekendInfo && driverAheadLapTimeGap > 0 || driverAheadLapTimeGap < 0" class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverAheadLapTimeGap > 0, 'text-success' : driverAheadLapTimeGap < 0}"></i>
-
-					<span class="driverGap text-danger" ng-if="driverAheadLapTimeGap > 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
-					<span class="driverGap text-success" ng-if="driverAheadLapTimeGap < 0" ng-bind="driverAheadLapTimeGap | plusOrMinus"></span>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-sm-2 d-flex align-items-center justify-content-center" ng-class="{'border-top border-secondary border-3' : ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'porsche919' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'}">
-			<span class="RPM" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></span>
-		</div>
-
-		<div class="col-sm-5 border-start border-top border-secondary border-3">
-			<div class="row">
-
-				<div ng-if="ir.WeekendInfo" class="col-sm-4 align-self-center">
-					<i ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" style="--fa-animation-duration: 0.5s;" class="fas fa-fw text-secondary fa-sm fa-gauge-simple-low" ng-class="{'fa-beat-fade text-warning' : ir.dcPitSpeedLimiterToggle}"></i>
-					<span class="currentLapTime text-secondary" ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" ng-class="{'text-warning' : ir.dcPitSpeedLimiterToggle}">PIT</span>
-				</div>
-
-				<div class="col-sm-8 text-end currentLapTime" >
-					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec2"></span>
-					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">00:00.000</span>
-				</div>
-
-				<div class="col-sm-12" style="max-height: 24px">
-					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
-						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
-							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row" style="min-height: 54px;">
-		<div class="col-sm-5 border-top border-secondary border-bottom border-end border-3">
-
-			<div class="row">
 				<div class="col-sm-4">
 					<span class="position" ng-if="ir.PlayerCarPosition > 0" ng-bind=" 'P' + ir.PlayerCarPosition" ></span>
 					<span class="position" ng-if="ir.PlayerCarPosition == 0" >P-</span>
@@ -253,14 +199,19 @@
 
 		</div>
 
-		<div class="col-sm-2 d-flex align-items-center justify-content-center">
-			<span class="gear" ng-if="ir.Gear == -1">R</span>
-			<span class="gear" ng-if="ir.Gear == 0">N</span>
-			<span class="gear" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></span>
+		<div class="col-sm-2 border-top border-secondary border-3" ng-class="{'border-top border-secondary border-3' : ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'audir18' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'porsche919' && ir.DriverInfo.Drivers[ir.DriverInfo.DriverCarIdx].CarPath !== 'test'}">
+			<div class="row">
+				<div class="col-sm-12 d-flex align-items-center justify-content-center">
+					<span class="speed" ng-bind="ir.Speed * 3.6 | number:0 "></span>
+				</div>
+				<div class="col-sm-12 d-flex align-items-center justify-content-center">
+
+				</div>
+			</div>
 		</div>
 
-		<div class="col-sm-5 border-top border-secondary border-bottom border-start border-3">
-			<div class="row" >
+		<div class="col-sm-5 border-start border-top border-secondary border-3">
+			<div class="row">
 				<div class="col-sm-7">
 					<span ng-if="ir.LapBestLapTime > 10" class="lapTime bestTime" ng-bind="ir.LapBestLapTime | toMinSec"></span>
 				</div>
@@ -278,44 +229,48 @@
 					<span class="weather" ng-bind="ir.TrackTemp | number:1"></span>
 				</div>
 			</div>
-
 		</div>
 	</div>
 
-	<div class="row" style="min-height: 51px;">
-		<div class="col-sm-5 border-bottom border-secondary border-end border-3">
+	<div class="row" style="min-height: 54px;">
+		<div class="col-sm-5 border-top border-secondary border-bottom border-end border-3">
 			<div class="row">
-				<div class="col-sm-3">
-					<span class="smallRivalPosition text-secondary" ng-style="{color: driverBehindCarClassColor}" ng-if="driverBehindClassPos > 0" ng-bind=" 'P' + driverBehindClassPos" ></span>
-					<span class="smallRivalPosition text-secondary" ng-if="driverBehindClassPos == 0" >P-</span>
+				<div ng-if="ir.WeekendInfo" class="col-sm-4 align-self-center">
+					<i ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" style="--fa-animation-duration: 0.5s;" class="fas fa-fw text-secondary fa-sm fa-gauge-simple-low" ng-class="{'fa-beat-fade text-warning' : ir.dcPitSpeedLimiterToggle}"></i>
+					<span class="currentLapTime text-secondary" ng-if="ir.dcPitSpeedLimiterToggle || ir.OnPitRoad" ng-class="{'text-warning' : ir.dcPitSpeedLimiterToggle}">PIT</span>
 				</div>
-				<div class="col-sm-9 text-end text-truncate ps-0">
-					<span class="driverName" ng-bind="driverBehindName"></span>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<i ng-if="driverBehindLiveGap > 0 || driverBehindLiveGap < 0" class="fa-solid" ng-class="{'text-danger fa-square-arrow-up' : driverBehindLiveGap > 0, 'text-success fa-square-arrow-down' : driverBehindLiveGap < 0}"></i>
 
-					<span class="driverGap text-success" ng-if="driverBehindLiveGap < 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
-					<span class="driverGap text-danger" ng-if="driverBehindLiveGap > 0" ng-bind="driverBehindLiveGap | plusOrMinus"></span>
-					<span class="driverGap" ng-if="driverBehindLiveGap == 0">--,--</span>
-					<span class="driverGap" ng-if="driverBehindLiveGap.includes('L')" ng-bind="driverBehindLiveGap"></span>
+				<div class="col-sm-8 text-end currentLapTime" >
+					<span ng-if="ir.LapCurrentLapTime > 0" ng-bind="ir.LapCurrentLapTime | toMinSec2"></span>
+					<span ng-if="ir.WeekendInfo && !ir.LapCurrentLapTime">00:00.000</span>
 				</div>
-				<div class="col-sm-8 text-end">
-					<i ng-if="ir.WeekendInfo && driverAheadLapTimeGap > 0 || driverAheadLapTimeGap < 0"  class="fa-solid fa-stopwatch" ng-class="{'text-danger' : driverBehindLapTimeGap > 0, 'text-success' : driverBehindLapTimeGap < 0}"></i>
 
-					<span class="driverGap text-success" ng-if="driverBehindLapTimeGap < 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
-					<span class="driverGap text-danger" ng-if="driverBehindLapTimeGap > 0" ng-bind="driverBehindLapTimeGap | plusOrMinus"></span>
+				<div class="col-sm-12" style="max-height: 24px">
+					<div class="row d-flex justify-content-evenly align-items-center" style="height: 24px">
+						<div ng-repeat="sector in sectors | limitTo: 16" style="background-color: #6c757d; font-size: 12px; line-height: 12px" class="col-sm-1 flex-fill text-center rounded ms-1 me-1 ps-0 pe-0" ng-class="{'bg-success' : sector.SectorDelta < 0, 'bg-warning' : sector.SectorDelta > 0 && sector.SectorDelta < 1, 'bg-danger' : sector.SectorDelta > 1}">
+							<span ng-bind="'S' + (sector.SectorNum + 1)"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="col-sm-2 d-flex align-items-center justify-content-center border-bottom border-secondary border-3">
-			<div class="speed" ng-bind="ir.Speed * 3.6 | number:0 "></div>
+		<div class="col-sm-2 border-secondary border-bottom border-3">
+			<div class="row">
+				<div class="d-flex align-items-center justify-content-center">
+					<span class="gear" ng-if="ir.Gear == -1">R</span>
+					<span class="gear" ng-if="ir.Gear == 0">N</span>
+					<span class="gear" ng-bind="ir.Gear" ng-if="ir.Gear > 0"></span>
+				</div>
+			</div>
+			<div class="row">
+				<div class="d-flex align-items-center justify-content-center">
+					<span class="RPM" ng-if="ir.WeekendInfo" ng-bind="ir.RPM | customNumber"></span>
+				</div>
+			</div>
 		</div>
 
-		<div class="col-sm-5 border-start border-bottom border-secondary border-3 car-settings">
+		<div class="col-sm-5 border-top border-secondary border-bottom border-start border-3 car-settings">
 			<div class="row">
 				<div class="col-sm-4">
 					<span ng-if="ir.dcBrakeBias > 0" class="text-secondary">BB:</span>
@@ -329,13 +284,13 @@
 					<span ng-if="ir.dcTractionControl2 > 0" class="text-secondary">TC2:</span>
 					<span ng-if="ir.dcTractionControl2 > 0" class="text-primary" ng-bind="ir.dcTractionControl2"></span>
 				</div>
-<!--				<div class="col-sm-4 text-end">-->
-<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">FTC:</span>-->
-<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-success" ng-bind="ir.dcTractionControl3 | number:2"></span>-->
+				<!--				<div class="col-sm-4 text-end">-->
+				<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-secondary">FTC:</span>-->
+				<!--					<span ng-if="ir.dcTractionControl3 > 0" class="text-success" ng-bind="ir.dcTractionControl3 | number:2"></span>-->
 
-<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS</span>-->
-<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-success" ng-bind="ir.dcThrottleShape"></span>-->
-<!--				</div>-->
+				<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-secondary">TS</span>-->
+				<!--					<span ng-if="ir.dcThrottleShape > 0" class="text-success" ng-bind="ir.dcThrottleShape"></span>-->
+				<!--				</div>-->
 			</div>
 			<div class="row">
 				<div class="col-sm-4" ng-if="ir.dcABS > 0">
@@ -350,17 +305,17 @@
 					<span ng-if="ir.dcMGUKDeployMode == 2" class="text-warning">Attack</span>
 					<span ng-if="ir.dcMGUKDeployMode == 4" class="text-warning">Build</span>
 				</div>
-				<div class="col-sm-4" ng-if="ClutchRaw > 0.01">
-					<span ng-if="ClutchRaw > 0.01" class="text-secondary">Clutch:</span>
-					<span ng-if="ClutchRaw > 0.01" class="text-primary" ng-bind="ClutchRaw * 100 | number:0">%</span>
+				<!--				<div class="col-sm-4" ng-if="ClutchRaw > 0.01">-->
+				<!--					<span ng-if="ClutchRaw > 0.01" class="text-secondary">Clutch:</span>-->
+				<!--					<span ng-if="ClutchRaw > 0.01" class="text-primary" ng-bind="ClutchRaw * 100 | number:0">%</span>-->
+				<!--				</div>-->
+
+				<div class="col-sm-4" id="axes" class="text-primary" style="display: flex; flex-direction: column;"></div>
+
+				<div class="col-sm-4 text-end">
+					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>
+					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>
 				</div>
-
-<!--				<div class="col-sm-4" id="axes" class="text-primary" style="display: flex; flex-direction: column;"></div>-->
-
-				<!--				<div class="col-sm-4 text-end">-->
-<!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-secondary">RTC:</span>-->
-<!--					<span ng-if="ir.dcTractionControl4 > 0" class="text-success" ng-bind="ir.dcTractionControl4 | number:2"></span>-->
-<!--				</div>-->
 			</div>
 		</div>
 	</div>
@@ -409,25 +364,25 @@
 
 </div>
 
-<!--<script>-->
-<!--	window.addEventListener('gamepadconnected', (event) => {-->
-<!--		const update = () => {-->
-<!--			const output = document.getElementById('axes');-->
+<script>
+	window.addEventListener('gamepadconnected', (event) => {
+		const update = () => {
+			const output = document.getElementById('axes');
 
-<!--			const axis = event.gamepad.axes[2] * 0.5 + 0.5;-->
-<!--			const axis2 = axis.toFixed(2)-->
+			const axis = event.gamepad.axes[2] * 0.5 + 0.5;
+			const axis2 = axis.toFixed(2)
 
-<!--			output.innerHTML = ''; // clear the output-->
-<!--			output.insertAdjacentHTML('beforeend',-->
-<!--					`-->
-<!--						<span class="text-secondary">Clutch:</span>-->
-<!--						<span>${axis2 * 100}</span>-->
-<!--					`);-->
-<!--			requestAnimationFrame(update);-->
-<!--		};-->
-<!--		update();-->
-<!--	});-->
-<!--</script>-->
+			output.innerHTML = ''; // clear the output
+			output.insertAdjacentHTML('beforeend',
+					`
+						<span class="text-secondary">Clutch:</span>
+						<span>${axis2 * 100}</span>
+					`);
+			requestAnimationFrame(update);
+		};
+		update();
+	});
+</script>
 
 </body>
 
